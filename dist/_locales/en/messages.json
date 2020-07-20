@@ -1,5 +1,5 @@
 {
-  "l10nHello": {
+  "example": {
     "message": "Hello, React!",
     "description": "Hello text for the popup."
   }

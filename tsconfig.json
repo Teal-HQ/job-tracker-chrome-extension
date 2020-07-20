@@ -3,7 +3,8 @@
         "sourceMap": true,
         "target": "es6",
         "module": "commonjs",
-        "jsx": "react"
+        "jsx": "react",
+        "esModuleInterop": true
     },
     "exclude": [
         "node_modules",

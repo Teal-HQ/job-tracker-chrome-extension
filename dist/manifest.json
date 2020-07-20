@@ -1,38 +1,42 @@
 {
-    "name": "TS/R/WP Chrome Extension",
+    "name": "Teal's Job Tracker",
     "version": "0.0.1",
     "manifest_version": 2,
-    "description": "Boilerplate for a Chrome extension with TypeScript, React, and Webpack.",
-    "homepage_url": "https://duo.com/labs",
+    "description": "Enable fulfilling careers",
+    "homepage_url": "https://tealhq.com",
     "icons": {
       "16": "icons/icon16.png",
       "48": "icons/icon48.png",
       "128": "icons/icon128.png"
     },
     "browser_action": {
-      "default_title": "TSRWPCX",
+      "default_title": "Teal's Job Tracker",
       "default_popup": "popup.html"
     },
     "default_locale": "en",
     "background": {
-      "scripts": [
-        "js/background.js"
-      ],
-      "persistent": true
+
     },
     "permissions": [
-      "https://*/*"
+      "http://*/*",
+      "https://*/*",
+      "storage"
     ],
-    "content_security_policy": "default-src 'self';",
+    "content_security_policy": "default-src 'self' https://app.tealhq.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://app.tealhq.com data:; connect-src https://auth.service.tealhq.com https://teal-auth-service-staging.herokuapp.com https://teal-company-service-staging.herokuapp.com",
     "content_scripts": [
       {
         "matches": [
+          "http://*/*",
           "https://*/*"
         ],
         "js": [
+          "js/jquery.js",
           "js/content.js"
         ]
       }
+    ],
+    "web_accessible_resources": [
+      "https://app.tealhq.com/content/images/teal_logo_full_white.svg"
     ]
   }
   

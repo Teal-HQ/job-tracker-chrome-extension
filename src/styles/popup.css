@@ -1,11 +1,29 @@
 body {
-    min-width: 400px;
-    min-height: 400px;
+  min-width: 400px;
+  min-height: 400px;
+  background-color: #254847 !important;
+  padding: 1rem;
+  color: white !important;
+}
+
+.ant-form-item-label > label {
+  color: white !important;
 }
 
 .popup-padded {
-    padding-top: 10px;
-    padding-bottom: 10px;
-    padding-left: 10px;
-    padding-right: 10px;
+  padding-top: 10px;
+  padding-bottom: 10px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
+
+.teal-logo {
+  height: 55px;
+  max-width: 240px;
+  margin-bottom: 20px;
+}
+
+.job-description-preview {
+  color: white;
+  font-style: italic;
 }
