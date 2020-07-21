@@ -83,73 +83,71 @@ const JobPostForm = (props: IJobPostForm) => {
   };
 
   return (
-    <Row>
-      <Col>
-        {error ? (
-          <Alert message={<div><strong>Something went wrong :(</strong> <br/> We couldn't save this job post, please try again later.</div>} type="error"/>
-        ) : null}
-        <Form
-          form={form}
-          name="jobPost"
-          onFinish={save}
-          onValuesChange={onFormValuesChange}
+    <div className="job-post-form-container">
+      {error ? (
+        <Alert message={<div><strong>Something went wrong :(</strong> <br/> We couldn't save this job post, please try again later.</div>} type="error"/>
+      ) : null}
+      <Form
+        form={form}
+        name="jobPost"
+        onFinish={save}
+        onValuesChange={onFormValuesChange}
+      >
+        <Form.Item
+          label="Job Title"
+          name="role"
+          rules={[{ required: true, message: 'Please enter the role.' }]}
         >
-          <Form.Item
-            label="Job Title"
-            name="role"
-            rules={[{ required: true, message: 'Please enter the role.' }]}
-          >
-            <Input />
-          </Form.Item>
+          <Input />
+        </Form.Item>
 
-          <Row gutter={[12,0]}>
-            <Col span={12}>
-              <Form.Item
-                label="Company"
-                name="company"
-                rules={[{ required: true, message: 'Please enter the company name.' }]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-            <Col span={12}>
-              <Form.Item
-                label="Job Location"
-                name="location"
-                rules={[{ required: true, message: 'Please enter the location.' }]}
-              >
-                <Input />
-              </Form.Item>
-            </Col>
-          </Row>
+        <Row gutter={[12,0]}>
+          <Col span={12}>
+            <Form.Item
+              label="Company"
+              name="company"
+              rules={[{ required: true, message: 'Please enter the company name.' }]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+          <Col span={12}>
+            <Form.Item
+              label="Job Location"
+              name="location"
+              rules={[{ required: true, message: 'Please enter the location.' }]}
+            >
+              <Input />
+            </Form.Item>
+          </Col>
+        </Row>
 
-          <Form.Item
-            label="Add Notes"
-            name="note"
-          >
-            <Input.TextArea />
-          </Form.Item>
+        <Form.Item
+          label="Add Notes"
+          name="note"
+        >
+          <Input.TextArea />
+        </Form.Item>
 
-          <Form.Item
-            label="Job Description Review"
-          >
-            <TextTruncate
-              line={3}
-              element="div"
-              truncateText="…"
-              text={jobPost?.description}
-              containerClassName="job-description-preview"
-            />
-          </Form.Item>
+        <Form.Item
+          label="Job Description Review"
+        >
+          <TextTruncate
+            line={3}
+            element="div"
+            truncateText="…"
+            text={jobPost?.description}
+            containerClassName="job-description-preview"
+          />
+        </Form.Item>
 
-          <Form.Item>
-            <Button type="primary" htmlType="submit">
-              Submit
-            </Button>
-          </Form.Item>
-        </Form>
-      </Col>  
-    </Row>
+        <Form.Item>
+          <Button type="primary" htmlType="submit">
+            Submit
+          </Button>
+        </Form.Item>
+      </Form>
+    </div>
   );
 };
 
