@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Button, Input } from 'antd';
+import { Row, Col, Form, Button, Input, Alert } from 'antd';
 import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { PAGES } from '../../../config/config';
@@ -12,7 +12,7 @@ export interface IJobPostForm {
 const JobPostForm = (props: IJobPostForm) => {
   const { jwt, navigateTo } = props;
   const [jobPost, setJobPost] = useState(defaultJobPost);
-  const [success, setSuccess] = useState(false);
+  const [error, setError] = useState(false);
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -71,22 +71,23 @@ const JobPostForm = (props: IJobPostForm) => {
   }
   
   const save = (values) => {
-    navigateTo(PAGES.SUCCESS, jobPost);
-    // saveJobPost(jobPost, jwt)
-    // .then(response => {
-    //   console.log(response);
-    //   // set id to job post
-    //   setSuccess(true);
-    //   chrome.storage.local.remove('currentJobPost');
-    // })
-    // .catch(error => {
-
-    // });
+    setError(false);
+    saveJobPost(jobPost, jwt)
+    .then(response => {
+      chrome.storage.local.remove('currentJobPost');
+      navigateTo(PAGES.SUCCESS, {...jobPost, id: response.data.data.id});
+    })
+    .catch(error => {
+      setError(true);
+    });
   };
 
   return (
     <Row>
       <Col>
+        {error ? (
+          <Alert message={<div><strong>Something went wrong :(</strong> <br/> We couldn't save this job post, please try again later.</div>} type="error"/>
+        ) : null}
         <Form
           form={form}
           name="jobPost"

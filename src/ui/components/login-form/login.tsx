@@ -19,7 +19,7 @@ const LoginForm = (props: ILoginForm) => {
       </Row>
       <Row justify="center">
         <Col>
-        {props.error ? (
+          {props.error ? (
             <Alert message={<div><strong>Failed to sign in!</strong> Please check your credentials or check your email to activate your account.</div>} type="error"/>
           ) : null}
           <Form

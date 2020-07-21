@@ -67,7 +67,10 @@ const JobTracker = () => {
       {page === PAGES.SUCCESS ? (
         <div className="success-message">
         <Row>
-          <Col span={6}><img src={chrome.runtime.getURL('images/teal_logo_43.svg')}/></Col>
+          <Col span={6}>
+            { /* TODO temp link to log out */ }
+            <img src={chrome.runtime.getURL('images/teal_logo_43.svg')}/>
+          </Col>
           {pageData &&
             <Col span={18}>
               <div>{pageData.company} {pageData.role}</div>
