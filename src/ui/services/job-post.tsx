@@ -1,7 +1,7 @@
 import axios from 'axios';
 import { deserialize } from "deserialize-json-api";
 
-const COMPANY_API_URL = 'https://teal-company-service-staging.herokuapp.com/';
+import { COMPANY_API_URL } from '../../config/config';
 
 export interface JobPost {
   company?: string;
@@ -12,6 +12,7 @@ export interface JobPost {
   description?: string;
   description_html: string;
   note?: string;
+  id?: string;
 }
 
 export const defaultJobPost: JobPost = {
@@ -22,7 +23,8 @@ export const defaultJobPost: JobPost = {
   logo: '',
   description: '',
   description_html: '',
-  note: ''
+  note: '',
+  id: ''
 }
 
 export const getRules = async (url, jwt) => {

@@ -1,6 +1,5 @@
 import axios from 'axios';
-
-const AUTH_API_URL = 'https://teal-auth-service-staging.herokuapp.com/';
+import { AUTH_API_URL } from '../../config/config';
 
 export const login = ( email: string, password: string ) => {
   // TODO catch errors

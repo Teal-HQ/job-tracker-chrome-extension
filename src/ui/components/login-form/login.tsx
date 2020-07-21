@@ -8,7 +8,7 @@ export interface ILoginForm {
 
 const LoginForm = (props: ILoginForm) => {
   return (
-    <>
+    <div className="login-form">
       <Row justify="center">
         <Col>
           <img
@@ -50,7 +50,7 @@ const LoginForm = (props: ILoginForm) => {
           </Form>
         </Col>
       </Row>
-    </>
+    </div>
   );
 };
 

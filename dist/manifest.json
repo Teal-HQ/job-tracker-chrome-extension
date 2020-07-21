@@ -36,7 +36,8 @@
       }
     ],
     "web_accessible_resources": [
-      "https://app.tealhq.com/content/images/teal_logo_full_white.svg"
-    ]
+      "https://app.tealhq.com/content/images/teal_logo_full_white.svg",
+      "images/*.svg"
+    ]  
   }
   

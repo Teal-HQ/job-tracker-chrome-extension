@@ -2,14 +2,17 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Button, Input } from 'antd';
 import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
+import { PAGES } from '../../../config/config';
 
 export interface IJobPostForm {
-  jwt: string
+  jwt: string,
+  navigateTo: any
 }
 
 const JobPostForm = (props: IJobPostForm) => {
-  const { jwt } = props;
+  const { jwt, navigateTo } = props;
   const [jobPost, setJobPost] = useState(defaultJobPost);
+  const [success, setSuccess] = useState(false);
   const [form] = Form.useForm();
 
   useEffect(() => {
@@ -22,112 +25,130 @@ const JobPostForm = (props: IJobPostForm) => {
   
   const requestDataFromActiveTab = () => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
-      let url = tabs[0].url;
-      
-      getRules(url, jwt).then((rules)=>{
-        if (!rules) {
-          return;
-        }
+      const url = tabs[0] ? tabs[0].url : null;
 
-        chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-          chrome.tabs.sendMessage(tabs[0].id, {action: "getData", rules}, function(response) {
-            setJobPost({...response.data, url});
+      chrome.storage.local.get(['currentJobPost'], function(result) {
+        if(result.currentJobPost && (url === null || result.currentJobPost.url === url)) {
+         setJobPost(result.currentJobPost);
+        } else {
+          getRules(url, jwt).then((rules)=>{
+            if (!rules) {
+              return;
+            }
+    
+            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
+              chrome.tabs.sendMessage(tabs[0].id, {action: "getData", rules}, function(response) {
+                syncJobPost({...response.data, url});
+              });
+            });
           });
-        });
+        }
       });
     });
   }
 
+  const syncJobPost = (data) => {
+    setJobPost(data);
+    chrome.storage.local.set({"currentJobPost": data});
+  }
+
   const onFormValuesChange = (values) => {
     if (values.note) {
-      setJobPost({...jobPost, note: values.note})
+      syncJobPost({...jobPost, note: values.note});
     }
   
     if (values.role) {
-      setJobPost({...jobPost, role: values.role})
+      syncJobPost({...jobPost, role: values.role});
     }
   
     if (values.company) {
-      setJobPost({...jobPost, company: values.company})
+      syncJobPost({...jobPost, company: values.company});
     }
   
     if (values.location) {
-      setJobPost({...jobPost, location: values.location})
+      syncJobPost({...jobPost, location: values.location});
     }
   }
   
   const save = (values) => {
-    saveJobPost(jobPost, jwt)
-    .then(response => {
-      
-    })
-    .catch(error => {
+    navigateTo(PAGES.SUCCESS, jobPost);
+    // saveJobPost(jobPost, jwt)
+    // .then(response => {
+    //   console.log(response);
+    //   // set id to job post
+    //   setSuccess(true);
+    //   chrome.storage.local.remove('currentJobPost');
+    // })
+    // .catch(error => {
 
-    });
+    // });
   };
 
   return (
-    <>
-      <Row>
-        <Col>
-          <Form
-            form={form}
-            name="jobPost"
-            onFinish={save}
-            onValuesChange={onFormValuesChange}
+    <Row>
+      <Col>
+        <Form
+          form={form}
+          name="jobPost"
+          onFinish={save}
+          onValuesChange={onFormValuesChange}
+        >
+          <Form.Item
+            label="Job Title"
+            name="role"
+            rules={[{ required: true, message: 'Please enter the role.' }]}
           >
-            <Form.Item
-              label="Job Title"
-              name="role"
-              rules={[{ required: true, message: 'Please enter the role.' }]}
-            >
-              <Input />
-            </Form.Item>
+            <Input />
+          </Form.Item>
 
-            <Form.Item
-              label="Company"
-              name="company"
-              rules={[{ required: true, message: 'Please enter the company name.' }]}
-            >
-              <Input />
-            </Form.Item>
+          <Row gutter={[12,0]}>
+            <Col span={12}>
+              <Form.Item
+                label="Company"
+                name="company"
+                rules={[{ required: true, message: 'Please enter the company name.' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+            <Col span={12}>
+              <Form.Item
+                label="Job Location"
+                name="location"
+                rules={[{ required: true, message: 'Please enter the location.' }]}
+              >
+                <Input />
+              </Form.Item>
+            </Col>
+          </Row>
 
-            <Form.Item
-              label="Job Location"
-              name="location"
-              rules={[{ required: true, message: 'Please enter the location.' }]}
-            >
-              <Input />
-            </Form.Item>
+          <Form.Item
+            label="Add Notes"
+            name="note"
+          >
+            <Input.TextArea />
+          </Form.Item>
 
-            <Form.Item
-              label="Add Notes"
-              name="note"
-            >
-              <Input.TextArea />
-            </Form.Item>
+          <Form.Item
+            label="Job Description Review"
+          >
+            <TextTruncate
+              line={3}
+              element="div"
+              truncateText="…"
+              text={jobPost?.description}
+              containerClassName="job-description-preview"
+            />
+          </Form.Item>
 
-            <Form.Item
-              label="Job Description Review"
-            >
-              <TextTruncate
-                line={3}
-                element="div"
-                truncateText="…"
-                text={jobPost?.description}
-                containerClassName="job-description-preview"
-              />
-            </Form.Item>
-
-            <Form.Item>
-              <Button type="primary" htmlType="submit">
-                Submit
-              </Button>
-            </Form.Item>
-          </Form>
-        </Col>  
-      </Row>
-    </>
+          <Form.Item>
+            <Button type="primary" htmlType="submit">
+              Submit
+            </Button>
+          </Form.Item>
+        </Form>
+      </Col>  
+    </Row>
   );
 };
 

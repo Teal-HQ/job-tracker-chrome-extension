@@ -1,20 +1,19 @@
+html, body {
+  height: auto !important;
+}
+
 body {
-  min-width: 400px;
-  min-height: 400px;
-  background-color: #254847 !important;
-  padding: 1rem;
-  color: white !important;
+  min-width: 350px;
+  background-color: white !important;
+  color: black !important;
+}
+
+.ant-form-item .ant-form-item-label {
+  padding: 0 !important;
 }
 
 .ant-form-item-label > label {
-  color: white !important;
-}
-
-.popup-padded {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  padding-left: 10px;
-  padding-right: 10px;
+  color: #244747 !important;
 }
 
 .teal-logo {
@@ -24,6 +23,41 @@ body {
 }
 
 .job-description-preview {
-  color: white;
+  color: black;
   font-style: italic;
+}
+
+.ant-layout-header {
+  background-color: #11292A;
+  color: white;
+  padding: 0 25px;
+}
+
+.ant-layout-content {
+  padding: 20px 25px;
+  background-color: white;
+}
+
+.login-form {
+  background-color: #11292A;
+  padding: 25px;
+}
+
+.login-form .ant-form-item-label > label {
+  color: white !important;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.success-message {
+  background-color: #11292A;
+  color: white;
+  padding: 20px;
+}
+
+.success-message a {
+  color:white;
+  text-decoration: underline;
 }
