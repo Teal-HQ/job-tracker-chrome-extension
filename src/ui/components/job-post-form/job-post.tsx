@@ -3,11 +3,12 @@ import { Row, Col, Form, Button, Input, Alert } from 'antd';
 import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { PAGES } from '../../../config/config';
+import { INavigateTo, ILoading } from '../../popup';
 
 export interface IJobPostForm {
   jwt: string,
-  navigateTo: any,
-  setLoading: any
+  navigateTo: INavigateTo,
+  setLoading: ILoading
 }
 
 const JobPostForm = (props: IJobPostForm) => {

@@ -15,6 +15,14 @@ import "../styles/popup.css";
 
 const { Header, Content } = Layout;
 
+export interface INavigateTo {
+  (page: PAGES, data?: any): void;
+}
+
+export interface ILoading {
+  (loading: boolean): void;
+}
+
 const JobTracker = () => {
   const [jwt, setJwt] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
