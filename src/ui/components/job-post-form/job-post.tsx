@@ -6,11 +6,12 @@ import { PAGES } from '../../../config/config';
 
 export interface IJobPostForm {
   jwt: string,
-  navigateTo: any
+  navigateTo: any,
+  setLoading: any
 }
 
 const JobPostForm = (props: IJobPostForm) => {
-  const { jwt, navigateTo } = props;
+  const { jwt, navigateTo, setLoading } = props;
   const [jobPost, setJobPost] = useState(defaultJobPost);
   const [error, setError] = useState(false);
   const [form] = Form.useForm();
@@ -31,7 +32,10 @@ const JobPostForm = (props: IJobPostForm) => {
         if(result.currentJobPost && (url === null || result.currentJobPost.url === url)) {
          setJobPost(result.currentJobPost);
         } else {
-          getRules(url, jwt).then((rules)=>{
+          setLoading(true);
+          getRules(url, jwt)
+          .then((rules)=>{
+            setLoading(false);
             if (!rules) {
               return;
             }
@@ -41,6 +45,9 @@ const JobPostForm = (props: IJobPostForm) => {
                 syncJobPost({...response.data, url});
               });
             });
+          })
+          .catch(error => {
+            setLoading(false);
           });
         }
       });
@@ -72,13 +79,16 @@ const JobPostForm = (props: IJobPostForm) => {
   
   const save = (values) => {
     setError(false);
+    setLoading(true);
     saveJobPost(jobPost, jwt)
     .then(response => {
+      setLoading(false);
       chrome.storage.local.remove('currentJobPost');
       navigateTo(PAGES.SUCCESS, {...jobPost, id: response.data.data.id});
     })
     .catch(error => {
       setError(true);
+      setLoading(false);
     });
   };
 

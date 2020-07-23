@@ -1,11 +1,3 @@
-chrome.runtime.sendMessage({}, (response) => {
-  var checkReady = setInterval(() => {
-    if (document.readyState === "complete") {
-      clearInterval(checkReady);
-    }
-  });
-});
-
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action == "getData") {
     const data = {
