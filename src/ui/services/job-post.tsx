@@ -54,7 +54,7 @@ export const saveJobPost = (jobPost: JobPost, jwt) => {
           "location": jobPost.location,
           "note": jobPost.note,
           "url": jobPost.url,
-          "job_description": jobPost.description
+          "job_description": jobPost.description_html
         }
       }
     },
