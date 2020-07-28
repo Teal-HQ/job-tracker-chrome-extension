@@ -57,10 +57,11 @@ const JobTracker = () => {
       });
     })
     .catch(error => {
-      if (error.response.status === 401) {
+      if (error?.response?.status === 401) {
         setLoginError('Unauthorized');
         setLoading(false);
       }
+      console.log(error);
     });
   };
 

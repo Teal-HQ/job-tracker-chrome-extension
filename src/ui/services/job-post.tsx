@@ -42,7 +42,6 @@ export const getRules = async (url, jwt) => {
 }
 
 export const saveJobPost = (jobPost: JobPost, jwt) => {
-  // TODO catch errors
   return axios.post(
     COMPANY_API_URL + 'user_job_posts',
     {
