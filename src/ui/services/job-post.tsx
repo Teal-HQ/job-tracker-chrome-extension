@@ -28,7 +28,7 @@ export const defaultJobPost: JobPost = {
 }
 
 export const getRules = async (url, jwt) => {
-  const data = await axios.get(COMPANY_API_URL+'xpaths', {'headers': {
+  const data = await axios.get('https://teal-company-service-staging.herokuapp.com/'+'xpaths', {'headers': {
     'Authorization': `Bearer ${jwt}`
   }});
 
