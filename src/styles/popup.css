@@ -27,6 +27,16 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   text-transform: none;
+  color: #244747;
+}
+
+h3 {
+  font-size: 20px;
+}
+
+a {
+  color: #244747;
+  text-decoration: underline;
 }
 
 /* ant overrides */
@@ -40,13 +50,13 @@ h1, h2, h3, h4, h5, h6 {
 
 .ant-btn.ant-btn-primary {
   background-color: #F5BE7F;
-    padding: 0.5rem 1rem;
-    color: #11292A;
-    font-size: 12px;
-    height: auto;
-    border: 0;
-    text-shadow: none;
-    box-shadow: none;
+  padding: 0.5rem 1rem;
+  color: #11292A;
+  font-size: 13px;
+  height: auto;
+  border: 0;
+  text-shadow: none;
+  box-shadow: none;
 }
 
 .ant-form-item:last-child:not(:only-child) {
@@ -66,7 +76,7 @@ h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   height: auto;
   margin-bottom: 0.35rem !important;
-  font-size: 12px;
+  font-size: 13px;
 }
 
 .ant-form-item-label > label.ant-form-item-required::before {
@@ -135,11 +145,31 @@ h1, h2, h3, h4, h5, h6 {
 }
 
 .login-form h3 {
-  font-size: 20px;
   color: #fff;
   text-align: center;
 }
 
 .login-form .ant-form-item-label > label {
   color: white !important;
+}
+
+/* About Screen */
+.about-faq-container {
+  font-size: 13px;
+}
+
+.about-faq-container h3 {
+  border-bottom: 1px solid #dcdcdc;
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.about-faq-container h3:not(:first-of-type) {
+  margin-top: 2rem;
+}
+
+.about-faq-container p {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  color: #244747;
 }

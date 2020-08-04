@@ -108,7 +108,7 @@ const JobTracker = () => {
                   {page === PAGES.JOB_POST_FORM ? (
                     <Col className="nav-wrapper" span={8}><span onClick={(e) => navigateTo(PAGES.ABOUT)} className="clickable">About &amp; FAQ</span></Col>
                   ) : (
-                    <Col span={8}><span onClick={(e) => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">&#8592; Go Back</span></Col>
+                    <Col className="nav-wrapper" span={8}><span onClick={(e) => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">&#8592; Go Back</span></Col>
                   )}      
                 </Row>
               </Header>
