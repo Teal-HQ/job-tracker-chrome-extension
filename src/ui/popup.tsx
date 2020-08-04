@@ -106,7 +106,7 @@ const JobTracker = () => {
                 <Row>
                   <Col span={16}><img className="clickable" onClick={logout} src={chrome.runtime.getURL('images/teal_logo_32.svg')}/></Col>
                   {page === PAGES.JOB_POST_FORM ? (
-                    <Col span={8}><span onClick={(e) => navigateTo(PAGES.ABOUT)} className="clickable">About &amp; FAQ</span></Col>
+                    <Col className="nav-wrapper" span={8}><span onClick={(e) => navigateTo(PAGES.ABOUT)} className="clickable">About &amp; FAQ</span></Col>
                   ) : (
                     <Col span={8}><span onClick={(e) => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">&#8592; Go Back</span></Col>
                   )}      

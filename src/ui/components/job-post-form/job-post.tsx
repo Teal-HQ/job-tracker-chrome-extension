@@ -140,17 +140,19 @@ const JobPostForm = (props: IJobPostForm) => {
           <Input.TextArea />
         </Form.Item>
 
-        <Form.Item
-          label="Job Description Review"
-        >
-          <TextTruncate
-            line={3}
-            element="div"
-            truncateText="…"
-            text={jobPost?.description}
-            containerClassName="job-description-preview"
-          />
-        </Form.Item>
+        { jobPost?.description &&
+          <Form.Item
+            label="Job Description Preview"
+          >
+            <TextTruncate
+              line={3}
+              element="div"
+              truncateText="…"
+              text={jobPost?.description}
+              containerClassName="job-description-preview"
+            />
+          </Form.Item>
+        }
 
         <Form.Item>
           <Button type="primary" htmlType="submit">

@@ -1,7 +1,15 @@
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
+  font-weight: 400;
   src: url('../../dist/fonts/raleway-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  font-weight: 600;
+  src: url('../../dist/fonts/raleway-semibold.woff') format('woff');
 }
 
 html, body {
@@ -13,6 +21,12 @@ body {
   background-color: white;
   color: black;
   font-family: 'Raleway', Arial, 'Roboto', -apple-system, sans-serif;
+  font-weight: 400;
+}
+
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 600;
+  text-transform: none;
 }
 
 /* ant overrides */
@@ -35,12 +49,12 @@ body {
     box-shadow: none;
 }
 
-.ant-form-item:last-child {
+.ant-form-item:last-child:not(:only-child) {
   margin-bottom: 0;
 }
 
 .ant-form-item {
-  margin-bottom: 0.5rem;
+  margin-bottom: 0.75rem;
 }
 
 .ant-form-item .ant-form-item-label {
@@ -49,6 +63,16 @@ body {
 
 .ant-form-item-label > label {
   color: #244747 !important;
+  font-weight: 600;
+  height: auto;
+  margin-bottom: 0.35rem !important;
+  font-size: 12px;
+}
+
+.ant-form-item-label > label.ant-form-item-required::before {
+  color: #244747;
+  position: absolute;
+  right: -10px;
 }
 
 .ant-layout-content {
@@ -59,7 +83,15 @@ body {
 .ant-layout-header {
   background-color: #11292A;
   color: white;
-  padding: 0 25px;
+  padding: 0.75rem 25px;
+  line-height: 1;
+  height: auto;
+}
+
+.ant-layout-header .nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
 }
 
 /* Custom styles */
