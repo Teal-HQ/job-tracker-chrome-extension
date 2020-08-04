@@ -1,11 +1,46 @@
+@font-face {
+  font-family: 'Raleway';
+  font-style: normal;
+  src: url('../../dist/fonts/raleway-regular.woff') format('woff');
+}
+
 html, body {
   height: auto !important;
 }
 
 body {
   min-width: 350px;
-  background-color: white !important;
-  color: black !important;
+  background-color: white;
+  color: black;
+  font-family: 'Raleway', Arial, 'Roboto', -apple-system, sans-serif;
+}
+
+/* ant overrides */
+.ant-form {
+  width: 100%;
+}
+
+.ant-form .ant-btn {
+  margin-top: 1.5rem;
+}
+
+.ant-btn.ant-btn-primary {
+  background-color: #F5BE7F;
+    padding: 0.5rem 1rem;
+    color: #11292A;
+    font-size: 12px;
+    height: auto;
+    border: 0;
+    text-shadow: none;
+    box-shadow: none;
+}
+
+.ant-form-item:last-child {
+  margin-bottom: 0;
+}
+
+.ant-form-item {
+  margin-bottom: 0.5rem;
 }
 
 .ant-form-item .ant-form-item-label {
@@ -16,6 +51,18 @@ body {
   color: #244747 !important;
 }
 
+.ant-layout-content {
+  padding: 20px 25px;
+  background-color: white;
+}
+
+.ant-layout-header {
+  background-color: #11292A;
+  color: white;
+  padding: 0 25px;
+}
+
+/* Custom styles */
 .teal-logo {
   height: 55px;
   max-width: 240px;
@@ -25,26 +72,6 @@ body {
 .job-description-preview {
   color: black;
   font-style: italic;
-}
-
-.ant-layout-header {
-  background-color: #11292A;
-  color: white;
-  padding: 0 25px;
-}
-
-.ant-layout-content {
-  padding: 20px 25px;
-  background-color: white;
-}
-
-.login-form {
-  background-color: #11292A;
-  padding: 25px;
-}
-
-.login-form .ant-form-item-label > label {
-  color: white !important;
 }
 
 .clickable:hover {
@@ -60,4 +87,27 @@ body {
 .success-message a {
   color:white;
   text-decoration: underline;
+}
+
+/* Login Screen */
+.login-form {
+  background-color: #11292A;
+  padding: 25px;
+}
+
+.login-form .teal-logo {
+  height: 32px;
+  width: 32px;
+  margin: 0.5rem auto 1rem;
+  display: block;
+}
+
+.login-form h3 {
+  font-size: 20px;
+  color: #fff;
+  text-align: center;
+}
+
+.login-form .ant-form-item-label > label {
+  color: white !important;
 }
