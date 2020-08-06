@@ -9,7 +9,7 @@ export interface ILoading {
 }
 
 export interface IJobPostForm {
-  jwt: string
+  jwt: string,
   navigateTo: any,
   setLoading: ILoading
 }
