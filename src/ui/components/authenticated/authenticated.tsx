@@ -11,10 +11,11 @@ import { PAGES } from '../../../config/config';
 
 export interface IAuthenticated {
   jwt: string,
-  page: string
+  setLoading: any
 }
 
 const Authenticated = (props: IAuthenticated) => {
+  const { jwt,setLoading } = props;
   const [page, setPage] = useState(PAGES.JOB_POST_FORM);
   const [pageData, setPageData] = useState(null);
 
@@ -24,18 +25,18 @@ const Authenticated = (props: IAuthenticated) => {
   }
 
   let body;
-  if (props.page === PAGES.JOB_POST_FORM) {
-    body = <JobPostForm jwt={props.jwt} navigateTo={navigateTo}/>
-  } else if (props.page === PAGES.ABOUT) {
+  if (page === PAGES.JOB_POST_FORM) {
+    body = <JobPostForm jwt={jwt} navigateTo={navigateTo} setLoading={setLoading}/>
+  } else if (page === PAGES.ABOUT) {
     body = <About/>;
-  } else if (props.page === PAGES.SUCCESS) {
-    body = <Success/>;
+  } else if (page === PAGES.SUCCESS) {
+    body = <Success pageData={pageData}/>;
   } else {
     console.log('the page is unknown.')
   }
 
   return <Layout>
-            <ExtHeader page={props.page}/>
+            <ExtHeader page={page} navigateTo={navigateTo}/>
             <Content>{ body }</Content>
          </Layout>;
 };

@@ -4,6 +4,10 @@ import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { PAGES } from '../../../config/config';
 
+export interface ILoading {
+  (loading: boolean): void;
+}
+
 export interface IJobPostForm {
   jwt: string
   navigateTo: any,

@@ -12,6 +12,7 @@ const LoginForm = (props: ILoginForm) => {
 
   const loginRequest = ( {email, password} ) => {
     props.setLoading(true);
+    
     login(email, password)
     .then(response => {
       chrome.storage.local.set({"jwt": response.data.data.attributes.jwt}, function() {
@@ -38,12 +39,12 @@ const LoginForm = (props: ILoginForm) => {
         <h3>Sign in to Teal</h3>
       </div>
       <Row justify="center">
-        {props.error ? (
+        {loginError ? (
           <Alert message={<div><strong>Failed to sign in!</strong> Please check your credentials or check your email to activate your account.</div>} type="error"/>
         ) : null}
         <Form
           name="basic"
-          onFinish={props.login}
+          onFinish={loginRequest}
         >
           <Form.Item
             label="Email"

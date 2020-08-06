@@ -1,7 +1,14 @@
 import React from 'react';
 import { Layout, Col, Row } from 'antd';
+import { WEB_CLIENT_URL } from '../../../config/config';
 
-const JobSavedSuccess = () => {
+
+export interface IJobSavedSuccess {
+  pageData: any
+}
+
+const JobSavedSuccess = (props: IJobSavedSuccess) => {
+  const { pageData } = props;
   return (
     <div className="success-message">
         <Row>

@@ -5,7 +5,6 @@ import LoadingOverlay from 'react-loading-overlay';
 
 import LoginForm from "./components/login-form/login";
 import Authenticated from "./components/authenticated/authenticated";
-import { PAGES } from "../config/config";
 import { WEB_CLIENT_URL } from '../config/config';
 
 import 'antd/dist/antd.css';
@@ -13,14 +12,9 @@ import "../styles/popup.css";
 
 const { Header, Content } = Layout;
 
-export interface ILoading {
-  (loading: boolean): void;
-}
-
 const JobTracker = () => {
   const [jwt, setJwt] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const [page, setPage] = useState(PAGES.JOB_POST_FORM);
   const [loading, setLoading] = useState(false);
 
   const checkSession = () => {
@@ -41,9 +35,9 @@ const JobTracker = () => {
 
   let stateComponent;
   if (isAuthenticated) {
-    stateComponent = <Authenticated jwt={jwt} page={page}/>
+    stateComponent = <Authenticated jwt={jwt} setLoading={setLoading}/>
   } else {
-    stateComponent = <LoginForm checkSession={checkSession} setLoading={setLoading}/>
+    stateComponent = <LoginForm checkSession={checkSession} setLoading={setLoading} />
   }
 
   return (
