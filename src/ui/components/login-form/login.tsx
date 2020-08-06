@@ -1,12 +1,26 @@
 import React from 'react';
 import { Row, Form, Button, Input, Alert } from 'antd';
 
-export interface ILoginForm {
-  login: any,
-  error: string
-}
+const LoginForm = () => {
 
-const LoginForm = (props: ILoginForm) => {
+  const loginRequest = ( {email, password} ) => {
+    setLoading(true);
+    login(email, password)
+    .then(response => {
+      chrome.storage.local.set({"jwt": response.data.data.attributes.jwt}, function() {
+        checkSession();
+        setLoading(false);
+      });
+    })
+    .catch(error => {
+      if (error?.response?.status === 401) {
+        setLoginError('Unauthorized');
+        setLoading(false);
+      }
+      console.log(error);
+    });
+  };
+
   return (
     <div className="login-form">
       <div className="login-header">
