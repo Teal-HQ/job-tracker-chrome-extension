@@ -1,21 +1,28 @@
-import React from 'react';
+import React, { useState, useEffect } from "react";
 import { Row, Form, Button, Input, Alert } from 'antd';
+import { login } from "../../services/login";
 
-const LoginForm = () => {
+export interface ILoginForm {
+  checkSession: any,
+  setLoading: any
+}
+
+const LoginForm = (props: ILoginForm) => {
+  const [loginError, setLoginError] = useState(null);
 
   const loginRequest = ( {email, password} ) => {
-    setLoading(true);
+    props.setLoading(true);
     login(email, password)
     .then(response => {
       chrome.storage.local.set({"jwt": response.data.data.attributes.jwt}, function() {
-        checkSession();
-        setLoading(false);
+        props.checkSession();
+        props.setLoading(false);
       });
     })
     .catch(error => {
       if (error?.response?.status === 401) {
         setLoginError('Unauthorized');
-        setLoading(false);
+        props.setLoading(false);
       }
       console.log(error);
     });

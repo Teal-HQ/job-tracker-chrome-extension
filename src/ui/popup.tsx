@@ -5,7 +5,6 @@ import LoadingOverlay from 'react-loading-overlay';
 
 import LoginForm from "./components/login-form/login";
 import Authenticated from "./components/authenticated/authenticated";
-import { login } from "./services/login";
 import { PAGES } from "../config/config";
 import { WEB_CLIENT_URL } from '../config/config';
 
@@ -17,9 +16,7 @@ const { Header, Content } = Layout;
 const JobTracker = () => {
   const [jwt, setJwt] = useState(null);
   const [isAuthenticated, setIsAuthenticated] = useState(null);
-  const [loginError, setLoginError] = useState(null);
   const [page, setPage] = useState(PAGES.JOB_POST_FORM);
-  const [pageData, setPageData] = useState(null);
   const [loading, setLoading] = useState(false);
 
   const checkSession = () => {
@@ -40,11 +37,11 @@ const JobTracker = () => {
 
   let stateComponent;
   if (isAuthenticated) {
-    stateComponent = <Authenticated jwt={jwt} page={page} pages={PAGES}/>
+    stateComponent = <Authenticated jwt={jwt} page={page}/>
   } else {
-    stateComponent = <LoginForm/>
+    stateComponent = <LoginForm checkSession={checkSession} setLoading={setLoading}/>
   }
-  
+
   return (
     <LoadingOverlay active={loading} spinner text=''>
       <div className="popup">

@@ -3,17 +3,17 @@ import { Row, Col, Form, Button, Input, Alert } from 'antd';
 import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { PAGES } from '../../../config/config';
-import { INavigateTo, ILoading } from '../../popup';
 
 export interface IJobPostForm {
-  jwt: string,
-  navigateTo: INavigateTo,
-  setLoading: ILoading
+  jwt: string
 }
 
 const JobPostForm = (props: IJobPostForm) => {
-  const { jwt, navigateTo, setLoading } = props;
+  const { jwt } = props;
+  const [page, setPage] = useState(PAGES.JOB_POST_FORM);
+  const [pageData, setPageData] = useState(null);
   const [jobPost, setJobPost] = useState(defaultJobPost);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [form] = Form.useForm();
 
@@ -24,7 +24,12 @@ const JobPostForm = (props: IJobPostForm) => {
   useEffect(() => {
     form.setFieldsValue({company: jobPost?.company, role: jobPost?.role, location: jobPost?.location, note: jobPost?.note})
   }, [jobPost]);
-  
+ 
+  const navigateTo = (page: PAGES, data?:any) => {
+    setPage(page);
+    setPageData(data);
+  }
+
   const requestDataFromActiveTab = () => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
       const url = tabs[0] ? tabs[0].url : null;

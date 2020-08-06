@@ -1,5 +1,9 @@
-  function successModal() {
-    return <div className="success-message">
+import React from 'react';
+import { Layout, Col, Row } from 'antd';
+
+const JobSavedSuccess = () => {
+  return (
+    <div className="success-message">
         <Row>
           <Col span={6}>
             { /* TODO temp link to log out */ }
@@ -12,5 +16,8 @@
             </Col>
           }
         </Row>
-      </div>;
-  }
+      </div>
+  );
+};
+
+export default JobSavedSuccess;
