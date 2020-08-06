@@ -6,14 +6,13 @@ import { PAGES } from '../../../config/config';
 
 export interface IJobPostForm {
   jwt: string
+  navigateTo: any,
+  setLoading: ILoading
 }
 
 const JobPostForm = (props: IJobPostForm) => {
-  const { jwt } = props;
-  const [page, setPage] = useState(PAGES.JOB_POST_FORM);
-  const [pageData, setPageData] = useState(null);
+  const { jwt, navigateTo, setLoading } = props;
   const [jobPost, setJobPost] = useState(defaultJobPost);
-  const [loading, setLoading] = useState(false);
   const [error, setError] = useState(false);
   const [form] = Form.useForm();
 
@@ -25,11 +24,6 @@ const JobPostForm = (props: IJobPostForm) => {
     form.setFieldsValue({company: jobPost?.company, role: jobPost?.role, location: jobPost?.location, note: jobPost?.note})
   }, [jobPost]);
  
-  const navigateTo = (page: PAGES, data?:any) => {
-    setPage(page);
-    setPageData(data);
-  }
-
   const requestDataFromActiveTab = () => {
     chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
       const url = tabs[0] ? tabs[0].url : null;
