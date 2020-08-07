@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Button, Input, Alert } from 'antd';
 import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
+import { ISession } from '../authenticated/authenticated';
 import { PAGES } from '../../../config/config';
 
 export interface ILoading {
@@ -13,13 +14,13 @@ export interface INavigateTo {
 }
 
 export interface IJobPostForm {
-  jwt: string,
+  session: ISession,
   navigateTo: INavigateTo,
   setLoading: ILoading
 }
 
 const JobPostForm = (props: IJobPostForm) => {
-  const { jwt, navigateTo, setLoading } = props;
+  const { session, navigateTo, setLoading } = props;
   const [jobPost, setJobPost] = useState(defaultJobPost);
   const [error, setError] = useState(false);
   const [form] = Form.useForm();
@@ -41,7 +42,7 @@ const JobPostForm = (props: IJobPostForm) => {
          setJobPost(result.currentJobPost);
         } else {
           setLoading(true);
-          getRules(url, jwt)
+          getRules(url, session.jwt)
           .then((rules)=>{
             setLoading(false);
             if (!rules) {
@@ -88,7 +89,7 @@ const JobPostForm = (props: IJobPostForm) => {
   const save = (values) => {
     setError(false);
     setLoading(true);
-    saveJobPost(jobPost, jwt)
+    saveJobPost(jobPost, session.jwt)
     .then(response => {
       setLoading(false);
       chrome.storage.local.remove('currentJobPost');

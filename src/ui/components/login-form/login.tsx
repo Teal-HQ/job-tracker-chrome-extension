@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Form, Button, Input, Alert } from 'antd';
-import { login } from "../../services/login";
+import { login } from '../../services/login';
 
-export interface ILoginForm {
+interface ILoginForm {
   checkSession: any,
   setLoading: any
 }
@@ -15,7 +15,7 @@ const LoginForm = (props: ILoginForm) => {
     
     login(email, password)
     .then(response => {
-      chrome.storage.local.set({"jwt": response.data.data.attributes.jwt}, function() {
+      chrome.storage.local.set({'jwt': response.data.data.attributes.jwt}, function() {
         props.checkSession();
         props.setLoading(false);
       });

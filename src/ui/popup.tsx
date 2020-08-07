@@ -1,30 +1,22 @@
-import React, { useState, useEffect } from "react";
-import * as ReactDOM from "react-dom";
-import { Layout, Col, Row } from 'antd';
+import React, { useState, useEffect } from 'react';
+import * as ReactDOM from 'react-dom';
 import LoadingOverlay from 'react-loading-overlay';
-
-import LoginForm from "./components/login-form/login";
+import LoginForm from './components/login-form/login';
 import Authenticated from "./components/authenticated/authenticated";
-import { WEB_CLIENT_URL } from '../config/config';
 
 import 'antd/dist/antd.css';
-import "../styles/popup.css";
-
-const { Header, Content } = Layout;
+import '../styles/popup.css';
 
 const JobTracker = () => {
-  const [jwt, setJwt] = useState(null);
-  const [isAuthenticated, setIsAuthenticated] = useState(null);
+  const [session, setSession] = useState({jwt: null, isAuthenticated: false});
   const [loading, setLoading] = useState(false);
 
   const checkSession = () => {
     chrome.storage.local.get(['jwt'], function(result) {
       if(result.jwt) {
-        setJwt(result.jwt);
-        setIsAuthenticated(true);
+        setSession({jwt: result.jwt, isAuthenticated: true});
       } else {
-        setJwt(null);
-        setIsAuthenticated(false);
+        setSession({jwt: null, isAuthenticated: false});
       }
     });
   };
@@ -34,8 +26,8 @@ const JobTracker = () => {
   }, []);
 
   let stateComponent;
-  if (isAuthenticated) {
-    stateComponent = <Authenticated jwt={jwt} setLoading={setLoading}/>
+  if (session.isAuthenticated) {
+    stateComponent = <Authenticated session={session} checkSession={checkSession} setLoading={setLoading}/>
   } else {
     stateComponent = <LoginForm checkSession={checkSession} setLoading={setLoading} />
   }

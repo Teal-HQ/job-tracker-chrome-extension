@@ -8,31 +8,36 @@ import Success from '../../components/job-saved-success/job-saved-success';
 import ExtHeader from '../../components/ext-header/ext-header';
 import { PAGES } from '../../../config/config';
 
-export interface IAuthenticated {
+export interface ISession {
   jwt: string,
+  isAuthenticated: boolean
+}
+
+interface IAuthenticated {
+  session: ISession,
+  checkSession: any,
   setLoading: any
 }
 
 const Authenticated = (props: IAuthenticated) => {
-  const { jwt,setLoading } = props;
-  const [page, setPage] = useState(PAGES.JOB_POST_FORM);
-  const [pageData, setPageData] = useState(null);
+  const { session, checkSession, setLoading } = props;
+  const [page, setPage] = useState({name: PAGES.JOB_POST_FORM, data: null});
 
-  const navigateTo = (page: PAGES, data?:any) => {
-    setPage(page);
-    setPageData(data);
+  const navigateTo = (name: PAGES, data?:any) => {
+    setPage({name, data});
   }
 
   const routing = {
-    [PAGES.JOB_POST_FORM]: <JobPostForm jwt={jwt} navigateTo={navigateTo} setLoading={setLoading}/>,
+    [PAGES.JOB_POST_FORM]: <JobPostForm session={session} navigateTo={navigateTo} setLoading={setLoading}/>,
     [PAGES.ABOUT]: <About/>,
-    [PAGES.SUCCESS]: <Success pageData={pageData}/>
+    [PAGES.SUCCESS]: <Success data={page.data}/>
   };
-  const body = routing[page];
+
+  const body = routing[page.name];
   if (!body) console.log('the page is unknown.');
 
   return (<Layout>
-            <ExtHeader page={page} navigateTo={navigateTo}/>
+            <ExtHeader pageName={page.name} checkSession={checkSession} navigateTo={navigateTo}/>
             <Content>{ body }</Content>
          </Layout>);
 };
