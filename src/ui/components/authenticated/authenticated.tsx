@@ -23,21 +23,18 @@ const Authenticated = (props: IAuthenticated) => {
     setPageData(data);
   }
 
-  let body;
-  if (page === PAGES.JOB_POST_FORM) {
-    body = <JobPostForm jwt={jwt} navigateTo={navigateTo} setLoading={setLoading}/>
-  } else if (page === PAGES.ABOUT) {
-    body = <About/>;
-  } else if (page === PAGES.SUCCESS) {
-    body = <Success pageData={pageData}/>;
-  } else {
-    console.log('the page is unknown.')
-  }
+  const routing = {
+    [PAGES.JOB_POST_FORM]: <JobPostForm jwt={jwt} navigateTo={navigateTo} setLoading={setLoading}/>,
+    [PAGES.ABOUT]: <About/>,
+    [PAGES.SUCCESS]: <Success pageData={pageData}/>
+  };
+  const body = routing[page];
+  if (!body) console.log('the page is unknown.');
 
-  return <Layout>
+  return (<Layout>
             <ExtHeader page={page} navigateTo={navigateTo}/>
             <Content>{ body }</Content>
-         </Layout>;
+         </Layout>);
 };
 
 export default Authenticated;
