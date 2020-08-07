@@ -8,9 +8,13 @@ export interface ILoading {
   (loading: boolean): void;
 }
 
+export interface INavigateTo {
+  (page: PAGES, data?: any): void;
+}
+
 export interface IJobPostForm {
   jwt: string,
-  navigateTo: any,
+  navigateTo: INavigateTo,
   setLoading: ILoading
 }
 

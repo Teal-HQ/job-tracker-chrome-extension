@@ -1,5 +1,5 @@
 import React from 'react';
-import { Layout, Col, Row } from 'antd';
+import { Col, Row } from 'antd';
 import { WEB_CLIENT_URL } from '../../../config/config';
 
 

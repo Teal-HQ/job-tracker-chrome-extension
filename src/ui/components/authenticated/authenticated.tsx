@@ -1,13 +1,12 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect } from 'react';
 import { Layout } from 'antd';
 const { Header, Content } = Layout;
 
-import JobPostForm from "../../components/job-post-form/job-post";
-import About from "../../components/about/about";
-import Success from "../../components/job-saved-success/job-saved-success";
-import ExtHeader from "../../components/ext-header/ext-header";
+import JobPostForm from '../../components/job-post-form/job-post';
+import About from '../../components/about/about';
+import Success from '../../components/job-saved-success/job-saved-success';
+import ExtHeader from '../../components/ext-header/ext-header';
 import { PAGES } from '../../../config/config';
-
 
 export interface IAuthenticated {
   jwt: string,

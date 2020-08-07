@@ -29,12 +29,12 @@ const ExtHeader = (props: IExtHeader) => {
     columns = <Col className="nav-wrapper" span={8}><span onClick={(e) => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">&#8592; Go Back</span></Col>;
   }
 
-  return <Header>
+  return (<Header>
       <Row>
         <Col span={16}><img className="clickable" onClick={logout} src={chrome.runtime.getURL('images/teal_logo_32.svg')}/></Col>
         {columns}
       </Row>
-    </Header>;
+    </Header>);
 };
 
 export default ExtHeader;
