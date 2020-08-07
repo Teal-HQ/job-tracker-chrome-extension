@@ -25,12 +25,9 @@ const JobTracker = () => {
     checkSession();
   }, []);
 
-  let stateComponent;
-  if (session.isAuthenticated) {
-    stateComponent = <Authenticated session={session} checkSession={checkSession} setLoading={setLoading}/>
-  } else {
-    stateComponent = <LoginForm checkSession={checkSession} setLoading={setLoading} />
-  }
+  let stateComponent = (session.isAuthenticated) ? 
+    <Authenticated session={session} checkSession={checkSession} setLoading={setLoading}/> :
+    <LoginForm checkSession={checkSession} setLoading={setLoading} />
 
   return (
     <LoadingOverlay active={loading} spinner text=''>

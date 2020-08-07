@@ -39,9 +39,9 @@ const LoginForm = (props: ILoginForm) => {
         <h3>Sign in to Teal</h3>
       </div>
       <Row justify="center">
-        {loginError ? (
+        { loginError &&
           <Alert message={<div><strong>Failed to sign in!</strong> Please check your credentials or check your email to activate your account.</div>} type="error"/>
-        ) : null}
+        }
         <Form
           name="basic"
           onFinish={loginRequest}
