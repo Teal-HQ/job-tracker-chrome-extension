@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import * as ReactDOM from 'react-dom';
 import LoadingOverlay from 'react-loading-overlay';
 import LoginForm from './components/login-form/login';
-import Authenticated from "./components/authenticated/authenticated";
+import Authenticated from './components/authenticated/authenticated';
 
 import 'antd/dist/antd.css';
 import '../styles/popup.css';
@@ -31,11 +31,11 @@ const JobTracker = () => {
 
   return (
     <LoadingOverlay active={loading} spinner text=''>
-      <div className="popup">
+      <div className='popup'>
         { stateComponent }
       </div>
     </LoadingOverlay>
   );
 }
 
-ReactDOM.render(<JobTracker />, document.getElementById("root"));
+ReactDOM.render(<JobTracker />, document.getElementById('root'));

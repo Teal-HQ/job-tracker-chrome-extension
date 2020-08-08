@@ -1,6 +1,5 @@
 import axios from 'axios';
-import { deserialize } from "deserialize-json-api";
-
+import { deserialize } from 'deserialize-json-api';
 import { COMPANY_API_URL } from '../../config/config';
 
 export interface JobPost {
@@ -45,15 +44,15 @@ export const saveJobPost = (jobPost: JobPost, jwt) => {
   return axios.post(
     COMPANY_API_URL + 'user_job_posts',
     {
-      "data": {
-        "type": "user_job_posts",
-        "attributes": {
-          "company_name": jobPost.company,
-          "role": jobPost.role,
-          "location": jobPost.location,
-          "note": jobPost.note,
-          "url": jobPost.url,
-          "job_description": jobPost.description_html
+      'data': {
+        'type': 'user_job_posts',
+        'attributes': {
+          'company_name': jobPost.company,
+          'role': jobPost.role,
+          'location': jobPost.location,
+          'note': jobPost.note,
+          'url': jobPost.url,
+          'job_description': jobPost.description_html
         }
       }
     },

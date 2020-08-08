@@ -6,11 +6,11 @@ export const login = ( email: string, password: string ) => {
   return axios.post(
     AUTH_API_URL + 'login',
     {
-      "data": {
-        "type": "users",
-        "attributes": {
-          "email": email,
-          "password": password,
+      'data': {
+        'type': 'users',
+        'attributes': {
+          'email': email,
+          'password': password,
         }
       }
     },
