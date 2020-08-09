@@ -3,11 +3,13 @@ import { Layout, Col, Row } from 'antd';
 const { Header } = Layout;
 
 import { PAGES } from '../../../config/config';
+import { INavigateTo } from '../../../common/types';
+import { ICheckSession } from '../../popup';
 
 interface IExtHeader {
   pageName: string,
-  checkSession: any,
-  navigateTo: any
+  checkSession: ICheckSession,
+  navigateTo: INavigateTo
 }
 
 const ExtHeader = (props: IExtHeader) => {

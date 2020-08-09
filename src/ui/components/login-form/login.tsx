@@ -1,10 +1,11 @@
 import React, { useState } from 'react';
 import { Row, Form, Button, Input, Alert } from 'antd';
 import { login } from '../../services/login';
+import { ILoading, ICheckSession } from '../../popup';
 
 interface ILoginForm {
-  checkSession: any,
-  setLoading: any
+  checkSession: ICheckSession,
+  setLoading: ILoading
 }
 
 const LoginForm = (props: ILoginForm) => {

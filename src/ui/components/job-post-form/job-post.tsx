@@ -4,14 +4,8 @@ import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { ISession } from '../authenticated/authenticated';
 import { PAGES } from '../../../config/config';
-
-export interface ILoading {
-  (loading: boolean): void;
-}
-
-export interface INavigateTo {
-  (page: PAGES, data?: any): void;
-}
+import { INavigateTo } from '../../../common/types';
+import { ILoading } from '../../popup';
 
 export interface IJobPostForm {
   session: ISession,

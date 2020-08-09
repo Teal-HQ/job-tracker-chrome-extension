@@ -7,6 +7,14 @@ import Authenticated from './components/authenticated/authenticated';
 import 'antd/dist/antd.css';
 import '../styles/popup.css';
 
+export interface ILoading {
+  (loading: boolean): void;
+} 
+
+export interface ICheckSession {
+  (): void;
+}
+
 const JobTracker = () => {
   const [session, setSession] = useState({jwt: null, isAuthenticated: false});
   const [loading, setLoading] = useState(false);

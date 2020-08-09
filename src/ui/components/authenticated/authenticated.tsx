@@ -7,6 +7,7 @@ import About from '../../components/about/about';
 import Success from '../../components/job-saved-success/job-saved-success';
 import ExtHeader from '../../components/ext-header/ext-header';
 import { PAGES } from '../../../config/config';
+import { ILoading, ICheckSession } from '../../popup';
 
 export interface ISession {
   jwt: string,
@@ -15,8 +16,8 @@ export interface ISession {
 
 interface IAuthenticated {
   session: ISession,
-  checkSession: any,
-  setLoading: any
+  checkSession: ICheckSession,
+  setLoading: ILoading
 }
 
 const Authenticated = (props: IAuthenticated) => {
