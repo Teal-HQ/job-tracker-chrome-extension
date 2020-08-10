@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import { Layout } from 'antd';
-const { Header, Content } = Layout;
+const { Content } = Layout;
 
 import JobPostForm from '../../components/job-post-form/job-post';
 import About from '../../components/about/about';
