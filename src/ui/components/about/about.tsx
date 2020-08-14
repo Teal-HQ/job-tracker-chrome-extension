@@ -1,9 +1,58 @@
 import React from 'react';
 
+const extensionId = chrome.runtime.id;
+/**
+ * Generate injectable code for capturing a value from the contentScript scope and passing back via message
+ * @param {string} valueToCapture - Name of the scoped variable to capture
+ * @param {string} [optKey] - Key to use as message identifier. Defaults to valueToCapture
+ */
+const createMessageSenderInjectable = (valueToCapture, optKey) => {
+    return `chrome.runtime.sendMessage('${extensionId}', {
+        key: '${optKey || valueToCapture}',
+        value: ${valueToCapture}
+    });`;
+};
+const createMainInstanceCode = `
+isDebug = window.location.href.includes('li2jr_debug=true');
+window.LinkedinToResumeJson = isDebug ? LinkedinToResumeJson : window.LinkedinToResumeJson;
+// Reuse existing instance if possible
+liToJrInstance = typeof(liToJrInstance) !== 'undefined' ? liToJrInstance : new LinkedinToResumeJson(false, isDebug);
+`;
+const getLangStringsCode = `(async () => {
+    const supported = await liToJrInstance.getSupportedLocales();
+    const user = liToJrInstance.getViewersLocalLang();
+    const payload = {
+        supported,
+        user
+    }
+    ${createMessageSenderInjectable('payload', 'locales')}
+})();
+`;
+
+chrome.tabs.executeScript(
+    {
+        file: 'linkedin-resume.js'
+    },
+    () => {
+        chrome.tabs.executeScript({
+            code: `${createMainInstanceCode}${getLangStringsCode}`
+        });
+    }
+);
+
 const About = () => {
   return (
     <div className="about-faq-container">
-      <h3>About</h3>
+
+      <h3 
+        onClick={()=> {
+          chrome.tabs.executeScript({
+            code: `console.log(liToJrInstance.getJSON());`
+          });
+        }}
+      >
+        About
+      </h3>
       <p>Teal’s Job Saver helps you easily save job listings and manage your your job search.</p>
       <h4>How it Works</h4>
       <p>When you come across a job posting you want to save for later, click Teal’s chrome extension, add your notes and click Save. We’ll scrape the job details and add them to your Teal account for you to revisit when you’re ready prepare your application.</p>
