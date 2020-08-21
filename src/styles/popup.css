@@ -173,3 +173,15 @@ a {
   line-height: 1.6;
   color: #244747;
 }
+
+.logout-link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: #BE9369;
+  text-decoration: underline;
+}
+
+.logout-link:hover {
+  color: #BE9369;
+}

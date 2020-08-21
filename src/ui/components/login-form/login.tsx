@@ -16,7 +16,7 @@ const LoginForm = (props: ILoginForm) => {
     
     login(email, password)
     .then(response => {
-      chrome.storage.local.set({'jwt': response.data.data.attributes.jwt}, function() {
+      chrome.storage.local.set({'jwt': response.data.data.attributes.jwt, 'email': email}, function() {
         props.checkSession();
         props.setLoading(false);
       });

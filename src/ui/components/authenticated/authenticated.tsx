@@ -30,7 +30,7 @@ const Authenticated = (props: IAuthenticated) => {
 
   const routing = {
     [PAGES.JOB_POST_FORM]: <JobPostForm session={session} navigateTo={navigateTo} setLoading={setLoading}/>,
-    [PAGES.ABOUT]: <About/>,
+    [PAGES.ABOUT]: <About checkSession={checkSession}/>,
     [PAGES.SUCCESS]: <Success data={page.data}/>
   };
 
