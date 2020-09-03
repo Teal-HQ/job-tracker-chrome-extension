@@ -1,6 +1,6 @@
 {
     "name": "Teal's Job Tracker",
-    "version": "0.0.3",
+    "version": "0.0.4",
     "manifest_version": 2,
     "description": "Enable fulfilling careers",
     "homepage_url": "https://tealhq.com",
@@ -21,7 +21,7 @@
       "activeTab",
       "storage"
     ],
-    "content_security_policy": "default-src 'self' https://app.tealhq.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://app.tealhq.com data:; font-src 'self'; connect-src https://auth.service.tealhq.com https://teal-auth-service-staging.herokuapp.com https://company.service.tealhq.com https://teal-company-service-staging.herokuapp.com",
+    "content_security_policy": "default-src 'self' https://app.tealhq.com; style-src 'self' 'unsafe-inline'; img-src 'self' https://app.tealhq.com data:; font-src 'self'; connect-src https://auth.service.tealhq.com https://teal-auth-service-staging.herokuapp.com https://company.service.tealhq.com https://teal-company-service-staging.herokuapp.com http://localhost:3003 http://localhost:3001",
     "content_scripts": [
       {
         "matches": [

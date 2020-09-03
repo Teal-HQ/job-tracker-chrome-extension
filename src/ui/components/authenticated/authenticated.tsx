@@ -37,10 +37,14 @@ const Authenticated = (props: IAuthenticated) => {
   const body = routing[page.name];
   if (!body) console.log('the page is unknown.');
 
-  return (<Layout>
-            <ExtHeader pageName={page.name} checkSession={checkSession} navigateTo={navigateTo}/>
-            <Content>{ body }</Content>
-         </Layout>);
+  if (page.name === PAGES.SUCCESS) return (body);
+
+  return (
+    <Layout>
+      <ExtHeader pageName={page.name} checkSession={checkSession} navigateTo={navigateTo}/>
+      <Content>{ body }</Content>
+    </Layout> 
+  );
 };
 
 export default Authenticated;

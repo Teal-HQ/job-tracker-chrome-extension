@@ -1,3 +1,20 @@
+// TODO figure out a way to get these rules from the server
+const hostRules = {
+  'jobs.lever.co': (data) => {
+    data.company = data.company.replace(' Home Page', '').trim();
+    data.location = data.location.replace(' /', '').trim();
+    return data;
+  },
+  'boards.greenhouse.io': (data) => {
+    data.company = data.company.replace('at ', '').trim();
+    return data;
+  }
+}
+
+const sanitize = (host, data) => {
+  return hostRules[host] ? hostRules[host](data) : data;
+}
+
 chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
   if (request.action == "getData") {
     const data = {
@@ -9,6 +26,6 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
       description_html: $(request.rules.description).html(),
       logo: $(request.rules.logo).attr('src')
     };
-    sendResponse({ data });
+    sendResponse({ data: sanitize(window.location.hostname, data) });
   }
 });

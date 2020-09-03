@@ -34,7 +34,8 @@ export const getRules = async (url, jwt) => {
   const xPaths = deserialize(data.data);
 
   const matches = xPaths.data.filter( (item) => {
-    return url.indexOf(item.root_url) !== -1;
+    const expr = new RegExp(item.root_url, 'i');
+    return url.match(expr) !== null;
   });
 
   return matches.length > 0 ? matches[0] : null;
