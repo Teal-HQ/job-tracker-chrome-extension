@@ -24,7 +24,7 @@ const JobSavedSuccess = (props: IJobSavedSuccess) => {
             data.id && 
             <Col span={18}>
               <div>{data.company} {data.role}</div>
-              <div>Job saved. <a target="_blank" href={`${WEB_CLIENT_URL}job-tracker/${data.id}`}>View now &#8594;</a></div>
+              <div>Job saved. <a target="_blank" href={`${WEB_CLIENT_URL}job-pipeline/${data.id}`}>View now &#8594;</a></div>
             </Col>
           }
         </Row>
