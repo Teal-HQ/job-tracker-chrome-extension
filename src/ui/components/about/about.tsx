@@ -23,6 +23,7 @@ const About = (props: IAbout) => {
 
   return (
     <div className="about-faq-container">
+      <span className="app-version">version {chrome.runtime.getManifest().version}</span>
       <h3>Account</h3>
       <Row>
         <Col span={16}>

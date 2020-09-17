@@ -185,3 +185,9 @@ a {
 .logout-link:hover {
   color: #BE9369;
 }
+
+.app-version {
+  float: right;
+  font-size: 11px;
+  margin-top: -14px;
+}
