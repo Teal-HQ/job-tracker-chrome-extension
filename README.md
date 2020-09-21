@@ -31,7 +31,7 @@ Use `npx webpack` to recompile after editing.
 
 * Only members of Teal's Web Tools Google Group that have paid the developer fee can publish a new version.
 
-* Go to the extension developer dashboard (link below) and click on the extension's name in the items list.
+* Go to the [extension developer dashboard](https://chrome.google.com/u/3/webstore/devconsole/f2736abb-9371-4647-86d2-4cfd0566d913) and click on the extension's name in the items list.
 
 * Click on the `Package` link in the left navigation menu.
 
