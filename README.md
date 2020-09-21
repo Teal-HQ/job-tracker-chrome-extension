@@ -29,7 +29,7 @@ Use `npx webpack` to recompile after editing.
 
 ## Publishing a new version of the extension
 
-* Only members of Teal's Web Tools Google Group that have paid the developer fee can publish a new version.
+* Only members of Teal's Web Tools Google Group that have paid the developer fee can publish a new version. Please contact Keith Gould if you need access to the group.
 
 * Go to the [extension developer dashboard](https://chrome.google.com/u/3/webstore/devconsole/f2736abb-9371-4647-86d2-4cfd0566d913) and click on the extension's name in the items list.
 
@@ -41,13 +41,15 @@ Use `npx webpack` to recompile after editing.
 
 * Submit for review (it might take between 2 to 5 days to get the new version published)
 
+* After confirming that the new version got published (status is `Published` in the dashboard items page), please let the team know by posting the changes on the #goods_tools Slack channel
+
 ## Resources
 
 ### XPath selectors source
 
 <https://airtable.com/tblD8nU4rEgq9Izj0/viwYIeF4ym2DKG2EY>
 
-### Chrome extension web store
+### Extension page
 
 <https://chrome.google.com/webstore/detail/teals-job-tracker/opafjjlpbiaicbbgifbejoochmmeikep>
 
