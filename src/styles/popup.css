@@ -1,3 +1,15 @@
+/* Custom CSS Properties*/
+:root {
+  --teal: #244747;
+  --dark-teal: #11292A;
+  --gold: #BE9369;
+  --sand: #F5BE7F;
+  --light-gray: #dcdcdc;
+  --beige: #F4EFEA;
+  --dark-beige: #CBB7A4;
+}
+
+/* Fonts */
 @font-face {
   font-family: 'Raleway';
   font-style: normal;
@@ -27,7 +39,7 @@ body {
 h1, h2, h3, h4, h5, h6 {
   font-weight: 600;
   text-transform: none;
-  color: #244747;
+  color: var(--teal);
 }
 
 h3 {
@@ -35,7 +47,7 @@ h3 {
 }
 
 a {
-  color: #244747;
+  color: var(--teal);
   text-decoration: underline;
 }
 
@@ -49,9 +61,9 @@ a {
 }
 
 .ant-btn.ant-btn-primary {
-  background-color: #F5BE7F;
+  background-color: var(--sand);
   padding: 0.5rem 1rem;
-  color: #11292A;
+  color: var(--dark-teal);
   font-size: 13px;
   height: auto;
   border: 0;
@@ -72,7 +84,7 @@ a {
 }
 
 .ant-form-item-label > label {
-  color: #244747 !important;
+  color: var(--teal) !important;
   font-weight: 600;
   height: auto;
   margin-bottom: 0.35rem !important;
@@ -80,7 +92,7 @@ a {
 }
 
 .ant-form-item-label > label.ant-form-item-required::before {
-  color: #244747;
+  color: var(--teal);
   position: absolute;
   right: -10px;
 }
@@ -91,7 +103,7 @@ a {
 }
 
 .ant-layout-header {
-  background-color: #11292A;
+  background-color: var(--dark-teal);
   color: white;
   padding: 0.75rem 25px;
   line-height: 1;
@@ -121,7 +133,7 @@ a {
 }
 
 .success-message {
-  background-color: #11292A;
+  background-color: var(--dark-teal);
   color: white;
   padding: 20px;
 }
@@ -133,7 +145,7 @@ a {
 
 /* Login Screen */
 .login-form {
-  background-color: #11292A;
+  background-color: var(--dark-teal);
   padding: 25px;
 }
 
@@ -159,7 +171,7 @@ a {
 }
 
 .about-faq-container h3 {
-  border-bottom: 1px solid #dcdcdc;
+  border-bottom: 1px solid var(--light-gray);
   padding-bottom: 0.5rem;
   margin-bottom: 1.5rem;
 }
@@ -171,23 +183,37 @@ a {
 .about-faq-container p {
   margin-bottom: 1.25rem;
   line-height: 1.6;
-  color: #244747;
+  color: var(--teal);
 }
 
 .logout-link {
   position: absolute;
   right: 0;
   bottom: 0;
-  color: #BE9369;
+  color: var(--gold);
   text-decoration: underline;
 }
 
 .logout-link:hover {
-  color: #BE9369;
+  color: var(--gold);
 }
 
 .app-version {
   float: right;
   font-size: 11px;
   margin-top: -14px;
+}
+
+/* Ant Overrides */
+.ant-alert,
+.ant-alert.ant-alert-no-icon {
+  font-size: 12px;
+  padding: 0.5rem;
+  margin-bottom: 1rem;
+}
+
+.ant-alert.ant-alert-warning {
+  background-color: var(--beige);
+  border: 1px solid var(--dark-beige);
+  color: black;
 }

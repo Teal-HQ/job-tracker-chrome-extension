@@ -16,6 +16,7 @@ export interface IJobPostForm {
 const JobPostForm = (props: IJobPostForm) => {
   const { session, navigateTo, setLoading } = props;
   const [jobPost, setJobPost] = useState(defaultJobPost);
+  const [siteWarning, setSiteWarning] = useState(false);
   const [error, setError] = useState(false);
   const [form] = Form.useForm();
 
@@ -33,13 +34,14 @@ const JobPostForm = (props: IJobPostForm) => {
 
       chrome.storage.local.get(['currentJobPost'], function(result) {
         if(result.currentJobPost && (url === null || result.currentJobPost.url === url)) {
-         setJobPost(result.currentJobPost);
+          setJobPost(result.currentJobPost);
         } else {
           setLoading(true);
           getRules(url, session.jwt)
           .then((rules)=>{
             setLoading(false);
             if (!rules) {
+              setSiteWarning(true);
               return;
             }
     
@@ -82,6 +84,7 @@ const JobPostForm = (props: IJobPostForm) => {
   
   const save = (values) => {
     setError(false);
+    setSiteWarning(false);
     setLoading(true);
     saveJobPost(jobPost, session.jwt)
     .then(response => {
@@ -97,9 +100,28 @@ const JobPostForm = (props: IJobPostForm) => {
 
   return (
     <div className="job-post-form-container">
-      {error ? (
-        <Alert message={<div><strong>Something went wrong :(</strong> <br/> We couldn't save this job post, please try again later.</div>} type="error"/>
-      ) : null}
+      {siteWarning &&
+        <Alert
+          message={
+            <div>
+              <strong>Heads up!</strong><br/>
+              This site isn't supported by our Chrome Extension, but you can still fill out the form yourself to save it to your tracker.
+            </div>
+          }
+          type="warning"
+        />
+      }
+      {error &&
+        <Alert
+          message={
+            <div>
+               <strong>Something went wrong :(</strong><br/>
+               We couldn't save this job post, please try again later.
+            </div>
+          } 
+          type="error"
+        />
+      }
       <Form
         form={form}
         name="jobPost"
@@ -158,7 +180,7 @@ const JobPostForm = (props: IJobPostForm) => {
 
         <Form.Item>
           <Button type="primary" htmlType="submit">
-            Submit
+            Save Job
           </Button>
         </Form.Item>
       </Form>
