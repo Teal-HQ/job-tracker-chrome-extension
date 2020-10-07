@@ -1,16 +1,16 @@
-import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Button, Input, Alert } from 'antd';
-import TextTruncate from 'react-text-truncate';
-import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
-import { ISession } from '../authenticated/authenticated';
-import { PAGES } from '../../../config/config';
-import { INavigateTo } from '../../../common/types';
-import { ILoading } from '../../popup';
+import React, { useState, useEffect } from "react";
+import { Row, Col, Form, Button, Input, Alert } from "antd";
+import TextTruncate from "react-text-truncate";
+import { defaultJobPost, getRules, saveJobPost } from "../../services/job-post";
+import { ISession } from "../authenticated/authenticated";
+import { PAGES } from "../../../config/config";
+import { INavigateTo } from "../../../common/types";
+import { ILoading } from "../../popup";
 
 export interface IJobPostForm {
-  session: ISession,
-  navigateTo: INavigateTo,
-  setLoading: ILoading
+  session: ISession;
+  navigateTo: INavigateTo;
+  setLoading: ILoading;
 }
 
 const JobPostForm = (props: IJobPostForm) => {
@@ -25,103 +25,121 @@ const JobPostForm = (props: IJobPostForm) => {
   }, []);
 
   useEffect(() => {
-    form.setFieldsValue({company: jobPost?.company, role: jobPost?.role, location: jobPost?.location, note: jobPost?.note})
+    form.setFieldsValue({
+      company: jobPost?.company,
+      role: jobPost?.role,
+      location: jobPost?.location,
+      note: jobPost?.note,
+    });
   }, [jobPost]);
- 
+
   const requestDataFromActiveTab = () => {
-    chrome.tabs.query({active: true, lastFocusedWindow: true}, tabs => {
+    chrome.tabs.query({ active: true, lastFocusedWindow: true }, (tabs) => {
       const url = tabs[0] ? tabs[0].url : null;
 
-      chrome.storage.local.get(['currentJobPost'], function(result) {
-        if(result.currentJobPost && (url === null || result.currentJobPost.url === url)) {
+      chrome.storage.local.get(["currentJobPost"], function (result) {
+        if (
+          result.currentJobPost &&
+          (url === null || result.currentJobPost.url === url)
+        ) {
           setJobPost(result.currentJobPost);
         } else {
           setLoading(true);
           getRules(url, session.jwt)
-          .then((rules)=>{
-            setLoading(false);
-            if (!rules) {
-              setSiteWarning(true);
-              return;
-            }
-    
-            chrome.tabs.query({active: true, currentWindow: true}, function(tabs) {
-              chrome.tabs.sendMessage(tabs[0].id, {action: "getData", rules}, function(response) {
-                setJobPost({...response.data, url});
-              });
+            .then((rules) => {
+              setLoading(false);
+              if (!rules) {
+                setSiteWarning(true);
+                return;
+              }
+
+              chrome.tabs.query(
+                { active: true, currentWindow: true },
+                function (tabs) {
+                  chrome.tabs.sendMessage(
+                    tabs[0].id,
+                    { action: "getData", rules },
+                    function (response) {
+                      setJobPost({ ...response.data, url });
+                    }
+                  );
+                }
+              );
+            })
+            .catch((error) => {
+              setLoading(false);
             });
-          })
-          .catch(error => {
-            setLoading(false);
-          });
         }
       });
     });
-  }
+  };
 
   const syncJobPost = (data) => {
     setJobPost(data);
-    chrome.storage.local.set({"currentJobPost": data});
-  }
+    chrome.storage.local.set({ currentJobPost: data });
+  };
 
   const onFormValuesChange = (values) => {
     if (values.note) {
-      syncJobPost({...jobPost, note: values.note});
+      syncJobPost({ ...jobPost, note: values.note });
     }
-  
+
     if (values.role) {
-      syncJobPost({...jobPost, role: values.role});
+      syncJobPost({ ...jobPost, role: values.role });
     }
-  
+
     if (values.company) {
-      syncJobPost({...jobPost, company: values.company});
+      syncJobPost({ ...jobPost, company: values.company });
     }
-  
+
     if (values.location) {
-      syncJobPost({...jobPost, location: values.location});
+      syncJobPost({ ...jobPost, location: values.location });
     }
-  }
-  
+  };
+
   const save = (values) => {
     setError(false);
     setSiteWarning(false);
     setLoading(true);
     saveJobPost(jobPost, session.jwt)
-    .then(response => {
-      setLoading(false);
-      chrome.storage.local.remove('currentJobPost');
-      navigateTo(PAGES.SUCCESS, {...jobPost, id: response.data.data.id});
-    })
-    .catch(error => {
-      setError(true);
-      setLoading(false);
-    });
+      .then((response) => {
+        setLoading(false);
+        chrome.storage.local.remove("currentJobPost");
+        navigateTo(PAGES.SUCCESS, { ...jobPost, id: response.data.data.id });
+      })
+      .catch((error) => {
+        setError(true);
+        setLoading(false);
+      });
   };
 
   return (
     <div className="job-post-form-container">
-      {siteWarning &&
+      {siteWarning && (
         <Alert
           message={
             <div>
-              <strong>Heads up!</strong><br/>
-              This site isn't supported by our Chrome Extension, but you can still fill out the form yourself to save it to your tracker.
+              <strong>Heads up!</strong>
+              <br />
+              This site isn't supported by our Chrome Extension, but you can
+              still fill out the form yourself to save it to your tracker.
             </div>
           }
           type="warning"
         />
-      }
-      {error &&
+      )}
+      {error && (
         <Alert
           message={
             <div>
-               <strong>Something went wrong :(</strong><br/>
-               We couldn't save this job post, please try again later.
+              <strong>Something went wrong :(</strong>
+              <br />
+              We couldn't save this job post, please try again later.
             </div>
-          } 
+          }
           type="error"
         />
-      }
+      )}
       <Form
         form={form}
         name="jobPost"
@@ -131,17 +149,19 @@ const JobPostForm = (props: IJobPostForm) => {
         <Form.Item
           label="Job Title"
           name="role"
-          rules={[{ required: true, message: 'Please enter the role.' }]}
+          rules={[{ required: true, message: "Please enter the role." }]}
         >
           <Input />
         </Form.Item>
 
-        <Row gutter={[12,0]}>
+        <Row gutter={[12, 0]}>
           <Col span={12}>
             <Form.Item
               label="Company"
               name="company"
-              rules={[{ required: true, message: 'Please enter the company name.' }]}
+              rules={[
+                { required: true, message: "Please enter the company name." },
+              ]}
             >
               <Input />
             </Form.Item>
@@ -150,24 +170,21 @@ const JobPostForm = (props: IJobPostForm) => {
             <Form.Item
               label="Job Location"
               name="location"
-              rules={[{ required: true, message: 'Please enter the location.' }]}
+              rules={[
+                { required: true, message: "Please enter the location." },
+              ]}
             >
               <Input />
             </Form.Item>
           </Col>
         </Row>
 
-        <Form.Item
-          label="Add Notes"
-          name="note"
-        >
+        <Form.Item label="Add Notes" name="note">
           <Input.TextArea />
         </Form.Item>
 
-        { jobPost?.description &&
-          <Form.Item
-            label="Job Description Preview"
-          >
+        {jobPost?.description && (
+          <Form.Item label="Job Description Preview">
             <TextTruncate
               line={3}
               element="div"
@@ -176,7 +193,7 @@ const JobPostForm = (props: IJobPostForm) => {
               containerClassName="job-description-preview"
             />
           </Form.Item>
-        }
+        )}
 
         <Form.Item>
           <Button type="primary" htmlType="submit">

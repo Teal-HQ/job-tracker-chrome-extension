@@ -1,0 +1,532 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 600 400">
+
+  <defs>
+    <style>
+      .cursorScale {
+        transform-origin: 50% 50%;
+        animation: cursorScale 5s forwards linear infinite;
+      }
+
+      .cursorMove {
+        animation: cursorMove 5s forwards linear infinite;
+      }
+
+      .puzzleScale {
+        transform-origin: 50% 50%;
+        animation: puzzleScale 5s forwards linear infinite;
+      }
+
+      .puzzleMove {
+        transform: translateX(90px) translateY(-55px);
+        animation: puzzleMove 5s forwards linear infinite;
+      }
+
+      .tealLogoScale {
+        transform-origin: 50% 50%;
+        animation: tealLogoScale 5s forwards linear infinite;
+      }
+
+      .tealLogoMove {
+        transform: translateX(58px) translateY(-55px);
+      }
+
+      .dropdownMove {
+        animation: dropdownMove 5s forwards linear infinite;
+      }
+
+      .extensionPin {
+        animation: extensionPin 5s forwards linear infinite;
+      }
+
+      .confettiAll {
+        transform: translateX(58px) translateY(-55px);
+        animation: confettiAll 5s linear;
+        opacity: 0;
+      }
+
+      @keyframes confettiAll {
+
+        0%,
+        66% {
+          opacity: 0;
+        }
+
+        70%,
+        85% {
+          opacity: 1;
+        }
+
+        100% {
+          opacity: 0;
+        }
+      }
+
+      .confettiFloat {
+        animation: confettiFloat 0.5s ease-in-out both infinite;
+        animation-delay: 3s;
+      }
+
+      @keyframes confettiFloat {
+        50% {
+          transform: translateX(25px);
+        }
+      }
+
+
+      .confettiSpin {
+        transform-origin: 50% 50%;
+        animation: confettiSpin 2s forwards linear infinite;
+      }
+
+      @keyframes confettiSpin {
+        to {
+          transform: rotate(360deg);
+        }
+      }
+
+      .confettiScale {
+        transform-origin: 50% 50%;
+        animation: confettiScale 1s linear infinite;
+      }
+
+      @keyframes confettiScale {
+        0%{
+
+        }
+        100% {
+          transform: scaleX(-1.0);
+        }
+      }
+
+      .confettiMoveY-02 {
+        animation: confettiMoveY-02 5s linear;
+      }
+
+      @keyframes confettiMoveY-02 {
+
+        0%,
+        65% {
+          transform: translateY(0px);
+        }
+
+        69%,
+        73% {
+          transform: translateY(-30px);
+        }
+
+        100% {
+          transform: translateY(100px);
+        }
+      }
+
+      .confettiMoveX-02 {
+        animation: confettiMoveX-02 5s linear;
+      }
+
+      @keyframes confettiMoveX-02 {
+
+        0%,
+        66% {
+          transform: translateX(0px);
+        }
+
+        100% {
+          transform: translateX(75px);
+        }
+      }
+
+      .confettiMoveY-03 {
+        animation: confettiMoveY-03 5s linear;
+      }
+
+      @keyframes confettiMoveY-03 {
+
+        0%,
+        65% {
+          transform: translateY(0px);
+        }
+
+        69%,
+        73% {
+          transform: translateY(-50px);
+        }
+
+        100% {
+          transform: translateY(100px);
+        }
+      }
+
+      .confettiMoveX-03 {
+        animation: confettiMoveX-03 5s linear ;
+      }
+
+      @keyframes confettiMoveX-03 {
+
+        0%,
+        66% {
+          transform: translateX(0px);
+        }
+
+        100% {
+          transform: translateX(-115px);
+        }
+      }
+
+
+      .confettiMoveY-04 {
+        animation: confettiMoveY-04 5s linear ;
+      }
+
+      @keyframes confettiMoveY-04 {
+
+        0%,
+        65% {
+          transform: translateY(0px);
+        }
+
+        69%,
+        73% {
+          transform: translateY(-25px);
+        }
+
+        100% {
+          transform: translateY(100px);
+        }
+      }
+
+      .confettiMoveX-04 {
+        animation: confettiMoveX-04 5s linear ;
+      }
+
+      @keyframes confettiMoveX-04 {
+
+        0%,
+        66% {
+          transform: translateX(0px);
+        }
+
+        100% {
+          transform: translateX(-80px);
+        }
+      }
+
+      .confettiMoveY-01 {
+        animation: confettiMoveY-01 5s linear ;
+      }
+
+      @keyframes confettiMoveY-01 {
+
+        0%,
+        65% {
+          transform: translateY(0px);
+        }
+
+        69%,
+        73% {
+          transform: translateY(-50px);
+        }
+
+        100% {
+          transform: translateY(100px);
+        }
+      }
+
+      .confettiMoveX-01 {
+        animation: confettiMoveX-01 5s linear ;
+      }
+
+      @keyframes confettiMoveX-01 {
+
+        0%,
+        66% {
+          transform: translateX(0px);
+        }
+
+        100% {
+          transform: translateX(115px);
+        }
+      }
+
+      @keyframes extensionPin {
+
+        0%,
+        53% {
+          fill: #d0d1d3;
+        }
+
+        55%,
+        100% {
+          fill: #3498db;
+        }
+      }
+
+      @keyframes dropdownMove {
+
+        0%,
+        24% {
+          transform: translateX(85px) translateY(-35px);
+        }
+
+        29%,
+        72% {
+          transform: translateX(85px) translateY(15px);
+        }
+
+        77%,
+        100% {
+          transform: translateX(85px) translateY(-35px);
+        }
+      }
+
+      @keyframes tealLogoScale {
+
+        0%,
+        59% {
+          transform: scale(0);
+        }
+
+        63% {
+          transform: scale(1.1);
+        }
+
+        66%,
+        100% {
+          transform: scale(0.9);
+        }
+      }
+
+      @keyframes puzzleScale {
+
+        0%,
+        20% {
+          transform: scale(1);
+        }
+
+        22% {
+          transform: scale(0.66);
+        }
+
+        24%,
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes puzzleMove {
+
+        0%,
+        59% {
+          transform: translateX(90px) translateY(-55px);
+        }
+
+        63%,
+        100% {
+          transform: translateX(125px) translateY(-55px);
+        }
+      }
+
+      @keyframes cursorScale {
+
+        0%,
+        20% {
+          transform: scale(0.66);
+        }
+
+        22% {
+          transform: scale(0.5);
+        }
+
+        24%,
+        50% {
+          transform: scale(0.66);
+        }
+
+        52% {
+          transform: scale(0.5);
+        }
+
+        54%,
+        100% {
+          transform: scale(0.66);
+        }
+      }
+
+      @keyframes cursorMove {
+
+        0%,
+        8% {
+          transform: translateX(90px) translateY(50px);
+        }
+
+        15%,
+        35% {
+          transform: translateX(90px) translateY(-40px);
+        }
+
+        45%,
+        100% {
+          transform: translateX(170px) translateY(25px)
+        }
+      }
+    </style>
+
+    <clipPath id="dropdownMask">
+      <rect x="105.55" y="185" width="390.41" height="128.24" />
+    </clipPath>
+
+  </defs>
+
+  <g id="Static-background">
+    <g>
+      <rect x="104.03" y="89.53" width="391.93" height="220.93" style="stroke: #d0d1d3; stroke-width: 5; fill: #fff" />
+      <path
+        d="M467,122.92h29V89.53H104v33.12H308.81a5,5,0,0,1,5,5v35.63a5,5,0,0,1-5,5H104V201.4H496V168.88H467a5,5,0,0,1,0-10h29v-8.42H467a5,5,0,0,1-5-5h0a5,5,0,0,1,5-5h29v-7.54H467a5,5,0,0,1,0-10Z"
+        style="fill: #d0d1d3" />
+    </g>
+  </g>
+
+  <!--g id="Animated-circle">
+    <circle cx="300" cy="200" r="70.17" style="fill: none;stroke: #264848;stroke-miterlimit: 10;stroke-width: 9px"/>
+  </g-->
+
+  <g class="puzzleMove" id="Animated-ExtensionIcon">
+    <g class="puzzleScale">
+      <path
+        d="M317.84,196.43v-8.89a5.38,5.38,0,0,0-5.38-5.38h-8.89a7.14,7.14,0,0,0-14.27,0h-8.89a5.38,5.38,0,0,0-5.38,5.38v8.89a7.14,7.14,0,0,1,0,14.27v8.89a5.38,5.38,0,0,0,5.38,5.38h8.89a7.13,7.13,0,0,1,14.26,0h8.9a5.38,5.38,0,0,0,5.38-5.38V210.7a7.14,7.14,0,0,0,0-14.27Z"
+        style="fill:#fff" />
+    </g>
+  </g>
+
+
+  <g class="tealLogoMove" id="Animated-TealIcon">
+    <g class="tealLogoScale">
+      <circle cx="300" cy="200" r="32.67" style="fill: #fff" />
+      <g>
+        <path
+          d="M300,176.68A23.32,23.32,0,1,0,323.32,200,23.34,23.34,0,0,0,300,176.68ZM313.27,196h-6.22a8.39,8.39,0,0,0-5.69,2.23,10.11,10.11,0,0,1,2.09,6.17v10h-1.79v-10a8.33,8.33,0,0,0-1.5-4.79,8.34,8.34,0,0,0-1.51,4.79v10h-1.79v-10a10.11,10.11,0,0,1,2.09-6.17,8.39,8.39,0,0,0-5.69-2.23H287v-1.79h6.22a10.13,10.13,0,0,1,6.9,2.7,10.09,10.09,0,0,1,6.89-2.7h6.22Zm0-3.95H287v-1.79h26.23Z"
+          style="fill: none" />
+        <path
+          d="M300,172.2A27.8,27.8,0,1,0,327.8,200,27.83,27.83,0,0,0,300,172.2Zm0,52.9A25.1,25.1,0,1,1,325.1,200,25.13,25.13,0,0,1,300,225.1Z"
+          style="fill: none" />
+        <rect x="287.04" y="190.24" width="26.23" height="1.79" style="fill: #264848" />
+        <path
+          d="M300.16,196.89a10.13,10.13,0,0,0-6.9-2.7H287V196h6.22a8.39,8.39,0,0,1,5.69,2.23,10.11,10.11,0,0,0-2.09,6.17v10h1.79v-10a8.34,8.34,0,0,1,1.51-4.79,8.33,8.33,0,0,1,1.5,4.79v10h1.79v-10a10.11,10.11,0,0,0-2.09-6.17,8.39,8.39,0,0,1,5.69-2.23h6.22v-1.79h-6.22A10.09,10.09,0,0,0,300.16,196.89Z"
+          style="fill: #264848" />
+        <path
+          d="M300,174.9A25.1,25.1,0,1,0,325.1,200,25.13,25.13,0,0,0,300,174.9Zm0,48.42A23.32,23.32,0,1,1,323.32,200,23.34,23.34,0,0,1,300,223.32Z"
+          style="fill: #264848" />
+        <path
+          d="M300,170.41A29.59,29.59,0,1,0,329.59,200,29.63,29.63,0,0,0,300,170.41Zm0,57.39A27.8,27.8,0,1,1,327.8,200,27.83,27.83,0,0,1,300,227.8Z"
+          style="fill: #264848" />
+      </g>
+    </g>
+  </g>
+
+  <g clip-path="url(#dropdownMask)" id="Animated-Dropdown">
+    <g class="dropdownMove">
+      <rect x="194.79" y="171.21" width="213.3" height="43.94" rx="21.97" style="fill: #fff" />
+      <path
+        d="M386.13,171.21a22,22,0,0,1,22,22h0a22,22,0,0,1-22,22H216.76a22,22,0,0,1-22-22h0a22,22,0,0,1,22-22H386.13m0-4H216.76a26,26,0,0,0,0,51.94H386.13a26,26,0,1,0,0-51.94Z"
+        style="fill: #d0d1d3" />
+      <path class="extensionPin"
+        d="M375.29,198.54h7.79v8.2l1,1.42,1-1.42v-8.2h7.78a1,1,0,0,0,1-.95V195a3.8,3.8,0,0,0-3.39-3.74l-.85-7h.86a1,1,0,0,0,1-.94v-2a3.11,3.11,0,0,0-3.14-3.07h-8.32a3.11,3.11,0,0,0-3.14,3.07v2a1,1,0,0,0,1,.94h.86l-.85,7a3.79,3.79,0,0,0-3.39,3.74v2.64A1,1,0,0,0,375.29,198.54Z" />
+      <g>
+        <path
+          d="M217,177a16.21,16.21,0,1,0,16.21,16.21A16.23,16.23,0,0,0,217,177Zm9.22,13.41h-4.32a5.82,5.82,0,0,0-4,1.55,7.05,7.05,0,0,1,1.46,4.29v6.92h-1.25v-6.92a5.78,5.78,0,0,0-1-3.33,5.77,5.77,0,0,0-1,3.33v6.92H214.8v-6.92a7.05,7.05,0,0,1,1.46-4.29,5.82,5.82,0,0,0-4-1.55H208v-1.24h4.32a7,7,0,0,1,4.79,1.87,7.09,7.09,0,0,1,4.8-1.87h4.32Zm0-2.75H208v-1.24h18.23Z"
+          style="fill: none" />
+        <path
+          d="M217,173.85a19.33,19.33,0,1,0,19.33,19.33A19.35,19.35,0,0,0,217,173.85Zm0,36.78a17.46,17.46,0,1,1,17.45-17.45A17.47,17.47,0,0,1,217,210.63Z"
+          style="fill: none" />
+        <rect x="207.98" y="186.39" width="18.23" height="1.24" style="fill: #264848" />
+        <path
+          d="M217.09,191a7,7,0,0,0-4.79-1.87H208v1.24h4.32a5.82,5.82,0,0,1,4,1.55,7.05,7.05,0,0,0-1.46,4.29v6.92h1.25v-6.92a5.77,5.77,0,0,1,1-3.33,5.78,5.78,0,0,1,1,3.33v6.92h1.25v-6.92a7.05,7.05,0,0,0-1.46-4.29,5.82,5.82,0,0,1,4-1.55h4.32v-1.24h-4.32A7.09,7.09,0,0,0,217.09,191Z"
+          style="fill: #264848" />
+        <path
+          d="M217,175.72a17.46,17.46,0,1,0,17.45,17.46A17.48,17.48,0,0,0,217,175.72Zm0,33.67a16.21,16.21,0,1,1,16.21-16.21A16.23,16.23,0,0,1,217,209.39Z"
+          style="fill: #264848" />
+        <path
+          d="M217,172.61a20.57,20.57,0,1,0,20.57,20.57A20.59,20.59,0,0,0,217,172.61Zm0,39.89a19.33,19.33,0,1,1,19.33-19.32A19.35,19.35,0,0,1,217,212.5Z"
+          style="fill: #264848" />
+      </g>
+      <rect x="246.44" y="184.75" width="119.01" height="16.86" style="fill: #d0d1d3" />
+    </g>
+  </g>
+
+  <g class="cursorMove" id="Animated-Cursor">
+    <g class="cursorScale">
+      <path
+        d="M301.36,278a3.61,3.61,0,0,1-1.32-.26,3.52,3.52,0,0,1-2.18-3.17l-1.36-69.82a3.5,3.5,0,0,1,2.06-3.26,3.46,3.46,0,0,1,1.44-.31,3.5,3.5,0,0,1,2.36.92l51.54,47.11a3.49,3.49,0,0,1-2.11,6.07l-28,2-20,19.71A3.51,3.51,0,0,1,301.36,278Z"
+        style="fill: #d0d1d3" />
+      <path
+        d="M300,204.66l25.77,23.56,25.77,23.55-29.28,2.09-20.9,20.62-.68-34.91L300,204.66m0-7a7.16,7.16,0,0,0-2.89.62A7,7,0,0,0,293,204.8l.68,34.91.68,34.9a7,7,0,0,0,11.92,4.85l19.06-18.8,26.7-1.91a7,7,0,0,0,4.23-12.14l-25.78-23.56L304.72,199.5a7,7,0,0,0-4.72-1.84Z"
+        style="fill: #264848" />
+    </g>
+  </g>
+
+  <g class="confettiAll" id="Animated-ConfettiPiece">
+
+    <g>
+      <g class="confettiMoveY-02">
+        <g class="confettiFloat" style="animation-delay: 3.66s;">
+          <g class="confettiSpin" style="animation-delay: 0.3s;">
+            <g class="confettiScale" style="animation-delay: 0.45s;">
+              <circle cx="50%" cy="50%" r="5" style="fill: #b7946f"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <g class="confettiMoveX-01">
+      <g class="confettiMoveY-01">
+        <g class="confettiFloat">
+          <g class="confettiSpin">
+            <g class="confettiScale">
+              <circle cx="50%" cy="50%" r="8" style="fill: #b7946f"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <g class="confettiMoveX-02">
+      <g class="confettiMoveY-02">
+        <g class="confettiFloat" style="animation-delay: 3.25s;">
+          <g class="confettiSpin" style="animation-delay: 0.5s;">
+            <g class="confettiScale" style="animation-delay: 0.25s;">
+              <circle cx="50%" cy="50%" r="10" style="fill: #b7946f"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+
+    <g class="confettiMoveX-03">
+      <g class="confettiMoveY-03" style="animation-delay: 0.25s;">
+        <g class="confettiFloat" style="animation-delay: 3.25s;">
+          <g class="confettiSpin" style="animation-delay: 0.5s;">
+            <g class="confettiScale" style="animation-delay: 0.25s;">
+              <circle cx="50%" cy="50%" r="10" style="fill: #b7946f"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+    
+    <g class="confettiMoveX-04">
+      <g class="confettiMoveY-04">
+        <g class="confettiFloat" style="animation-delay: 3.25s;">
+          <g class="confettiSpin">
+            <g class="confettiScale">
+              <circle cx="50%" cy="50%" r="10" style="fill: #b7946f"/>
+            </g>
+          </g>
+        </g>
+      </g>
+    </g>
+
+
+  </g>
+
+
+</svg>
