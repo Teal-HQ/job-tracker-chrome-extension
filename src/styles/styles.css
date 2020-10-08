@@ -3,7 +3,7 @@
   --teal: #244747;
   --dark-teal: #11292A;
   --gold: #BE9369;
-  --sand: #F5BE7F;
+  --sand: #f5be7f;
   --light-gray: #dcdcdc;
   --beige: #F4EFEA;
   --dark-beige: #CBB7A4;
@@ -24,12 +24,14 @@
   src: url('../../dist/fonts/raleway-semibold.woff') format('woff');
 }
 
+/*****************/
+/* Shared styles */
+/*****************/
 html, body {
   height: auto !important;
 }
 
 body {
-  min-width: 350px;
   background-color: white;
   color: black;
   font-family: 'Raleway', Arial, 'Roboto', -apple-system, sans-serif;
@@ -48,6 +50,27 @@ h3 {
 
 a {
   color: var(--teal);
+  text-decoration: underline;
+}
+
+.teal-logo {
+  height: 55px;
+  max-width: 240px;
+  margin-bottom: 20px;
+}
+
+.clickable:hover {
+  cursor: pointer;
+}
+
+.success-message {
+  background-color: var(--dark-teal);
+  color: white;
+  padding: 20px;
+}
+
+.success-message a {
+  color:white;
   text-decoration: underline;
 }
 
@@ -97,114 +120,6 @@ a {
   right: -10px;
 }
 
-.ant-layout-content {
-  padding: 20px 25px;
-  background-color: white;
-}
-
-.ant-layout-header {
-  background-color: var(--dark-teal);
-  color: white;
-  padding: 0.75rem 25px;
-  line-height: 1;
-  height: auto;
-}
-
-.ant-layout-header .nav-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
-}
-
-/* Custom styles */
-.teal-logo {
-  height: 55px;
-  max-width: 240px;
-  margin-bottom: 20px;
-}
-
-.job-description-preview {
-  color: black;
-  font-style: italic;
-}
-
-.clickable:hover {
-  cursor: pointer;
-}
-
-.success-message {
-  background-color: var(--dark-teal);
-  color: white;
-  padding: 20px;
-}
-
-.success-message a {
-  color:white;
-  text-decoration: underline;
-}
-
-/* Login Screen */
-.login-form {
-  background-color: var(--dark-teal);
-  padding: 25px;
-}
-
-.login-form .teal-logo {
-  height: 32px;
-  width: 32px;
-  margin: 0.5rem auto 1rem;
-  display: block;
-}
-
-.login-form h3 {
-  color: #fff;
-  text-align: center;
-}
-
-.login-form .ant-form-item-label > label {
-  color: white !important;
-}
-
-/* About Screen */
-.about-faq-container {
-  font-size: 13px;
-}
-
-.about-faq-container h3 {
-  border-bottom: 1px solid var(--light-gray);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
-}
-
-.about-faq-container h3:not(:first-of-type) {
-  margin-top: 2rem;
-}
-
-.about-faq-container p {
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
-  color: var(--teal);
-}
-
-.logout-link {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  color: var(--gold);
-  text-decoration: underline;
-}
-
-.logout-link:hover {
-  color: var(--gold);
-}
-
-.app-version {
-  float: right;
-  font-size: 11px;
-  margin-top: -14px;
-}
-
-/* Ant Overrides */
 .ant-alert,
 .ant-alert.ant-alert-no-icon {
   font-size: 12px;
@@ -216,4 +131,154 @@ a {
   background-color: var(--beige);
   border: 1px solid var(--dark-beige);
   color: black;
+}
+
+/*****************/
+/* Popup styles */
+/*****************/
+body.popup {
+  min-width: 350px;
+}
+
+.popup .ant-layout-content {
+  padding: 20px 25px;
+  background-color: white;
+}
+
+.popup .ant-layout-header {
+  background-color: var(--dark-teal);
+  color: white;
+  padding: 0.75rem 25px;
+  line-height: 1;
+  height: auto;
+}
+
+.popup .ant-layout-header .nav-wrapper {
+  display: flex;
+  align-items: center;
+  justify-content: flex-end;
+}
+
+
+.popup .job-description-preview {
+  color: black;
+  font-style: italic;
+}
+
+/* Login Screen */
+.popup .login-form {
+  background-color: var(--dark-teal);
+  padding: 25px;
+}
+
+.popup .login-form .teal-logo {
+  height: 32px;
+  width: 32px;
+  margin: 0.5rem auto 1rem;
+  display: block;
+}
+
+.popup .login-form h3 {
+  color: #fff;
+  text-align: center;
+}
+
+.popup .login-form .ant-form-item-label > label {
+  color: white !important;
+}
+
+/* About Screen */
+.popup .about-faq-container {
+  font-size: 13px;
+}
+
+.popup .about-faq-container h3 {
+  border-bottom: 1px solid var(--light-gray);
+  padding-bottom: 0.5rem;
+  margin-bottom: 1.5rem;
+}
+
+.popup .about-faq-container h3:not(:first-of-type) {
+  margin-top: 2rem;
+}
+
+.popup .about-faq-container p {
+  margin-bottom: 1.25rem;
+  line-height: 1.6;
+  color: var(--teal);
+}
+
+.popup .logout-link {
+  position: absolute;
+  right: 0;
+  bottom: 0;
+  color: var(--gold);
+  text-decoration: underline;
+}
+
+.popup .logout-link:hover {
+  color: var(--gold);
+}
+
+.popup .app-version {
+  float: right;
+  font-size: 11px;
+  margin-top: -14px;
+}
+
+/*****************/
+/* Installation Screen */
+/*****************/
+body.installation,
+.installation .ant-col,
+.installation .ant-row {
+  min-height: 100vh;
+}
+
+.installation .dark-background-container {
+  padding: 2.5rem;
+  background-color: var(--dark-teal);
+  display: flex;
+  align-items: flex-start;
+  flex-direction: column;
+  justify-content: center;;
+}
+
+.installation .dark-background-container h1 {
+  color: #fff;
+  margin-bottom: 0;
+}
+
+.installation .teal-logo {
+  margin-bottom: 2rem;
+}
+
+.installation h1 {
+  font-size: 42px;
+  line-height: 1.2;
+}
+
+.installation .animation-container {
+  display: flex;
+  align-items: center;
+}
+
+.installation .image-wrapper {
+  position: fixed;
+  top: 4.5rem;
+  right: 6rem;
+  left: 35%;
+}
+
+.installation .animation-container .animation-svg {
+  width: 100%;
+  position: relative;
+  top: 3rem;
+}
+
+.installation .arrow-up {
+  position: absolute;
+  top: -3.5rem;
+  right: -1rem;
+  height: 55%;
 }

@@ -5,7 +5,7 @@ import LoginForm from './components/login-form/login';
 import Authenticated from './components/authenticated/authenticated';
 
 import 'antd/dist/antd.css';
-import '../styles/popup.css';
+import '../styles/styles.css';
 
 export interface ILoading {
   (loading: boolean): void;

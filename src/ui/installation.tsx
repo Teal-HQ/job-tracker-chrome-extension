@@ -3,21 +3,25 @@ import * as ReactDOM from "react-dom";
 import { Col, Row } from "antd";
 
 import "antd/dist/antd.css";
-import "../styles/installation.css";
+import "../styles/styles.css";
 
 const Installation = () => {
   return (
-    <Row justify="center" align="middle">
-      <Col span={8}>
+    <Row justify="center">
+      <Col className="dark-background-container" span={8}>
+        <img
+          className="teal-logo"
+          src={chrome.runtime.getURL('images/teal_logo_seal_gold.png')}
+        />
         <h1>
-          Pin the Teal <br /> Chrome Extension <br /> to get started
+          Pin the Teal Chrome Extension and then click on the extension icon to start saving job posts.
         </h1>
       </Col>
-      <Col span={14}>
-        <img src={chrome.runtime.getURL("images/after-install.svg")} />
-      </Col>
-      <Col className="arrow-up" span={2}>
-        <img src={chrome.runtime.getURL("images/after-install-arrow.svg")} />
+      <Col className="animation-container" span={16}>
+        <div className="image-wrapper">
+          <img className="animation-svg" src={chrome.runtime.getURL("images/after-install.svg")} />
+          <img className="arrow-up" src={chrome.runtime.getURL("images/after-install-arrow.svg")} />
+        </div>
       </Col>
     </Row>
   );
