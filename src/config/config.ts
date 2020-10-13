@@ -13,7 +13,7 @@ export const WEB_CLIENT_URL = 'https://app.tealhq.com/';
 // export const WEB_CLIENT_URL = 'http://localhost:9000/';
 
 export enum PAGES {
-  ABOUT = 'about',
-  JOB_POST_FORM = 'job_post_form',
-  SUCCESS = 'success'
+    ABOUT = 'about',
+    JOB_POST_FORM = 'job_post_form',
+    SUCCESS = 'success',
 }

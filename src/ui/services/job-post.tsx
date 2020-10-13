@@ -3,60 +3,58 @@ import { deserialize } from 'deserialize-json-api';
 import { COMPANY_API_URL } from '../../config/config';
 
 export interface JobPost {
-  company?: string;
-  role?: string;
-  location?: string;
-  url?: string;
-  logo?: string;
-  description?: string;
-  description_html: string;
-  note?: string;
-  id?: string;
+    company?: string;
+    role?: string;
+    location?: string;
+    url?: string;
+    logo?: string;
+    description?: string;
+    description_html: string;
+    note?: string;
+    id?: string;
 }
 
 export const defaultJobPost: JobPost = {
-  company: '',
-  role: '',
-  location: '',
-  url: '',
-  logo: '',
-  description: '',
-  description_html: '',
-  note: '',
-  id: ''
-}
+    company: '',
+    role: '',
+    location: '',
+    url: '',
+    logo: '',
+    description: '',
+    description_html: '',
+    note: '',
+    id: '',
+};
 
-export const getRules = async (url, jwt) => {
-  const data = await axios.get(COMPANY_API_URL+'xpaths', {'headers': {
-    'Authorization': `Bearer ${jwt}`
-  }});
+export const getRules = async url => {
+    const data = await axios.get(COMPANY_API_URL + 'xpaths');
 
-  const xPaths = deserialize(data.data);
+    const xPaths = deserialize(data.data);
 
-  const matches = xPaths.data.filter( (item) => {
-    const expr = new RegExp(item.root_url, 'i');
-    return url.match(expr) !== null;
-  });
+    const matches = xPaths.data.filter(item => {
+        const expr = new RegExp(item.root_url, 'i');
+        return url.match(expr) !== null;
+    });
 
-  return matches.length > 0 ? matches[0] : null;
-}
+    return matches.length > 0 ? matches[0] : null;
+};
 
 export const saveJobPost = (jobPost: JobPost, jwt) => {
-  return axios.post(
-    COMPANY_API_URL + 'user_job_posts',
-    {
-      'data': {
-        'type': 'user_job_posts',
-        'attributes': {
-          'company_name': jobPost.company,
-          'role': jobPost.role,
-          'location': jobPost.location,
-          'note': jobPost.note,
-          'url': jobPost.url,
-          'job_description': jobPost.description_html
-        }
-      }
-    },
-    { headers: {'Content-Type': 'application/vnd.api+json', 'Authorization': `Bearer ${jwt}`} }
-  )
+    return axios.post(
+        COMPANY_API_URL + 'user_job_posts',
+        {
+            data: {
+                type: 'user_job_posts',
+                attributes: {
+                    company_name: jobPost.company,
+                    role: jobPost.role,
+                    location: jobPost.location,
+                    note: jobPost.note,
+                    url: jobPost.url,
+                    job_description: jobPost.description_html,
+                },
+            },
+        },
+        { headers: { 'Content-Type': 'application/vnd.api+json', Authorization: `Bearer ${jwt}` } }
+    );
 };
