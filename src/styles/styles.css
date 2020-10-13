@@ -1,229 +1,234 @@
 /* Custom CSS Properties*/
 :root {
-  --teal: #244747;
-  --dark-teal: #11292A;
-  --gold: #BE9369;
-  --sand: #f5be7f;
-  --light-gray: #dcdcdc;
-  --beige: #F4EFEA;
-  --dark-beige: #CBB7A4;
+    --teal: #244747;
+    --dark-teal: #11292a;
+    --gold: #be9369;
+    --sand: #f5be7f;
+    --light-gray: #dcdcdc;
+    --beige: #f4efea;
+    --dark-beige: #cbb7a4;
 }
 
 /* Fonts */
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 400;
-  src: url('../../dist/fonts/raleway-regular.woff') format('woff');
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 400;
+    src: url('../../dist/fonts/raleway-regular.woff') format('woff');
 }
 
 @font-face {
-  font-family: 'Raleway';
-  font-style: normal;
-  font-weight: 600;
-  src: url('../../dist/fonts/raleway-semibold.woff') format('woff');
+    font-family: 'Raleway';
+    font-style: normal;
+    font-weight: 600;
+    src: url('../../dist/fonts/raleway-semibold.woff') format('woff');
 }
 
 /*****************/
 /* Shared styles */
 /*****************/
-html, body {
-  height: auto !important;
+html,
+body {
+    height: auto !important;
 }
 
 body {
-  background-color: white;
-  color: black;
-  font-family: 'Raleway', Arial, 'Roboto', -apple-system, sans-serif;
-  font-weight: 400;
+    background-color: white;
+    color: black;
+    font-family: 'Raleway', Arial, 'Roboto', -apple-system, sans-serif;
+    font-weight: 400;
 }
 
-h1, h2, h3, h4, h5, h6 {
-  font-weight: 600;
-  text-transform: none;
-  color: var(--teal);
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 600;
+    text-transform: none;
+    color: var(--teal);
 }
 
 h3 {
-  font-size: 20px;
+    font-size: 20px;
 }
 
 a {
-  color: var(--teal);
-  text-decoration: underline;
+    color: var(--teal);
+    text-decoration: underline;
 }
 
 .teal-logo {
-  height: 55px;
-  max-width: 240px;
-  margin-bottom: 20px;
+    height: 55px;
+    max-width: 240px;
+    margin-bottom: 20px;
 }
 
 .clickable:hover {
-  cursor: pointer;
+    cursor: pointer;
 }
 
 .success-message {
-  background-color: var(--dark-teal);
-  color: white;
-  padding: 20px;
+    background-color: var(--dark-teal);
+    color: white;
+    padding: 20px;
 }
 
 .success-message a {
-  color:white;
-  text-decoration: underline;
+    color: white;
+    text-decoration: underline;
 }
 
 /* ant overrides */
 .ant-form {
-  width: 100%;
+    width: 100%;
 }
 
 .ant-form .ant-btn {
-  margin-top: 1.5rem;
+    margin-top: 1.5rem;
 }
 
 .ant-btn.ant-btn-primary {
-  background-color: var(--sand);
-  padding: 0.5rem 1rem;
-  color: var(--dark-teal);
-  font-size: 13px;
-  height: auto;
-  border: 0;
-  text-shadow: none;
-  box-shadow: none;
+    background-color: var(--sand);
+    padding: 0.5rem 1rem;
+    color: var(--dark-teal);
+    font-size: 13px;
+    height: auto;
+    border: 0;
+    text-shadow: none;
+    box-shadow: none;
 }
 
 .ant-form-item:last-child:not(:only-child) {
-  margin-bottom: 0;
+    margin-bottom: 0;
 }
 
 .ant-form-item {
-  margin-bottom: 0.75rem;
+    margin-bottom: 0.75rem;
 }
 
 .ant-form-item .ant-form-item-label {
-  padding: 0 !important;
+    padding: 0 !important;
 }
 
 .ant-form-item-label > label {
-  color: var(--teal) !important;
-  font-weight: 600;
-  height: auto;
-  margin-bottom: 0.35rem !important;
-  font-size: 13px;
+    color: var(--teal) !important;
+    font-weight: 600;
+    height: auto;
+    margin-bottom: 0.35rem !important;
+    font-size: 13px;
 }
 
 .ant-form-item-label > label.ant-form-item-required::before {
-  color: var(--teal);
-  position: absolute;
-  right: -10px;
+    color: var(--teal);
+    position: absolute;
+    right: -15px;
 }
 
 .ant-alert,
 .ant-alert.ant-alert-no-icon {
-  font-size: 12px;
-  padding: 0.5rem;
-  margin-bottom: 1rem;
+    font-size: 12px;
+    padding: 0.5rem;
+    margin-bottom: 1rem;
 }
 
 .ant-alert.ant-alert-warning {
-  background-color: var(--beige);
-  border: 1px solid var(--dark-beige);
-  color: black;
+    background-color: var(--beige);
+    border: 1px solid var(--dark-beige);
+    color: black;
 }
 
 /*****************/
 /* Popup styles */
 /*****************/
 body.popup {
-  min-width: 350px;
+    min-width: 350px;
 }
 
 .popup .ant-layout-content {
-  padding: 20px 25px;
-  background-color: white;
+    padding: 20px 25px;
+    background-color: white;
 }
 
 .popup .ant-layout-header {
-  background-color: var(--dark-teal);
-  color: white;
-  padding: 0.75rem 25px;
-  line-height: 1;
-  height: auto;
+    background-color: var(--dark-teal);
+    color: white;
+    padding: 0.75rem 25px;
+    line-height: 1;
+    height: auto;
 }
 
 .popup .ant-layout-header .nav-wrapper {
-  display: flex;
-  align-items: center;
-  justify-content: flex-end;
+    display: flex;
+    align-items: center;
+    justify-content: flex-end;
 }
 
-
 .popup .job-description-preview {
-  color: black;
-  font-style: italic;
+    color: black;
+    font-style: italic;
 }
 
 /* Login Screen */
 .popup .login-form {
-  background-color: var(--dark-teal);
-  padding: 25px;
+    background-color: var(--dark-teal);
+    padding: 25px;
 }
 
 .popup .login-form .teal-logo {
-  height: 32px;
-  width: 32px;
-  margin: 0.5rem auto 1rem;
-  display: block;
+    height: 32px;
+    width: 32px;
+    margin: 0.5rem auto 1rem;
+    display: block;
 }
 
 .popup .login-form h3 {
-  color: #fff;
-  text-align: center;
+    color: #fff;
+    text-align: center;
 }
 
 .popup .login-form .ant-form-item-label > label {
-  color: white !important;
+    color: white !important;
 }
 
 /* About Screen */
 .popup .about-faq-container {
-  font-size: 13px;
+    font-size: 13px;
 }
 
 .popup .about-faq-container h3 {
-  border-bottom: 1px solid var(--light-gray);
-  padding-bottom: 0.5rem;
-  margin-bottom: 1.5rem;
+    border-bottom: 1px solid var(--light-gray);
+    padding-bottom: 0.5rem;
+    margin-bottom: 1.5rem;
 }
 
 .popup .about-faq-container h3:not(:first-of-type) {
-  margin-top: 2rem;
+    margin-top: 2rem;
 }
 
 .popup .about-faq-container p {
-  margin-bottom: 1.25rem;
-  line-height: 1.6;
-  color: var(--teal);
+    margin-bottom: 1.25rem;
+    line-height: 1.6;
+    color: var(--teal);
 }
 
 .popup .logout-link {
-  position: absolute;
-  right: 0;
-  bottom: 0;
-  color: var(--gold);
-  text-decoration: underline;
+    position: absolute;
+    right: 0;
+    bottom: 0;
+    color: var(--gold);
+    text-decoration: underline;
 }
 
 .popup .logout-link:hover {
-  color: var(--gold);
+    color: var(--gold);
 }
 
 .popup .app-version {
-  float: right;
-  font-size: 11px;
-  margin-top: -14px;
+    float: right;
+    font-size: 11px;
+    margin-top: -14px;
 }
 
 /*****************/
@@ -232,53 +237,175 @@ body.popup {
 body.installation,
 .installation .ant-col,
 .installation .ant-row {
-  min-height: 100vh;
+    min-height: 100vh;
 }
 
 .installation .dark-background-container {
-  padding: 2.5rem;
-  background-color: var(--dark-teal);
-  display: flex;
-  align-items: flex-start;
-  flex-direction: column;
-  justify-content: center;;
+    padding: 2.5rem;
+    background-color: var(--dark-teal);
+    display: flex;
+    align-items: flex-start;
+    flex-direction: column;
+    justify-content: center;
 }
 
 .installation .dark-background-container h1 {
-  color: #fff;
-  margin-bottom: 0;
+    color: #fff;
+    margin-bottom: 0;
 }
 
 .installation .teal-logo {
-  margin-bottom: 2rem;
+    margin-bottom: 2rem;
 }
 
 .installation h1 {
-  font-size: 42px;
-  line-height: 1.2;
+    font-size: 42px;
+    line-height: 1.2;
 }
 
 .installation .animation-container {
-  display: flex;
-  align-items: center;
+    display: flex;
+    align-items: center;
 }
 
 .installation .image-wrapper {
-  position: fixed;
-  top: 4.5rem;
-  right: 6rem;
-  left: 35%;
+    position: fixed;
+    top: 4.5rem;
+    right: 6rem;
+    left: 35%;
 }
 
 .installation .animation-container .animation-svg {
-  width: 100%;
-  position: relative;
-  top: 3rem;
+    width: 100%;
+    position: relative;
+    top: 3rem;
 }
 
 .installation .arrow-up {
-  position: absolute;
-  top: -3.5rem;
-  right: -1rem;
-  height: 55%;
+    position: absolute;
+    top: -3.5rem;
+    right: -1rem;
+    height: 55%;
+}
+
+/*****************/
+/* Onboarding */
+/*****************/
+
+.onboarding-container {
+    width: 350px;
+    padding: 40px;
+}
+
+.fade-in {
+    opacity: 1;
+    animation-name: fadeInOpacity;
+    animation-iteration-count: 1;
+    animation-timing-function: ease-in;
+    animation-duration: 500ms;
+}
+
+.fade-in img {
+    margin: 0 auto;
+}
+
+.fade-in .teal-logo {
+    display: inline !important;
+    height: 38px;
+    margin: 0 6px;
+}
+
+@keyframes fadeInOpacity {
+    0% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+.onboarding-step {
+    height: 440px;
+}
+
+.onboarding-step p {
+    font-size: 22px;
+    margin: 20px auto;
+}
+
+.nav-prev,
+.nav-next {
+    position: absolute;
+    bottom: 2.8rem;
+    z-index: 10000;
+    border: 0 solid white;
+    box-shadow: 0 0 white;
+    font-size: 16px;
+    font-weight: bold;
+}
+
+.nav-prev {
+    left: 4rem;
+}
+
+.nav-next {
+    right: 4rem;
+}
+
+.ant-carousel .slick-dots li {
+    margin: 0 10px;
+}
+
+.ant-carousel .slick-dots li button {
+    background: grey;
+    height: 16px;
+    border-radius: 32px;
+}
+
+.ant-carousel .slick-dots li.slick-active {
+    width: 16px;
+}
+
+.ant-carousel .slick-dots li.slick-active button {
+    background: var(--teal);
+}
+
+.site-search input {
+    margin-bottom: 20px;
+}
+
+.site-search img {
+    height: 50px;
+}
+
+.login-form .job-post-data {
+    color: white;
+}
+
+.login-form .job-post-data label {
+    margin-top: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.login-form h4 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+.login-form hr {
+    width: 100%;
+    margin-bottom: 10px;
+}
+
+.search-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.search-disabled a {
+    cursor: not;
 }
