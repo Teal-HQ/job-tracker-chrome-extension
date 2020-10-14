@@ -97,14 +97,20 @@ a {
     margin-top: 1.5rem;
 }
 
+.ant-input-password .ant-input-affix-wrapper {
+    padding: 0.5rem 0.75rem;
+    margin-bottom: 0;
+}
 
 .ant-input {
     margin-bottom: 0.75rem;
     padding: 0.5rem 0.75rem;
 }
 
+.ant-input:focus,
 .ant-input:hover {
     border-color: var(--gold);
+    outline: none;
 }
 
 .ant-btn.ant-btn-primary {
@@ -139,9 +145,13 @@ a {
 }
 
 .ant-form-item-label > label.ant-form-item-required::before {
-    color: var(--teal);
+    color: white;
     position: absolute;
     right: -15px;
+}
+
+.ant-form-item-control-input-content {
+    color: white;
 }
 
 .ant-alert,
@@ -200,7 +210,7 @@ body.popup {
 /* Login Screen */
 .popup .login-form {
     background-color: var(--dark-teal);
-    padding: 25px;
+    padding: 1.75rem;
 }
 
 .popup .login-form .teal-logo {
@@ -237,9 +247,28 @@ body.popup {
     margin-bottom: 0;
 }
 
+.popup .login-form a {
+    color: var(--gold);
+}
+
 .popup .login-form hr {
     width: 100%;
     margin-bottom: 10px;
+}
+
+.popup .login-form hr {
+    border-color: #426363;
+    border-top: 0;
+}
+
+.popup .login-form .login-button-container .ant-form-item-control-input-content {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.popup .login-form .ant-btn.ant-btn-primary  {
+    margin-top: 0;
 }
 
 /* About Screen */

@@ -85,7 +85,7 @@ const LoginForm = (props: ILoginForm) => {
                         <Input.Password />
                     </Form.Item>
 
-                    <Form.Item>
+                    <Form.Item className="login-button-container">
                         <Button type="primary" htmlType="submit">
                             Login
                         </Button>
