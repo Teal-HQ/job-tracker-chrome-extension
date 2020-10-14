@@ -9,6 +9,8 @@ const Onboarding = props => {
     const [role, setRole] = useState('');
     const [location, setLocation] = useState('');
 
+    const buttonIsDisabled = !role || !location;
+
     const onCarouselChange = currentSlideNumber => {
         setCurrentSlide(currentSlideNumber);
     };
@@ -92,7 +94,7 @@ const Onboarding = props => {
                                 <label
                                     htmlFor="jobRole"
                                 >
-                                    Role:
+                                    Title, skill, or company:
                                 </label>
                                 <Input
                                     id="jobRole"
@@ -113,41 +115,35 @@ const Onboarding = props => {
                                 />
                             </div>
 
-                            <Row className={(!role || !location) && 'search-disabled'} gutter={20} justify="space-around">
-                                <Col span={6}>
-                                    <Tooltip title="LinkedIn">
-                                        <a
-                                            onClick={e => onboardingSearchComplete('linkedin')}
-                                            target="_blank"
-                                            href={`https://www.linkedin.com/jobs/search/?keywords=${role}&location=${location}`}
-                                        >
-                                            <img src={chrome.runtime.getURL('images/linkedin.png')} alt="LinkedIn search" />
-                                        </a>
-                                    </Tooltip>
-                                </Col>
-                                <Col span={6}>
-                                    <Tooltip title="Indeed">
-                                        <a
-                                            onClick={e => onboardingSearchComplete('indeed')}
-                                            target="_blank"
-                                            href={`https://www.indeed.com/jobs?q=${role}&l=${location}`}
-                                        >
-                                            <img src={chrome.runtime.getURL('images/indeed.png')} alt="Indeed search" />
-                                        </a>
-                                    </Tooltip>
-                                </Col>
-                                <Col span={6}>
-                                    <Tooltip title="Monster.com">
-                                        <a
-                                            onClick={e => onboardingSearchComplete('monster')}
-                                            target="_blank"
-                                            href={`https://www.monster.com/jobs/search?q=${role}&where=${location}`}
-                                        >
-                                            <img src={chrome.runtime.getURL('images/monster.png')} alt="Monster search" />
-                                        </a>
-                                    </Tooltip>
-                                </Col>
-                            </Row>
+                            <div className="search-button-container">
+                                <a
+                                    onClick={e => onboardingSearchComplete('linkedin')}
+                                    target="_blank"
+                                    href={`https://www.linkedin.com/jobs/search/?keywords=${role}&location=${location}`}
+                                    className="ant-btn linked-in-btn"
+                                >
+                                    <img src={chrome.runtime.getURL('images/linkedin.png')} alt="LinkedIn search" />
+                                    <span>Search on LinkedIn</span>
+                                </a>
+                                <a
+                                    onClick={e => onboardingSearchComplete('indeed')}
+                                    target="_blank"
+                                    href={`https://www.indeed.com/jobs?q=${role}&l=${location}`}
+                                    className="ant-btn indeed-btn"
+                                >
+                                    <img src={chrome.runtime.getURL('images/indeed.png')} alt="Indeed search" />
+                                    <span>Search on Indeed</span>
+                                </a>
+                                <a
+                                    onClick={e => onboardingSearchComplete('monster')}
+                                    target="_blank"
+                                    href={`https://www.monster.com/jobs/search?q=${role}&where=${location}`}
+                                    className="ant-btn monster-btn"
+                                >
+                                    <img src={chrome.runtime.getURL('images/monster.png')} alt="Monster search" />
+                                    <span>Search on Monster</span>
+                                </a>
+                            </div>
                         </div>
                     )}
                 </div>
