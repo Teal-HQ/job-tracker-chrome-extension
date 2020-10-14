@@ -45,12 +45,12 @@ const Onboarding = props => {
         <div className="onboarding-container">
             <div className="nav-menu">
                 {currentSlide !== 0 && (
-                    <Button onClick={onNavPrev} className="nav-prev">
+                    <Button onClick={onNavPrev} type="link" className="nav-prev">
                         <LeftOutlined />
                     </Button>
                 )}
                 {currentSlide !== 3 && (
-                    <Button onClick={onNavNext} className="nav-next">
+                    <Button onClick={onNavNext} type="link" className="nav-next">
                         <RightOutlined />
                     </Button>
                 )}
@@ -69,8 +69,8 @@ const Onboarding = props => {
                         <div className="fade-in">
                             <img src={chrome.runtime.getURL('images/onboarding-job-board.svg')} alt="Job board" />
                             <p>
-                                From a job listing, <br /> click on
-                                <img className="teal-logo" src={chrome.runtime.getURL('images/teal-logo.svg')} alt="Teal extension icon" />
+                                From a job listing, <br /> click on the
+                                <img className="teal-logo" src={chrome.runtime.getURL('images/teal-logo.svg')} alt="Teal extension icon" /> in your Chrome browser window...
                             </p>
                         </div>
                     )}
@@ -79,17 +79,39 @@ const Onboarding = props => {
                     {currentSlide === 2 && (
                         <div className="fade-in">
                             <img style={{ height: 290 }} src={chrome.runtime.getURL('images/onboarding-save.svg')} alt="Saving job post" />
-                            <p style={{ marginTop: 2 }}>And automatically grab the listing’s data and save it to your job tracker.</p>
+                            <p style={{ marginTop: 2 }}>...and the extension will automatically save the listing to your job tracker.</p>
                         </div>
                     )}
                 </div>
                 <div className="onboarding-step site-search">
                     {currentSlide === 3 && (
                         <div className="fade-in">
-                            <p>Try it now on some of your favorite job boards!</p>
+                            <p>Try it now! Search for listings on some of your favorite job boards:</p>
 
-                            <Input onChange={onRoleChange} placeholder="Product Manager" />
-                            <Input onChange={onLocationChange} placeholder="New York, NY" />
+                            <div className="input-container">
+                                <label
+                                    htmlFor="jobRole"
+                                >
+                                    Role:
+                                </label>
+                                <Input
+                                    id="jobRole"
+                                    onChange={onRoleChange}
+                                    placeholder="Product Manager"
+                                />
+                            </div>
+                            <div className="input-container">
+                                <label
+                                    htmlFor="jobLocation"
+                                >
+                                    Location:
+                                </label>
+                                <Input
+                                    id="jobLocation"
+                                    onChange={onLocationChange} 
+                                    placeholder="New York, NY"
+                                />
+                            </div>
 
                             <Row className={(!role || !location) && 'search-disabled'} gutter={20} justify="space-around">
                                 <Col span={6}>

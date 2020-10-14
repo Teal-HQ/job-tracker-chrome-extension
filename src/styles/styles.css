@@ -6,7 +6,9 @@
     --sand: #f5be7f;
     --light-gray: #dcdcdc;
     --beige: #f4efea;
+    --light-beige: #F9F7F5;
     --dark-beige: #cbb7a4;
+    --gray: #cbcbcb;
 }
 
 /* Fonts */
@@ -80,6 +82,15 @@ a {
     text-decoration: underline;
 }
 
+.search-disabled {
+    opacity: 0.5;
+    pointer-events: none;
+}
+
+.search-disabled a {
+    cursor: not;
+}
+
 /* ant overrides */
 .ant-form {
     width: 100%;
@@ -139,6 +150,14 @@ a {
     color: black;
 }
 
+.ant-carousel {
+    color: #000;
+}
+
+.ant-carousel .slick-dots.slick-dots-bottom {
+    bottom: -2px;
+}
+
 /*****************/
 /* Popup styles */
 /*****************/
@@ -190,6 +209,29 @@ body.popup {
 
 .popup .login-form .ant-form-item-label > label {
     color: white !important;
+}
+
+.popup .login-form .job-post-data {
+    color: white;
+}
+
+.popup .login-form .job-post-data label {
+    margin-top: 8px;
+    font-weight: bold;
+    display: inline-block;
+}
+
+.popup .login-form h4 {
+    color: white;
+    text-align: center;
+    width: 100%;
+    font-size: 17px;
+    margin-bottom: 0;
+}
+
+.popup .login-form hr {
+    width: 100%;
+    margin-bottom: 10px;
 }
 
 /* About Screen */
@@ -294,10 +336,11 @@ body.installation,
 
 .onboarding-container {
     width: 350px;
-    padding: 40px;
+    padding: 2rem;
+    background-color: var(--light-beige);
 }
 
-.fade-in {
+.onboarding-container .fade-in {
     opacity: 1;
     animation-name: fadeInOpacity;
     animation-iteration-count: 1;
@@ -305,14 +348,17 @@ body.installation,
     animation-duration: 500ms;
 }
 
-.fade-in img {
+.onboarding-container .fade-in img {
     margin: 0 auto;
+    max-width: 240px;
 }
 
-.fade-in .teal-logo {
-    display: inline !important;
-    height: 38px;
-    margin: 0 6px;
+.onboarding-container .fade-in .teal-logo {
+    display: inline-block;
+    margin: 0 0.25rem;
+    height: 30px;
+    position: relative;
+    top: -1px;
 }
 
 @keyframes fadeInOpacity {
@@ -324,88 +370,72 @@ body.installation,
     }
 }
 
-.onboarding-step {
-    height: 440px;
+.onboarding-container .onboarding-step {
+    min-height: 440px;
 }
 
-.onboarding-step p {
-    font-size: 22px;
-    margin: 20px auto;
+.onboarding-container .onboarding-step p {
+    font-size: 20px;
+    font-weight: 700;
+    margin: 2rem auto 1rem;
+    text-align: center;
 }
 
-.nav-prev,
-.nav-next {
+.onboarding-container .onboarding-step.site-search p {
+    margin-top: 0.5rem;
+}
+
+.onboarding-container .nav-prev,
+.onboarding-container .nav-next {
     position: absolute;
-    bottom: 2.8rem;
+    bottom: 2.35rem;
     z-index: 10000;
-    border: 0 solid white;
-    box-shadow: 0 0 white;
+    color: var(--teal);
     font-size: 16px;
     font-weight: bold;
 }
 
-.nav-prev {
+.onboarding-container .nav-prev {
     left: 4rem;
 }
 
-.nav-next {
+.onboarding-container .nav-next {
     right: 4rem;
 }
 
-.ant-carousel .slick-dots li {
-    margin: 0 10px;
+.onboarding-container .ant-carousel .slick-dots li {
+    margin: 0 8px;
+    width: unset;
+    height: unset;
 }
 
-.ant-carousel .slick-dots li button {
-    background: grey;
-    height: 16px;
-    border-radius: 32px;
+.onboarding-container .ant-carousel .slick-dots li button {
+    background-color: var(--gray);
+    height: 14px;
+    width: 14px;
+    border-radius: 50%;
 }
 
-.ant-carousel .slick-dots li.slick-active {
+.onboarding-container .ant-carousel .slick-dots li.slick-active {
     width: 16px;
+    height: 16px;
 }
 
-.ant-carousel .slick-dots li.slick-active button {
-    background: var(--teal);
+.onboarding-container .ant-carousel .slick-dots li.slick-active button {
+    background: var(--gold);
 }
 
-.site-search input {
-    margin-bottom: 20px;
+.onboarding-container .site-search .ant-input {
+    margin-bottom: 0.75rem;
+    padding: 0.5rem 0.75rem;
 }
 
-.site-search img {
-    height: 50px;
-}
-
-.login-form .job-post-data {
-    color: white;
-}
-
-.login-form .job-post-data label {
-    margin-top: 8px;
+.onboarding-container .site-search label {
     font-weight: bold;
+    margin-bottom: 0.25rem;
     display: inline-block;
 }
 
-.login-form h4 {
-    color: white;
-    text-align: center;
-    width: 100%;
-    font-size: 17px;
-    margin-bottom: 0;
-}
-
-.login-form hr {
-    width: 100%;
-    margin-bottom: 10px;
-}
-
-.search-disabled {
-    opacity: 0.5;
-    pointer-events: none;
-}
-
-.search-disabled a {
-    cursor: not;
+.onboarding-container .site-search img {
+    height: 50px;
 }
