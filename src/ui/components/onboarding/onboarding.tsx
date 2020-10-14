@@ -120,7 +120,7 @@ const Onboarding = props => {
                                     onClick={e => onboardingSearchComplete('linkedin')}
                                     target="_blank"
                                     href={`https://www.linkedin.com/jobs/search/?keywords=${role}&location=${location}`}
-                                    className="ant-btn linked-in-btn"
+                                    className={`ant-btn linked-in-btn ${ buttonIsDisabled ? 'button-disabled' : ''}`}
                                 >
                                     <img src={chrome.runtime.getURL('images/linkedin.png')} alt="LinkedIn search" />
                                     <span>Search on LinkedIn</span>
@@ -129,7 +129,7 @@ const Onboarding = props => {
                                     onClick={e => onboardingSearchComplete('indeed')}
                                     target="_blank"
                                     href={`https://www.indeed.com/jobs?q=${role}&l=${location}`}
-                                    className="ant-btn indeed-btn"
+                                    className={`ant-btn indeed-btn ${ buttonIsDisabled ? 'button-disabled' : ''}`}
                                 >
                                     <img src={chrome.runtime.getURL('images/indeed.png')} alt="Indeed search" />
                                     <span>Search on Indeed</span>
@@ -138,7 +138,7 @@ const Onboarding = props => {
                                     onClick={e => onboardingSearchComplete('monster')}
                                     target="_blank"
                                     href={`https://www.monster.com/jobs/search?q=${role}&where=${location}`}
-                                    className="ant-btn monster-btn"
+                                    className={`ant-btn monster-btn ${ buttonIsDisabled ? 'button-disabled' : ''}`}
                                 >
                                     <img src={chrome.runtime.getURL('images/monster.png')} alt="Monster search" />
                                     <span>Search on Monster</span>

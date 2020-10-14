@@ -82,13 +82,10 @@ a {
     text-decoration: underline;
 }
 
-.search-disabled {
+.button-disabled {
     opacity: 0.5;
     pointer-events: none;
-}
-
-.search-disabled a {
-    cursor: not;
+    cursor: not-allowed;
 }
 
 /* ant overrides */
