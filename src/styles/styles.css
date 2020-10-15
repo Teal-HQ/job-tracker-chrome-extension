@@ -6,7 +6,7 @@
     --sand: #f5be7f;
     --light-gray: #dcdcdc;
     --beige: #f4efea;
-    --light-beige: #F9F7F5;
+    --light-beige: #f9f7f5;
     --dark-beige: #cbb7a4;
     --gray: #cbcbcb;
 }
@@ -235,16 +235,16 @@ body.popup {
 
 .popup .login-form .job-post-data label {
     margin-top: 8px;
-    font-weight: bold;
     display: inline-block;
+    font-size: 13px;
 }
 
 .popup .login-form h4 {
     color: white;
-    text-align: center;
     width: 100%;
     font-size: 17px;
     margin-bottom: 0;
+    padding-left: 8px;
 }
 
 .popup .login-form a {
@@ -267,7 +267,7 @@ body.popup {
     align-items: center;
 }
 
-.popup .login-form .ant-btn.ant-btn-primary  {
+.popup .login-form .ant-btn.ant-btn-primary {
     margin-top: 0;
 }
 
@@ -506,4 +506,10 @@ body.installation,
 .onboarding-container .search-button-container .ant-btn img {
     height: 24px;
     margin: 0 0.5rem 0 0;
+}
+
+.job-post-data-item {
+    color: var(--gold);
+    font-weight: bold;
+    font-size: 15px;
 }

@@ -3,7 +3,7 @@ import { Row, Col, Form, Button, Input, Alert, Statistic } from 'antd';
 import { login } from '../../services/login';
 import { ILoading, ICheckSession } from '../../popup';
 import { defaultJobPost, getRules } from '../../services/job-post';
-import { WEB_CLIENT_URL } from '../../../config/config';
+import { MEMBERS_APP_URL } from '../../../config/config';
 
 interface ILoginForm {
     checkSession: ICheckSession;
@@ -89,14 +89,14 @@ const LoginForm = (props: ILoginForm) => {
                         <Button type="primary" htmlType="submit">
                             Login
                         </Button>
-                        <a target="_blank" href={`${WEB_CLIENT_URL}account/reset/request`}>
+                        <a target="_blank" href={`${MEMBERS_APP_URL}password-reset`}>
                             Reset Password
                         </a>
                     </Form.Item>
 
                     <Form.Item>
                         Not a member?{' '}
-                        <a target="_blank" href={`${WEB_CLIENT_URL}`}>
+                        <a target="_blank" href={`${MEMBERS_APP_URL}sign-up`}>
                             Sign Up
                         </a>
                     </Form.Item>
@@ -104,22 +104,30 @@ const LoginForm = (props: ILoginForm) => {
             </Row>
             {props.scrapeSite && (
                 <Row className="job-post-data" style={{ marginTop: 20 }} gutter={16}>
-                    <hr />
-                    <h4>
-                        Here is some data we collected <br /> from this Job Post
-                    </h4>
-                    <Col span={24}>
-                        <label>Job Title</label>
-                        <div>{jobPost?.role || 'N/A'}</div>
-                    </Col>
-                    <Col span={24}>
-                        <label>Company</label>
-                        <div>{jobPost?.company || 'N/A'}</div>
-                    </Col>
-                    <Col span={24}>
-                        <label>Location</label>
-                        <div>{jobPost?.location || 'N/A'}</div>
-                    </Col>
+                    {(jobPost?.role || jobPost?.company || jobPost?.location) && (
+                        <>
+                            <hr />
+                            <h4>Job that will be sent to your tracker:</h4>
+                        </>
+                    )}
+                    {jobPost?.role && (
+                        <Col span={24}>
+                            <label>Job Title</label>
+                            <div className="job-post-data-item">{jobPost?.role}</div>
+                        </Col>
+                    )}
+                    {jobPost?.company && (
+                        <Col span={24}>
+                            <label>Company</label>
+                            <div className="job-post-data-item">{jobPost?.company}</div>
+                        </Col>
+                    )}
+                    {jobPost?.location && (
+                        <Col span={24}>
+                            <label>Location</label>
+                            <div className="job-post-data-item">{jobPost?.location}</div>
+                        </Col>
+                    )}
                 </Row>
             )}
         </div>
