@@ -1,9 +1,15 @@
 import React, { useRef, useState, useEffect } from 'react';
-import { Carousel, Button, Input, Row, Col, Tooltip } from 'antd';
+import { Carousel, Button, Input } from 'antd';
 import { LeftOutlined, RightOutlined } from '@ant-design/icons';
+import { IOnboardingCompleted } from '../../popup';
 
-const Onboarding = props => {
+interface IOnboarding {
+    onboardingCompleted: IOnboardingCompleted;
+}
+
+const Onboarding = (props: IOnboarding) => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
+    const [skip, setSkip] = useState(false);
     const carouselRef = useRef<any>();
     const contentRef = useRef<any>();
     const [role, setRole] = useState('');
@@ -43,6 +49,11 @@ const Onboarding = props => {
         chrome.storage.local.set({ onboardingSearchSite: site });
     };
 
+    const skipOnboarding = () => {
+        chrome.storage.local.set({ onboardingComplete: true });
+        props.onboardingCompleted();
+    };
+
     return (
         <div className="onboarding-container">
             <div className="nav-menu">
@@ -72,7 +83,12 @@ const Onboarding = props => {
                             <img src={chrome.runtime.getURL('images/onboarding-job-board.svg')} alt="Job board" />
                             <p>
                                 From a job listing, <br /> click on the
-                                <img className="teal-logo" src={chrome.runtime.getURL('images/teal-logo.svg')} alt="Teal extension icon" /> in your Chrome browser window...
+                                <img
+                                    className="teal-logo"
+                                    src={chrome.runtime.getURL('images/teal-logo.svg')}
+                                    alt="Teal extension icon"
+                                />{' '}
+                                in your Chrome browser window...
                             </p>
                         </div>
                     )}
@@ -91,28 +107,12 @@ const Onboarding = props => {
                             <p>Try it now! Search for listings on some of your favorite job boards:</p>
 
                             <div className="input-container">
-                                <label
-                                    htmlFor="jobRole"
-                                >
-                                    Title, skill, or company:
-                                </label>
-                                <Input
-                                    id="jobRole"
-                                    onChange={onRoleChange}
-                                    placeholder="Product Manager"
-                                />
+                                <label htmlFor="jobRole">Title, skill, or company:</label>
+                                <Input id="jobRole" onChange={onRoleChange} placeholder="Product Manager" />
                             </div>
                             <div className="input-container">
-                                <label
-                                    htmlFor="jobLocation"
-                                >
-                                    Location:
-                                </label>
-                                <Input
-                                    id="jobLocation"
-                                    onChange={onLocationChange} 
-                                    placeholder="New York, NY"
-                                />
+                                <label htmlFor="jobLocation">Location:</label>
+                                <Input id="jobLocation" onChange={onLocationChange} placeholder="New York, NY" />
                             </div>
 
                             <div className="search-button-container">
@@ -120,7 +120,7 @@ const Onboarding = props => {
                                     onClick={e => onboardingSearchComplete('linkedin')}
                                     target="_blank"
                                     href={`https://www.linkedin.com/jobs/search/?keywords=${role}&location=${location}`}
-                                    className={`ant-btn linked-in-btn ${ buttonIsDisabled ? 'button-disabled' : ''}`}
+                                    className={`ant-btn linked-in-btn ${buttonIsDisabled ? 'button-disabled' : ''}`}
                                 >
                                     <img src={chrome.runtime.getURL('images/linkedin.png')} alt="LinkedIn search" />
                                     <span>Search on LinkedIn</span>
@@ -129,7 +129,7 @@ const Onboarding = props => {
                                     onClick={e => onboardingSearchComplete('indeed')}
                                     target="_blank"
                                     href={`https://www.indeed.com/jobs?q=${role}&l=${location}`}
-                                    className={`ant-btn indeed-btn ${ buttonIsDisabled ? 'button-disabled' : ''}`}
+                                    className={`ant-btn indeed-btn ${buttonIsDisabled ? 'button-disabled' : ''}`}
                                 >
                                     <img src={chrome.runtime.getURL('images/indeed.png')} alt="Indeed search" />
                                     <span>Search on Indeed</span>
@@ -138,11 +138,16 @@ const Onboarding = props => {
                                     onClick={e => onboardingSearchComplete('monster')}
                                     target="_blank"
                                     href={`https://www.monster.com/jobs/search?q=${role}&where=${location}`}
-                                    className={`ant-btn monster-btn ${ buttonIsDisabled ? 'button-disabled' : ''}`}
+                                    className={`ant-btn monster-btn ${buttonIsDisabled ? 'button-disabled' : ''}`}
                                 >
                                     <img src={chrome.runtime.getURL('images/monster.png')} alt="Monster search" />
                                     <span>Search on Monster</span>
                                 </a>
+                            </div>
+                            <div className="skip-button-container">
+                                <Button onClick={skipOnboarding} type="link">
+                                    Skip
+                                </Button>
                             </div>
                         </div>
                     )}

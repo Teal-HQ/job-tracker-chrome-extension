@@ -16,6 +16,10 @@ export interface ICheckSession {
     (): void;
 }
 
+export interface IOnboardingCompleted {
+    (): void;
+}
+
 const JobTracker = () => {
     const [session, setSession] = useState({ jwt: null, isAuthenticated: false });
     const [loading, setLoading] = useState(false);
@@ -40,6 +44,11 @@ const JobTracker = () => {
         });
     };
 
+    const onboardingCompleted = () => {
+        chrome.storage.local.set({ onboardingComplete: true });
+        setOnboardingComplete(true);
+    };
+
     useEffect(() => {
         checkSession();
     }, []);
@@ -51,7 +60,7 @@ const JobTracker = () => {
     ) : onboardingSearchSite ? (
         <LoginForm checkSession={checkSession} setLoading={setLoading} scrapeSite={true} />
     ) : (
-        <Onboarding />
+        <Onboarding onboardingCompleted={onboardingCompleted} />
     );
 
     return (

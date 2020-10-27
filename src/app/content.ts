@@ -14,7 +14,15 @@ const hostRules = {
         return data;
     },
     'www.glassdoor.com': data => {
+        // /Job
         data.company = data.company.replace($('#SerpFixedHeader span.rating').text().trim(), '').trim();
+        // /job-listing
+        data.company = data.company
+            .replace(
+                $('.smarterBannerEmpInfo > div > div:nth-child(1) > div:nth-child(2) > div > div > div:nth-child(1) > span').text().trim(),
+                ''
+            )
+            .trim();
         return data;
     },
 };

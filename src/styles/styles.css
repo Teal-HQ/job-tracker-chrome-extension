@@ -471,7 +471,7 @@ body.installation,
 
 .onboarding-container .search-button-container {
     margin-top: 0.5rem;
-    margin-bottom: 3rem;
+    margin-bottom: 0.5rem;
 }
 
 .onboarding-container .search-button-container .ant-btn {
@@ -506,6 +506,11 @@ body.installation,
 .onboarding-container .search-button-container .ant-btn img {
     height: 24px;
     margin: 0 0.5rem 0 0;
+}
+
+.onboarding-container .skip-button-container {
+    text-align: center;
+    margin-bottom: 1.5rem;
 }
 
 .job-post-data-item {
