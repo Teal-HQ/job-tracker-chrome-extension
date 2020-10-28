@@ -513,6 +513,10 @@ body.installation,
     margin-bottom: 1.5rem;
 }
 
+.onboarding-container .skip-button-container button span {
+    text-decoration: underline;
+}
+
 .job-post-data-item {
     color: var(--gold);
     font-weight: bold;
