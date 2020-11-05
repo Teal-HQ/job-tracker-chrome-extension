@@ -155,5 +155,5 @@ const toggle = () => {
 };
 
 const adjustIframeHeight = () => {
-    $('#' + app.id + ' iframe').height(110);
+    $('#' + app.id + ' iframe').height(120);
 };
