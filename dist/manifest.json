@@ -1,6 +1,6 @@
 {
   "name": "Teal's Job Tracker",
-  "version": "0.0.8",
+  "version": "0.1.0",
   "manifest_version": 2,
   "description": "Enable fulfilling careers",
   "homepage_url": "https://tealhq.com",
@@ -9,10 +9,7 @@
     "48": "icons/icon48.png",
     "128": "icons/icon128.png"
   },
-  "browser_action": {
-    "default_title": "Teal's Job Tracker",
-    "default_popup": "popup.html"
-  },
+  "browser_action": {},
   "default_locale": "en",
   "background": {
     "scripts": ["js/background.js"],
@@ -28,7 +25,8 @@
   ],
   "web_accessible_resources": [
     "https://app.tealhq.com/content/images/teal_logo_full_white.svg",
-    "images/*.svg",
-    "fonts/*.*"
+    "images/*.*",
+    "fonts/*.*",
+    "css/*.css"
   ]
 }

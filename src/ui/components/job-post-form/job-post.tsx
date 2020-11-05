@@ -34,33 +34,28 @@ const JobPostForm = (props: IJobPostForm) => {
     }, [jobPost]);
 
     const requestDataFromActiveTab = () => {
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
-            const url = tabs[0] ? tabs[0].url : null;
+        const url = document.URL;
+        chrome.storage.local.get(['currentJobPost'], result => {
+            if (result.currentJobPost && (url === null || result.currentJobPost.url === url)) {
+                setJobPost(result.currentJobPost);
+            } else {
+                props.setLoading(true);
 
-            chrome.storage.local.get(['currentJobPost'], function (result) {
-                if (result.currentJobPost && (url === null || result.currentJobPost.url === url)) {
-                    setJobPost(result.currentJobPost);
-                } else {
-                    setLoading(true);
-                    getRules(url)
-                        .then(rules => {
-                            setLoading(false);
-                            if (!rules) {
-                                setSiteWarning(true);
-                                return;
-                            }
-
-                            chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-                                chrome.tabs.sendMessage(tabs[0].id, { action: 'getData', rules }, function (response) {
-                                    setJobPost({ ...response.data, url });
-                                });
-                            });
-                        })
-                        .catch(error => {
-                            setLoading(false);
+                getRules(url)
+                    .then(rules => {
+                        props.setLoading(false);
+                        if (!rules) {
+                            setSiteWarning(true);
+                            return;
+                        }
+                        chrome.runtime.sendMessage({ action: 'getData', rules }, response => {
+                            setJobPost({ ...response.data, url });
                         });
-                }
-            });
+                    })
+                    .catch(error => {
+                        props.setLoading(false);
+                    });
+            }
         });
     };
 

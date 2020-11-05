@@ -14,6 +14,9 @@ interface IJobSavedSuccess {
 
 const JobSavedSuccess = (props: IJobSavedSuccess) => {
     const { data } = props;
+
+    chrome.runtime.sendMessage({ action: 'jobSaved' });
+
     return (
         <div className="success-message">
             <Row>

@@ -9,7 +9,7 @@ interface IAbout {
 const About = (props: IAbout) => {
     const [email, setEmail] = useState('');
     useEffect(() => {
-        chrome.storage.local.get(['email'], function (result) {
+        chrome.storage.local.get(['email'], result => {
             if (result?.email) {
                 setEmail(result.email);
             }

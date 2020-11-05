@@ -1,11 +1,9 @@
 import React, { useState, useEffect } from 'react';
-import * as ReactDOM from 'react-dom';
-import LoadingOverlay from 'react-loading-overlay';
+import { Loader } from 'react-overlay-loader';
 import LoginForm from './components/login-form/login';
 import Authenticated from './components/authenticated/authenticated';
 import Onboarding from './components/onboarding/onboarding';
 
-import 'antd/dist/antd.css';
 import '../styles/styles.css';
 
 export interface ILoading {
@@ -64,10 +62,11 @@ const JobTracker = () => {
     );
 
     return (
-        <LoadingOverlay active={loading} spinner text="">
+        <>
             <div className="popup">{stateComponent}</div>
-        </LoadingOverlay>
+            <Loader fullPage loading={loading} />
+        </>
     );
 };
 
-ReactDOM.render(<JobTracker />, document.getElementById('root'));
+export default JobTracker;

@@ -1,12 +1,10 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { Carousel, Button, Input } from 'antd';
-import { LeftOutlined, RightOutlined } from '@ant-design/icons';
 import { IOnboardingCompleted } from '../../popup';
 
 interface IOnboarding {
     onboardingCompleted: IOnboardingCompleted;
 }
-
 const Onboarding = (props: IOnboarding) => {
     const [currentSlide, setCurrentSlide] = useState<number>(0);
     const [skip, setSkip] = useState(false);
@@ -59,12 +57,12 @@ const Onboarding = (props: IOnboarding) => {
             <div className="nav-menu">
                 {currentSlide !== 0 && (
                     <Button onClick={onNavPrev} type="link" className="nav-prev">
-                        <LeftOutlined />
+                        &lt;
                     </Button>
                 )}
                 {currentSlide !== 3 && (
                     <Button onClick={onNavNext} type="link" className="nav-next">
-                        <RightOutlined />
+                        &gt;
                     </Button>
                 )}
             </div>

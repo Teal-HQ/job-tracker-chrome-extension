@@ -59,7 +59,7 @@ const exceptions = {
     },
 };
 
-chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
+chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     if (request.action == 'getData') {
         const data = exceptions[request.rules.root_url]
             ? exceptions[request.rules.root_url](request)
@@ -84,4 +84,76 @@ chrome.runtime.onMessage.addListener(function (request, sender, sendResponse) {
 
         sendResponse({ data: sanitize(window.location.hostname, data) });
     }
+
+    if (request.action === 'clickedBrowserAction') {
+        toggle();
+    }
+
+    if (request.action === 'jobSaved') {
+        adjustIframeHeight();
+    }
 });
+
+// app
+import React from 'react';
+import ReactDOM from 'react-dom';
+import Frame, { FrameContextConsumer } from 'react-frame-component';
+import JobTracker from '../ui/popup';
+const App = () => {
+    const iframeStyles = {
+        height: 600,
+        width: 354,
+        position: 'fixed',
+        top: 0,
+        right: 0,
+        zIndex: 2147483647,
+        border: 0,
+        boxShadow: '-1px 1px 3px 1px lightgrey',
+    };
+
+    return (
+        <Frame style={iframeStyles} head={[<link rel="stylesheet" href={chrome.runtime.getURL('css/styles.css')}></link>]}>
+            <FrameContextConsumer>
+                {({ document, window }) => {
+                    return (
+                        <div className="popup">
+                            <JobTracker />
+                        </div>
+                    );
+                }}
+            </FrameContextConsumer>
+        </Frame>
+    );
+};
+
+// create container for the app
+const app = document.createElement('div');
+app.id = 'teal-job-tracker-root';
+app.style.display = 'none';
+app.style.zIndex = '2147483647';
+app.style.position = 'absolute';
+app.style.opacity = '0';
+
+const initApp = () => {
+    document.body.appendChild(app);
+    ReactDOM.render(<App />, app);
+};
+const toggle = () => {
+    // first time
+    if ($('#' + app.id).length === 0) {
+        initApp();
+        app.style.display = 'block';
+        $('#' + app.id).animate({ opacity: 1 }, 1500);
+        return;
+    }
+
+    if (app.style.display === 'none') {
+        app.style.display = 'block';
+    } else {
+        app.style.display = 'none';
+    }
+};
+
+const adjustIframeHeight = () => {
+    $('#' + app.id + ' iframe').height(110);
+};

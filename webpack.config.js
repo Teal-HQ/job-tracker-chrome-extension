@@ -1,19 +1,24 @@
 const path = require("path");
+const MiniCssExtractPlugin = require('mini-css-extract-plugin');
+
+const cssFilename = 'css/styles.css';
 
 module.exports = {
   mode: "production",
   devtool: "false",
+// use development mode for debugging
+// mode: "development",
+// devtool: "inline-source-map",
 
   entry: {
-    content: "./src/app/content.ts",
+    content: "./src/app/content.tsx",
     background: "./src/app/background.ts",
-    popup: "./src/ui/popup.tsx",
     installation: "./src/ui/installation.tsx",
   },
 
   output: {
-    path: path.resolve(__dirname, "dist/js"),
-    filename: "[name].js",
+    path: path.resolve(__dirname, "dist"),
+    filename: "js/[name].js",
   },
 
   resolve: {
@@ -23,7 +28,9 @@ module.exports = {
   module: {
     rules: [
       { test: /\.tsx?$/, loader: "ts-loader" },
-      { test: /\.css$/, use: ["style-loader", "css-loader"] },
+      { test: /\.css$/,
+        use: [MiniCssExtractPlugin.loader, 'css-loader']
+      },
       {
         test: /\.(woff(2)?|ttf|eot|svg)(\?v=\d+\.\d+\.\d+)?$/,
         use: [
@@ -38,4 +45,9 @@ module.exports = {
       },
     ],
   },
+  plugins: [
+    new MiniCssExtractPlugin({
+        filename: cssFilename,
+    })
+  ]
 };

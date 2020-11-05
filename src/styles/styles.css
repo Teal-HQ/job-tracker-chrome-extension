@@ -1,3 +1,6 @@
+@import '~antd/dist/antd.css';
+@import '~react-overlay-loader/styles.css';
+
 /* Custom CSS Properties*/
 :root {
     --teal: #244747;
@@ -16,14 +19,14 @@
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 400;
-    src: url('../../dist/fonts/raleway-regular.woff') format('woff');
+    src: url('/fonts/raleway-regular.woff') format('woff');
 }
 
 @font-face {
     font-family: 'Raleway';
     font-style: normal;
     font-weight: 600;
-    src: url('../../dist/fonts/raleway-semibold.woff') format('woff');
+    src: url('/fonts/raleway-semibold.woff') format('woff');
 }
 
 /*****************/
@@ -31,7 +34,7 @@
 /*****************/
 html,
 body {
-    height: auto !important;
+    height: 100% !important;
 }
 
 body {
@@ -179,8 +182,20 @@ a {
 /*****************/
 /* Popup styles */
 /*****************/
-body.popup {
+
+.frame-root,
+.frame-content,
+._loading_overlay_wrapper {
+    height: 100%;
+}
+
+.popup {
     min-width: 350px;
+    height: 100%;
+}
+
+.popup > div {
+    height: 100%;
 }
 
 .popup .ant-layout-content {
@@ -313,7 +328,7 @@ body.popup {
 /*****************/
 /* Installation Screen */
 /*****************/
-body.installation,
+.installation,
 .installation .ant-col,
 .installation .ant-row {
     min-height: 100vh;
@@ -426,11 +441,17 @@ body.installation,
 .onboarding-container .nav-prev,
 .onboarding-container .nav-next {
     position: absolute;
-    bottom: 1.35rem;
+    bottom: 1.75rem;
     z-index: 10000;
     color: var(--teal);
     font-size: 16px;
     font-weight: bold;
+}
+
+.onboarding-container .nav-prev span,
+.onboarding-container .nav-next span {
+    font-size: 25px;
+    line-height: 18px;
 }
 
 .onboarding-container .nav-prev {

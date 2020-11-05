@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Button, Input, Alert, Statistic } from 'antd';
+import { Row, Col, Form, Button, Input, Alert } from 'antd';
 import { login } from '../../services/login';
 import { ILoading, ICheckSession } from '../../popup';
 import { defaultJobPost, getRules } from '../../services/job-post';
@@ -20,7 +20,7 @@ const LoginForm = (props: ILoginForm) => {
 
         login(email, password)
             .then(response => {
-                chrome.storage.local.set({ jwt: response.data.data.attributes.jwt, email: email }, function () {
+                chrome.storage.local.set({ jwt: response.data.data.attributes.jwt, email: email }, () => {
                     props.checkSession();
                     props.setLoading(false);
                 });
@@ -36,22 +36,19 @@ const LoginForm = (props: ILoginForm) => {
     };
 
     const requestDataFromActiveTab = () => {
-        chrome.tabs.query({ active: true, lastFocusedWindow: true }, tabs => {
-            const url = tabs[0] ? tabs[0].url : null;
-            props.setLoading(true);
-            getRules(url)
-                .then(rules => {
-                    props.setLoading(false);
-                    chrome.tabs.query({ active: true, currentWindow: true }, function (tabs) {
-                        chrome.tabs.sendMessage(tabs[0].id, { action: 'getData', rules }, function (response) {
-                            setJobPost({ ...response.data, url });
-                        });
-                    });
-                })
-                .catch(error => {
-                    props.setLoading(false);
+        const url = document.URL;
+        props.setLoading(true);
+
+        getRules(url)
+            .then(rules => {
+                props.setLoading(false);
+                chrome.runtime.sendMessage({ action: 'getData', rules }, response => {
+                    setJobPost({ ...response.data, url });
                 });
-        });
+            })
+            .catch(error => {
+                props.setLoading(false);
+            });
     };
 
     useEffect(() => {
