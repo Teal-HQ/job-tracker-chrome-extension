@@ -54,18 +54,6 @@ const Onboarding = (props: IOnboarding) => {
 
     return (
         <div className="onboarding-container">
-            <div className="nav-menu">
-                {currentSlide !== 0 && (
-                    <Button onClick={onNavPrev} type="link" className="nav-prev">
-                        &lt;
-                    </Button>
-                )}
-                {currentSlide !== 3 && (
-                    <Button onClick={onNavNext} type="link" className="nav-next">
-                        &gt;
-                    </Button>
-                )}
-            </div>
             <Carousel ref={carouselRef} afterChange={onCarouselChange}>
                 <div ref={contentRef} className="onboarding-step">
                     {currentSlide === 0 && (
@@ -151,6 +139,18 @@ const Onboarding = (props: IOnboarding) => {
                     )}
                 </div>
             </Carousel>
+            <div className="nav-menu">
+                {currentSlide !== 0 && (
+                    <Button onClick={onNavPrev} type="link" className="nav-prev">
+                        &lt;
+                    </Button>
+                )}
+                {currentSlide !== 3 && (
+                    <Button onClick={onNavNext} type="link" className="nav-next">
+                        &gt;
+                    </Button>
+                )}
+            </div>
         </div>
     );
 };

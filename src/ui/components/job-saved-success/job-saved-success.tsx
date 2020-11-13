@@ -1,5 +1,4 @@
 import React, { useEffect } from 'react';
-import { Col, Row, Button } from 'antd';
 import { PAGES, WEB_CLIENT_URL } from '../../../config/config';
 import { INavigateTo } from '../../../common/types';
 
@@ -23,24 +22,19 @@ const JobSavedSuccess = (props: IJobSavedSuccess) => {
 
     return (
         <div className="success-message">
-            <Row>
-                <Col span={6}>
-                    <img src={chrome.runtime.getURL('images/teal_logo_43.svg')} />
-                </Col>
-                {data.id && (
-                    <Col span={18}>
-                        <div>
-                            {data.company} {data.role}
-                        </div>
-                        <div>
-                            Job saved.{' '}
-                            <a target="_blank" href={`${WEB_CLIENT_URL}job-tracker/${data.id}`}>
-                                View now &#8594;
-                            </a>
-                        </div>
-                    </Col>
-                )}
-            </Row>
+            {data.id && (
+                <div className="message-container">
+                    <strong>Success!</strong> {data.role} at {data.company} has been saved to your tracker.
+                </div>
+            )}
+            <div className="button-row">
+                <a target="_blank" href={`${WEB_CLIENT_URL}job-tracker/${data.id}`} className="ant-btn ant-btn-primary">
+                    Keep job searching
+                </a>
+                <a target="_blank" href={`${WEB_CLIENT_URL}job-tracker/${data.id}`} className="ant-btn">
+                    View now &#8594;
+                </a>
+            </div>
         </div>
     );
 };

@@ -90,7 +90,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 
     if (request.action === 'jobSaved') {
-        adjustIframeHeight(160);
+        adjustIframeHeight(300);
     }
 
     if (request.action === 'navigateToJobPostForm') {
@@ -147,7 +147,7 @@ const toggle = () => {
     if ($('#' + app.id).length === 0) {
         initApp();
         app.style.display = 'block';
-        $('#' + app.id).animate({ opacity: 1 }, 1500);
+        $('#' + app.id).animate({ opacity: 1 }, 500);
         return;
     }
 

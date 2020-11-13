@@ -37,8 +37,6 @@ const Authenticated = (props: IAuthenticated) => {
     const body = routing[page.name];
     if (!body) console.log('the page is unknown.');
 
-    if (page.name === PAGES.SUCCESS) return body;
-
     chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         const action = request?.action;
         if (action === 'reset') {

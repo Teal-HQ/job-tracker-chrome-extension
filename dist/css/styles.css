@@ -27558,6 +27558,9 @@ div.ant-typography-edit-content.ant-typography-rtl {
     --light-beige: #f9f7f5;
     --dark-beige: #cbb7a4;
     --gray: #cbcbcb;
+    --success-light: #D6F3E2;
+    --success: #008556;
+    --success-dark: #086343;
 }
 
 /* Fonts */
@@ -27616,19 +27619,41 @@ a {
     margin-bottom: 20px;
 }
 
+button.icon-btn {
+    background-color: transparent;
+    border: 0;
+    padding: 0.25rem;
+    font-size: 16px;
+    cursor:pointer;
+}
+button.icon-btn:hover {
+    background-color: rgba(214, 243, 226, 0.3);
+}
+
 .clickable:hover {
     cursor: pointer;
 }
 
-.success-message {
-    background-color: var(--dark-teal);
-    color: white;
+.success-message .message-container {
+    background-color: var(--success-light);
+    color: var(--success-dark);
     padding: 20px;
+    margin-bottom: 1.5rem;
 }
 
-.success-message a {
-    color: white;
-    text-decoration: underline;
+.success-message a.ant-btn {
+    border-color: var(--dark-teal);
+    color: var(--dark-teal);
+    line-height: initial;
+    padding: 0.5rem 1rem;
+    text-decoration: none;
+    height: auto;
+    font-size: 14px;
+    display: block;
+}
+
+.success-message a.ant-btn.ant-btn:not(:last-child) {
+    margin-bottom: 0.5rem;
 }
 
 .button-disabled {
@@ -27646,7 +27671,7 @@ a {
     margin-top: 1.5rem;
 }
 
-.ant-input-password .ant-input-affix-wrapper {
+.ant-input-password.ant-input-affix-wrapper {
     padding: 0.5rem 0.75rem;
     margin-bottom: 0;
 }
@@ -27654,6 +27679,10 @@ a {
 .ant-input {
     margin-bottom: 0.75rem;
     padding: 0.5rem 0.75rem;
+}
+
+.ant-input[type*="password"] {
+    margin-bottom: 0;
 }
 
 .ant-input:focus,
@@ -27761,6 +27790,15 @@ a {
     display: flex;
     align-items: center;
     justify-content: flex-end;
+}
+
+.popup .ant-layout-header .nav-wrapper .icon-btn {
+    margin-left: 1rem;
+    opacity: 0.7;
+    transition: opacity 0.3s ease-in;
+}
+.popup .ant-layout-header .nav-wrapper .icon-btn:hover {
+    opacity: 1;
 }
 
 .popup .job-description-preview {
@@ -27984,10 +28022,14 @@ a {
     margin-bottom: 2rem;
 }
 
+.onboarding-container .nav-menu {
+    position: relative;
+}
+
 .onboarding-container .nav-prev,
 .onboarding-container .nav-next {
     position: absolute;
-    bottom: 1.75rem;
+    bottom: -11px;
     z-index: 10000;
     color: var(--teal);
     font-size: 16px;
@@ -28001,11 +28043,11 @@ a {
 }
 
 .onboarding-container .nav-prev {
-    left: 4rem;
+    left: 2.5rem;
 }
 
 .onboarding-container .nav-next {
-    right: 4rem;
+    right: 2.5rem;
 }
 
 .onboarding-container .ant-carousel .slick-dots li {
