@@ -90,7 +90,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 
     if (request.action === 'jobSaved') {
-        adjustIframeHeight(300);
+        adjustIframeHeight(320);
     }
 
     if (request.action === 'navigateToJobPostForm') {
@@ -164,7 +164,6 @@ setInterval(() => {
     const url = document.URL;
     if (currentUrl !== url) {
         currentUrl = url;
-        console.log('interval change');
         chrome.runtime.sendMessage({ action: 'urlChanged' });
     }
 }, 1000);
