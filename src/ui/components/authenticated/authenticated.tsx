@@ -10,41 +10,50 @@ import { PAGES } from '../../../config/config';
 import { ILoading, ICheckSession } from '../../popup';
 
 export interface ISession {
-  jwt: string,
-  isAuthenticated: boolean
+    jwt: string;
+    isAuthenticated: boolean;
 }
 
 interface IAuthenticated {
-  session: ISession,
-  checkSession: ICheckSession,
-  setLoading: ILoading
+    session: ISession;
+    checkSession: ICheckSession;
+    setLoading: ILoading;
 }
 
 const Authenticated = (props: IAuthenticated) => {
-  const { session, checkSession, setLoading } = props;
-  const [page, setPage] = useState({name: PAGES.JOB_POST_FORM, data: null});
+    const { session, checkSession, setLoading } = props;
+    const [page, setPage] = useState({ name: PAGES.JOB_POST_FORM, data: null });
 
-  const navigateTo = (name: PAGES, data?:any) => {
-    setPage({name, data});
-  }
+    const navigateTo = (name: PAGES, data?: any) => {
+        setPage({ name, data });
+    };
 
-  const routing = {
-    [PAGES.JOB_POST_FORM]: <JobPostForm session={session} navigateTo={navigateTo} setLoading={setLoading}/>,
-    [PAGES.ABOUT]: <About checkSession={checkSession}/>,
-    [PAGES.SUCCESS]: <Success data={page.data}/>
-  };
+    const routing = {
+        [PAGES.JOB_POST_FORM]: <JobPostForm session={session} navigateTo={navigateTo} setLoading={setLoading} />,
+        [PAGES.ABOUT]: <About checkSession={checkSession} />,
+        [PAGES.SUCCESS]: <Success data={page.data} navigateTo={navigateTo} />,
+    };
 
-  const body = routing[page.name];
-  if (!body) console.log('the page is unknown.');
+    const body = routing[page.name];
+    if (!body) console.log('the page is unknown.');
 
-  if (page.name === PAGES.SUCCESS) return (body);
+    if (page.name === PAGES.SUCCESS) return body;
 
-  return (
-    <Layout>
-      <ExtHeader pageName={page.name} checkSession={checkSession} navigateTo={navigateTo}/>
-      <Content>{ body }</Content>
-    </Layout> 
-  );
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        const action = request?.action;
+        if (action === 'reset') {
+            navigateTo(PAGES.JOB_POST_FORM);
+        }
+
+        return true;
+    });
+
+    return (
+        <Layout>
+            <ExtHeader pageName={page.name} checkSession={checkSession} navigateTo={navigateTo} />
+            <Content>{body}</Content>
+        </Layout>
+    );
 };
 
 export default Authenticated;

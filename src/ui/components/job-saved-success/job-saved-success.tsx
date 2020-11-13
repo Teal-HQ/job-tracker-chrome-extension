@@ -1,6 +1,7 @@
-import React from 'react';
-import { Col, Row } from 'antd';
-import { WEB_CLIENT_URL } from '../../../config/config';
+import React, { useEffect } from 'react';
+import { Col, Row, Button } from 'antd';
+import { PAGES, WEB_CLIENT_URL } from '../../../config/config';
+import { INavigateTo } from '../../../common/types';
 
 interface ISuccessData {
     company: string;
@@ -10,12 +11,15 @@ interface ISuccessData {
 
 interface IJobSavedSuccess {
     data: ISuccessData;
+    navigateTo: INavigateTo;
 }
 
 const JobSavedSuccess = (props: IJobSavedSuccess) => {
-    const { data } = props;
+    const { data, navigateTo } = props;
 
-    chrome.runtime.sendMessage({ action: 'jobSaved' });
+    useEffect(() => {
+        chrome.runtime.sendMessage({ action: 'jobSaved' });
+    }, []);
 
     return (
         <div className="success-message">

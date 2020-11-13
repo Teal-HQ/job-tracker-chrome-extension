@@ -17,11 +17,9 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                 sendResponse(response);
             });
         });
-    }
-
-    if (action === 'jobSaved') {
+    } else {
         chrome?.tabs?.query({ active: true, currentWindow: true }, tabs => {
-            chrome.tabs.sendMessage(tabs[0].id, { action: 'jobSaved' });
+            chrome.tabs.sendMessage(tabs[0].id, { action });
         });
     }
 
@@ -33,4 +31,6 @@ chrome.browserAction?.onClicked.addListener(tab => {
         var activeTab = tabs[0];
         chrome.tabs.sendMessage(activeTab.id, { action: 'clickedBrowserAction' });
     });
+
+    return true;
 });

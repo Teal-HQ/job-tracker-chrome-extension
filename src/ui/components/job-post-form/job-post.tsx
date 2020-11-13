@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Row, Col, Form, Button, Input, Alert } from 'antd';
+import { Row, Col, Form, Button, Input, Alert, Tooltip } from 'antd';
 import TextTruncate from 'react-text-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { ISession } from '../authenticated/authenticated';
@@ -21,8 +21,18 @@ const JobPostForm = (props: IJobPostForm) => {
     const [form] = Form.useForm();
 
     useEffect(() => {
+        chrome.runtime.sendMessage({ action: 'navigateToJobPostForm' });
         requestDataFromActiveTab();
     }, []);
+
+    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
+        const action = request?.action;
+        if (action === 'reset' || action === 'urlChanged') {
+            requestDataFromActiveTab();
+        }
+
+        return true;
+    });
 
     useEffect(() => {
         form.setFieldsValue({

@@ -90,7 +90,11 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 
     if (request.action === 'jobSaved') {
-        adjustIframeHeight();
+        adjustIframeHeight(160);
+    }
+
+    if (request.action === 'navigateToJobPostForm') {
+        adjustIframeHeight(600);
     }
 });
 
@@ -151,9 +155,19 @@ const toggle = () => {
         app.style.display = 'block';
     } else {
         app.style.display = 'none';
+        chrome.runtime.sendMessage({ action: 'reset' });
     }
 };
 
-const adjustIframeHeight = () => {
-    $('#' + app.id + ' iframe').height(120);
+const adjustIframeHeight = val => {
+    $('#' + app.id + ' iframe').height(val);
 };
+
+let currentUrl = document.URL;
+setInterval(() => {
+    const url = document.URL;
+    if (currentUrl !== url) {
+        currentUrl = url;
+        chrome.runtime.sendMessage({ action: 'urlChanged' });
+    }
+}, 1000);
