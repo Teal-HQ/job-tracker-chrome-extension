@@ -12,6 +12,7 @@ export interface JobPost {
     description_html: string;
     note?: string;
     id?: string;
+    source?: string;
 }
 
 export const defaultJobPost: JobPost = {
@@ -24,6 +25,7 @@ export const defaultJobPost: JobPost = {
     description_html: '',
     note: '',
     id: '',
+    source: 'ChromeExtension',
 };
 
 export const getRules = async url => {
@@ -52,6 +54,7 @@ export const saveJobPost = (jobPost: JobPost, jwt) => {
                     note: jobPost.note,
                     url: jobPost.url,
                     job_description: jobPost.description_html,
+                    source: 'ChromeExtension',
                 },
             },
         },
