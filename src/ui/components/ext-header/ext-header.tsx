@@ -13,6 +13,10 @@ interface IExtHeader {
     navigateTo: INavigateTo;
 }
 
+const closeApp = () => {
+    chrome.runtime.sendMessage({ action: 'toggleApp' });
+};
+
 const ExtHeader = (props: IExtHeader) => {
     const { pageName, checkSession, navigateTo } = props;
 
@@ -22,14 +26,20 @@ const ExtHeader = (props: IExtHeader) => {
                 <span onClick={e => navigateTo(PAGES.ABOUT)} className="clickable">
                     About &amp; Account
                 </span>
-                <button className="icon-btn"><CloseOutlined/></button>
+                <button className="icon-btn">
+                    <CloseOutlined />
+                </button>
             </Col>
         ) : (
             <Col className="nav-wrapper" span={20}>
-                <span onClick={e => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">
-                    &#8592; Go Back
-                </span>
-                <button className="icon-btn"><CloseOutlined/></button>
+                {pageName !== PAGES.SUCCESS && (
+                    <span onClick={e => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">
+                        &#8592; Go Back
+                    </span>
+                )}
+                <button onClick={closeApp} className="icon-btn">
+                    <CloseOutlined />
+                </button>
             </Col>
         );
 

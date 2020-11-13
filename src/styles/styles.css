@@ -12,7 +12,7 @@
     --light-beige: #f9f7f5;
     --dark-beige: #cbb7a4;
     --gray: #cbcbcb;
-    --success-light: #D6F3E2;
+    --success-light: #d6f3e2;
     --success: #008556;
     --success-dark: #086343;
 }
@@ -78,7 +78,7 @@ button.icon-btn {
     border: 0;
     padding: 0.25rem;
     font-size: 16px;
-    cursor:pointer;
+    cursor: pointer;
 }
 button.icon-btn:hover {
     background-color: rgba(214, 243, 226, 0.3);
@@ -135,7 +135,7 @@ button.icon-btn:hover {
     padding: 0.5rem 0.75rem;
 }
 
-.ant-input[type*="password"] {
+.ant-input[type*='password'] {
     margin-bottom: 0;
 }
 
@@ -221,6 +221,7 @@ button.icon-btn:hover {
 .popup {
     min-width: 350px;
     height: 100%;
+    overflow-x: hidden;
 }
 
 .popup > div {

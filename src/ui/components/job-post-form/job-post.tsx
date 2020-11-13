@@ -23,16 +23,22 @@ const JobPostForm = (props: IJobPostForm) => {
     useEffect(() => {
         chrome.runtime.sendMessage({ action: 'navigateToJobPostForm' });
         requestDataFromActiveTab();
+
+        const listener = (request, sender, sendResponse) => {
+            const action = request?.action;
+            if (action === 'urlChanged') {
+                requestDataFromActiveTab();
+            }
+
+            return true;
+        };
+
+        chrome.runtime.onMessage.addListener(listener);
+
+        return () => {
+            chrome.runtime.onMessage.removeListener(listener);
+        };
     }, []);
-
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        const action = request?.action;
-        if (action === 'reset' || action === 'urlChanged') {
-            requestDataFromActiveTab();
-        }
-
-        return true;
-    });
 
     useEffect(() => {
         form.setFieldsValue({

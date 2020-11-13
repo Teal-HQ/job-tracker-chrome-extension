@@ -28,7 +28,13 @@ const JobSavedSuccess = (props: IJobSavedSuccess) => {
                 </div>
             )}
             <div className="button-row">
-                <a target="_blank" href={`${WEB_CLIENT_URL}job-tracker/${data.id}`} className="ant-btn ant-btn-primary">
+                <a
+                    href="javascript:void(0)"
+                    onClick={() => {
+                        navigateTo(PAGES.JOB_POST_FORM);
+                    }}
+                    className="ant-btn ant-btn-primary"
+                >
                     Keep job searching
                 </a>
                 <a target="_blank" href={`${WEB_CLIENT_URL}job-tracker/${data.id}`} className="ant-btn">

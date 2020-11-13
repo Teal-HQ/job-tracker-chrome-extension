@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { Layout } from 'antd';
 const { Content } = Layout;
 
@@ -24,6 +24,23 @@ const Authenticated = (props: IAuthenticated) => {
     const { session, checkSession, setLoading } = props;
     const [page, setPage] = useState({ name: PAGES.JOB_POST_FORM, data: null });
 
+    useEffect(() => {
+        const listener = (request, sender, sendResponse) => {
+            const action = request?.action;
+            if (action === 'reset') {
+                navigateTo(PAGES.JOB_POST_FORM);
+            }
+
+            return true;
+        };
+
+        chrome.runtime.onMessage.addListener(listener);
+
+        return () => {
+            chrome.runtime.onMessage.removeListener(listener);
+        };
+    }, []);
+
     const navigateTo = (name: PAGES, data?: any) => {
         setPage({ name, data });
     };
@@ -36,15 +53,6 @@ const Authenticated = (props: IAuthenticated) => {
 
     const body = routing[page.name];
     if (!body) console.log('the page is unknown.');
-
-    chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
-        const action = request?.action;
-        if (action === 'reset') {
-            navigateTo(PAGES.JOB_POST_FORM);
-        }
-
-        return true;
-    });
 
     return (
         <Layout>

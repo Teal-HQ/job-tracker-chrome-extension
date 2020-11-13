@@ -85,7 +85,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
         sendResponse({ data: sanitize(window.location.hostname, data) });
     }
 
-    if (request.action === 'clickedBrowserAction') {
+    if (request.action === 'toggleApp') {
         toggle();
     }
 
@@ -119,11 +119,7 @@ const App = () => {
         <Frame style={iframeStyles} head={[<link rel="stylesheet" href={chrome.runtime.getURL('css/styles.css')}></link>]}>
             <FrameContextConsumer>
                 {({ document, window }) => {
-                    return (
-                        <div className="popup">
-                            <JobTracker />
-                        </div>
-                    );
+                    return <JobTracker />;
                 }}
             </FrameContextConsumer>
         </Frame>
@@ -168,6 +164,7 @@ setInterval(() => {
     const url = document.URL;
     if (currentUrl !== url) {
         currentUrl = url;
+        console.log('interval change');
         chrome.runtime.sendMessage({ action: 'urlChanged' });
     }
 }, 1000);
