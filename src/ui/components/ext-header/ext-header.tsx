@@ -26,7 +26,7 @@ const ExtHeader = (props: IExtHeader) => {
                 <span onClick={e => navigateTo(PAGES.ABOUT)} className="clickable">
                     About &amp; Account
                 </span>
-                <button className="icon-btn">
+                <button onClick={closeApp} className="icon-btn">
                     <CloseOutlined />
                 </button>
             </Col>

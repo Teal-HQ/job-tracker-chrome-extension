@@ -56,6 +56,7 @@ const JobPostForm = (props: IJobPostForm) => {
                 setJobPost(result.currentJobPost);
             } else {
                 props.setLoading(true);
+                setSiteWarning(false);
 
                 getRules(url)
                     .then(rules => {
