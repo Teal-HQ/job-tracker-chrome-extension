@@ -15,11 +15,17 @@ const hostRules = {
     },
     'www.glassdoor.com': data => {
         // /Job
-        data.company = data.company.replace($('#SerpFixedHeader span.rating').text().trim(), '').trim();
+        data.company = data.company
+            .replace($('#SerpFixedHeader span.rating').text().trim(), '')
+            .trim()
+            .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, '');
         // /job-listing
         data.company = data.company
             .replace(
-                $('.smarterBannerEmpInfo > div > div:nth-child(1) > div:nth-child(2) > div > div > div:nth-child(1) > span').text().trim(),
+                $('.smarterBannerEmpInfo > div > div:nth-child(1) > div:nth-child(2) > div > div > div:nth-child(1) > span')
+                    .text()
+                    .trim()
+                    .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
                 ''
             )
             .trim();
