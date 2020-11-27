@@ -63,6 +63,87 @@ const exceptions = {
         };
         return data;
     },
+    'garysguide.com/jobs': request => {
+        const data = {
+            company: $(request.rules.company)
+                .text()
+                .trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            role: $(request.rules.role)
+                .text()
+                .trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            location: $(request.rules.location)
+                .get(0)
+                .nextSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            body: $('body').html(),
+            description: $(request.rules.description).text(),
+            description_html: $(request.rules.description).html(),
+            logo: $(request.rules.logo).attr('src'),
+        };
+
+        return data;
+    },
+    'simplyhired.com/search': request => {
+        const data = {
+            company: $(request.rules.company)
+                .get(0)
+                .nextSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            role: $(request.rules.role)
+                .text()
+                .trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            location: $(request.rules.location)
+                .get(0)
+                .nextSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            body: $('body').html(),
+            description: $(request.rules.description).text(),
+            description_html: $(request.rules.description).html(),
+            logo: $(request.rules.logo).attr('src'),
+        };
+
+        return data;
+    },
+    'simplyhired.com/job': request => {
+        const data = {
+            company: $(request.rules.company)
+                .get(0)
+                .nextSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            role: $(request.rules.role)
+                .text()
+                .trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            location: $(request.rules.location)
+                .get(0)
+                .nextSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            body: $('body').html(),
+            description: $(request.rules.description).text(),
+            description_html: $(request.rules.description).html(),
+            logo: $(request.rules.logo).attr('src'),
+        };
+
+        return data;
+    },
+};
+
+const extractHtml = selector => {
+    const selectorArray = selector.split(',');
+    let html = '';
+    selectorArray.forEach(sel => {
+        html += $(sel)
+            .html()
+            .trim()
+            .replace(/((<[\\s\\/]*script\b[^>]*>)([^>]*)(<\/script>))/g, '')
+            .replace(/((svg\b[^>]*>)([^]*)(<\/svg>))/g, '')
+            .replace(/((iframe\b[^>]*>)([^]*)(<\/iframe>))/gi, '');
+    });
+
+    return html;
 };
 
 chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
@@ -83,8 +164,13 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                       .trim()
                       .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
                   body: $('body').html(),
-                  description: $(request.rules.description).text(),
-                  description_html: $(request.rules.description).html(),
+                  description: $(request.rules.description)
+                      .text()
+                      .trim()
+                      .replace(/((<[\\s\\/]*script\b[^>]*>)([^>]*)(<\/script>))/gi, '')
+                      .replace(/((svg\b[^>]*>)([^]*)(<\/svg>))/gi, '')
+                      .replace(/((iframe\b[^>]*>)([^]*)(<\/iframe>))/gi, ''),
+                  description_html: extractHtml(request.rules.description),
                   logo: $(request.rules.logo).attr('src'),
               };
 
@@ -96,7 +182,7 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
     }
 
     if (request.action === 'jobSaved') {
-        adjustIframeHeight(320);
+        adjustIframeHeight(350);
     }
 
     if (request.action === 'navigateToJobPostForm') {
@@ -167,6 +253,7 @@ const adjustIframeHeight = val => {
 
 let currentUrl = document.URL;
 setInterval(() => {
+    if (app.style.display === 'none') return;
     const url = document.URL;
     if (currentUrl !== url) {
         currentUrl = url;
