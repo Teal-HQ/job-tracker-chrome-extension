@@ -129,6 +129,28 @@ const exceptions = {
 
         return data;
     },
+    'idealist.org/[^]*/[^]*job': request => {
+        const data = {
+            company: $(request.rules.company)
+                .get(0)
+                .previousSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            role: $(request.rules.role)
+                .text()
+                .trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            location: $(request.rules.location)
+                .get(0)
+                .nextSibling.textContent.trim()
+                .replace(/^[^a-zA-Z0-9]*|[^a-zA-Z0-9)]*$/g, ''),
+            body: $('body').html(),
+            description: $(request.rules.description).text(),
+            description_html: $(request.rules.description).html(),
+            logo: $(request.rules.logo).attr('src'),
+        };
+
+        return data;
+    },
 };
 
 const extractHtml = selector => {

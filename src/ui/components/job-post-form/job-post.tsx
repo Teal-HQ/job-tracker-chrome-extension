@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Button, Input, Alert, Tooltip } from 'antd';
-import TextTruncate from 'react-text-truncate';
+import TextTruncate from 'react-truncate';
 import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { ISession } from '../authenticated/authenticated';
 import { PAGES } from '../../../config/config';
@@ -166,13 +166,9 @@ const JobPostForm = (props: IJobPostForm) => {
 
                 {jobPost?.description && (
                     <Form.Item label="Job Description Preview">
-                        <TextTruncate
-                            line={3}
-                            element="div"
-                            truncateText="…"
-                            text={jobPost?.description}
-                            containerClassName="job-description-preview"
-                        />
+                        <div className="job-description-preview">
+                            <TextTruncate lines={3}>{jobPost?.description}</TextTruncate>
+                        </div>
                     </Form.Item>
                 )}
 
