@@ -66,6 +66,8 @@ const About = (props: IAbout) => {
                 you’re trying to save from. We’re continually improving our platform to work with all job listings, but until then you can
                 add the information manually.
             </p>
+            <h4>Does the extension work with ad-blockers enabled?</h4>
+            <p>No. Please disable ad-blockers to work on the websites you use for your job search.</p>
             <h4>More questions or issues?</h4>
             <p>
                 Email us at{' '}
