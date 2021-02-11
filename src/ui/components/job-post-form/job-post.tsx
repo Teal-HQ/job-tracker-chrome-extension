@@ -123,8 +123,8 @@ const JobPostForm = (props: IJobPostForm) => {
                         <div>
                             <strong>Heads up!</strong>
                             <br />
-                            This site isn't supported by our Chrome Extension, but you can still fill out the form yourself to save it to
-                            your tracker.
+                            This site/page isn't supported by our Chrome Extension, but you can still fill out the form yourself to save it
+                            to your tracker.
                         </div>
                     }
                     type="warning"

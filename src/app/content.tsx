@@ -196,6 +196,19 @@ chrome.runtime.onMessage.addListener((request, sender, sendResponse) => {
                   logo: $(request.rules.logo).attr('src'),
               };
 
+        // sometimes and specially on search pages, when users navigate between jobs and the url changes
+        // the job posts take more time to load than our "urlChanged" interval
+        // adding some code to detect empty responses and retry one more time per url
+        if (data.company === '' && data.role === '' && data.location === '' && data.description === '') {
+            if (typeof retry[document.URL] === 'undefined') {
+                retry[document.URL] = true;
+            }
+        } else {
+            if (retry[document.URL]) {
+                retry[document.URL] = false;
+            }
+        }
+
         sendResponse({ data: sanitize(window.location.hostname, data) });
     }
 
@@ -274,11 +287,21 @@ const adjustIframeHeight = val => {
 };
 
 let currentUrl = document.URL;
-setInterval(() => {
+let retry = {};
+
+const triggerUrlChanged = () => {
     if (app.style.display === 'none') return;
     const url = document.URL;
-    if (currentUrl !== url) {
+    if (currentUrl !== url || retry[url] === true) {
         currentUrl = url;
         chrome.runtime.sendMessage({ action: 'urlChanged' });
+        if (retry[url] === true) {
+            // only retry once
+            retry[url] = false;
+        }
     }
-}, 1000);
+};
+
+setInterval(() => {
+    triggerUrlChanged();
+}, 1500);
