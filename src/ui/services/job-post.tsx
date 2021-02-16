@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { deserialize } from 'deserialize-json-api';
-import { COMPANY_API_URL } from '../../config/config';
+import { COMPANY_API_URL, SUPPORTED_SITES } from '../../config/config';
 
 export interface JobPost {
     company?: string;
@@ -33,12 +33,20 @@ export const getRules = async url => {
 
     const xPaths = deserialize(data.data);
 
+    const urlObj = new URL(url);
+    const hostname = urlObj.hostname;
+    let siteMatch = false;
+
+    Object.keys(SUPPORTED_SITES).forEach(siteKey => {
+        if (hostname.includes(SUPPORTED_SITES[siteKey])) siteMatch = true;
+    });
+
     const matches = xPaths.data.filter(item => {
         const expr = new RegExp(item.root_url, 'i');
         return url.match(expr) !== null;
     });
 
-    return matches.length > 0 ? matches[0] : null;
+    return matches.length > 0 ? { data: matches[0], siteMatch } : { data: null, siteMatch };
 };
 
 export const saveJobPost = (jobPost: JobPost, jwt) => {

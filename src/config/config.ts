@@ -18,3 +18,25 @@ export enum PAGES {
     JOB_POST_FORM = 'job_post_form',
     SUCCESS = 'success',
 }
+
+export enum SUPPORTED_SITES {
+    SILICON_FLORIST = 'siliconflorist',
+    BUILT_IN = 'builtin',
+    GLASSDOOR = 'glassdoor',
+    THE_MUSE = 'themuse',
+    ANGEL_CO = 'angel.co',
+    GOOGLE = 'google',
+    USAJOBS = 'usajobs',
+    MONSTER = 'monster',
+    ZIPPIA = 'zippia',
+    LINKED_IN = 'linkedin',
+    SIMPLY_HIRED = 'simplyhired',
+    IDEALIST = 'idealist',
+    GREENHOUSE = 'greenhouse',
+    TECH_JOBS_FOR_GOOD = 'techjobsforgood',
+    LEVER = 'lever',
+    WE_WORK_REMOTELY = 'weworkremotely',
+    UNICORN_HUNT = 'unicornhunt',
+    GARYS_GUIDE = 'garysguide',
+    INDEED = 'indeed',
+}

@@ -17,6 +17,7 @@ const JobPostForm = (props: IJobPostForm) => {
     const { session, navigateTo, setLoading } = props;
     const [jobPost, setJobPost] = useState(defaultJobPost);
     const [siteWarning, setSiteWarning] = useState(false);
+    const [siteMatchWarning, setSiteMatchWarning] = useState(false);
     const [error, setError] = useState(false);
     const [form] = Form.useForm();
 
@@ -61,11 +62,11 @@ const JobPostForm = (props: IJobPostForm) => {
                 getRules(url)
                     .then(rules => {
                         props.setLoading(false);
-                        if (!rules) {
-                            setSiteWarning(true);
+                        if (!rules?.data) {
+                            rules.siteMatch ? setSiteMatchWarning(true) : setSiteWarning(true);
                             return;
                         }
-                        chrome.runtime.sendMessage({ action: 'getData', rules }, response => {
+                        chrome.runtime.sendMessage({ action: 'getData', rules: rules.data }, response => {
                             setJobPost({ ...response.data, url });
                         });
                     })
@@ -125,6 +126,18 @@ const JobPostForm = (props: IJobPostForm) => {
                             <br />
                             This site/page isn't supported by our Chrome Extension, but you can still fill out the form yourself to save it
                             to your tracker.
+                        </div>
+                    }
+                    type="warning"
+                />
+            )}
+            {siteMatchWarning && (
+                <Alert
+                    message={
+                        <div>
+                            <strong>Heads up!</strong>
+                            <br />
+                            We see you are on one of our supported sites. Head over to a job description and this form will auto-populate.
                         </div>
                     }
                     type="warning"

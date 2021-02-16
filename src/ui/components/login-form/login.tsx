@@ -42,7 +42,7 @@ const LoginForm = (props: ILoginForm) => {
         getRules(url)
             .then(rules => {
                 props.setLoading(false);
-                chrome.runtime.sendMessage({ action: 'getData', rules }, response => {
+                chrome.runtime.sendMessage({ action: 'getData', rules: rules?.data }, response => {
                     setJobPost({ ...response.data, url });
                 });
             })
