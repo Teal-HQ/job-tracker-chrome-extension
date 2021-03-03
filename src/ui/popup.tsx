@@ -39,7 +39,7 @@ const JobTracker = () => {
 
     const checkSession = () => {
         chrome.storage.local.get(['jwt', 'onboardingComplete', 'onboardingSearchSite', 'plan_type', 'plan_expires_at'], result => {
-            if (result.plan_type.trim().toLowerCase() === 'Premium'.toLowerCase() && moment().isAfter(moment(result.plan_expires_at))) {
+            if (result.plan_type.trim().toLowerCase() === TRIAL_PLAN.toLowerCase() && moment().isAfter(moment(result.plan_expires_at))) {
                 setTrialExpired(true);
             }
 
