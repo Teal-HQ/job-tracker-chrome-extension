@@ -28182,9 +28182,10 @@ button.icon-btn:hover {
     margin-left: 12px;
     text-transform: capitalize;
     color: white;
-    padding: 9.5px 12px;
+    padding: 8px 12px;
     background-color: var(--dark-gold);
     border-radius: 5px;
     display: inline-block;
+    vertical-align: middle;
 }
 
