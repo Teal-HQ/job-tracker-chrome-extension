@@ -1,6 +1,6 @@
-export const COMPANY_API_URL = 'https://company.service.tealhq.com/';
-export const AUTH_API_URL = 'https://auth.service.tealhq.com/';
-export const WEB_CLIENT_URL = 'https://app.tealhq.com/';
+// export const COMPANY_API_URL = 'https://company.service.tealhq.com/';
+// export const AUTH_API_URL = 'https://auth.service.tealhq.com/';
+// export const WEB_CLIENT_URL = 'https://app.tealhq.com/';
 export const MEMBERS_APP_URL = 'https://members.tealhq.com/';
 
 // TODO leaving these here for development
@@ -9,9 +9,9 @@ export const MEMBERS_APP_URL = 'https://members.tealhq.com/';
 // export const WEB_CLIENT_URL = 'http://workstyles-staging.tealhq.com/';
 
 // TODO leaving these for local development
-// export const COMPANY_API_URL = 'http://localhost:3003/';
-// export const AUTH_API_URL = 'http://localhost:3001/';
-// export const WEB_CLIENT_URL = 'http://localhost:9000/';
+export const COMPANY_API_URL = 'http://localhost:3003/';
+export const AUTH_API_URL = 'http://localhost:3001/';
+export const WEB_CLIENT_URL = 'http://localhost:9000/';
 
 export enum PAGES {
     ABOUT = 'about',
@@ -40,3 +40,5 @@ export enum SUPPORTED_SITES {
     GARYS_GUIDE = 'garysguide',
     INDEED = 'indeed',
 }
+
+export const TRIAL_PLAN = 'trial';

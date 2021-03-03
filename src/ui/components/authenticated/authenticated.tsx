@@ -8,6 +8,7 @@ import Success from '../../components/job-saved-success/job-saved-success';
 import ExtHeader from '../../components/ext-header/ext-header';
 import { PAGES } from '../../../config/config';
 import { ILoading, ICheckSession } from '../../popup';
+import TrialExpired from '../trial-expired/trial-expired';
 
 export interface ISession {
     jwt: string;
@@ -18,10 +19,11 @@ interface IAuthenticated {
     session: ISession;
     checkSession: ICheckSession;
     setLoading: ILoading;
+    trialExpired: boolean;
 }
 
 const Authenticated = (props: IAuthenticated) => {
-    const { session, checkSession, setLoading } = props;
+    const { session, checkSession, setLoading, trialExpired } = props;
     const [page, setPage] = useState({ name: PAGES.JOB_POST_FORM, data: null });
 
     useEffect(() => {
@@ -46,12 +48,14 @@ const Authenticated = (props: IAuthenticated) => {
     };
 
     const routing = {
-        [PAGES.JOB_POST_FORM]: <JobPostForm session={session} navigateTo={navigateTo} setLoading={setLoading} />,
+        [PAGES.JOB_POST_FORM]: (
+            <JobPostForm session={session} navigateTo={navigateTo} setLoading={setLoading} checkSession={checkSession} />
+        ),
         [PAGES.ABOUT]: <About checkSession={checkSession} />,
         [PAGES.SUCCESS]: <Success data={page.data} navigateTo={navigateTo} />,
     };
 
-    const body = routing[page.name];
+    const body = trialExpired && page.name !== PAGES.ABOUT ? <TrialExpired /> : routing[page.name];
     if (!body) console.log('the page is unknown.');
 
     return (

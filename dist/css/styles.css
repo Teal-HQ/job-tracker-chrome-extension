@@ -27553,6 +27553,7 @@ div.ant-typography-edit-content.ant-typography-rtl {
     --dark-teal: #11292a;
     --gold: #be9369;
     --sand: #f5be7f;
+    --dark-gold: #c18b49;
     --light-gray: #dcdcdc;
     --beige: #f4efea;
     --light-beige: #f9f7f5;
@@ -28131,5 +28132,59 @@ button.icon-btn:hover {
     color: var(--gold);
     font-weight: bold;
     font-size: 15px;
+}
+
+.trial-expired-content {
+    margin-top: 0.5rem;
+}
+
+.trial-expired-content h3,
+.trial-expired-content p,
+.trial-expired-content .action-buttons {
+    text-align: center;
+}
+
+.trial-expired-content .action-buttons {
+    margin-top: 1rem;
+}
+
+.trial-expired-content a.ant-btn {
+    margin: 5px;
+    text-decoration: none;
+    font-size: 15px;
+    color: var(--teal);
+    border-color: var(--teal);
+}
+
+.trial-expired-content a.ant-btn.learn-more {
+    line-height: 45px;
+    height: 46px;
+}
+
+.trial-expired-content a.ant-btn.ant-btn-primary {
+    color: white;
+    background-color: var(--teal);
+}
+
+.trial-expired-content ul {
+    list-style: none;
+    padding: 0;
+    margin-top: 1.2rem;
+}
+
+.trial-expired-content ul li {
+    background: url('/images/tick.png') no-repeat left 4px;
+    padding-left: 35px;
+    margin-bottom: 1rem;
+}
+
+.pro-label {
+    margin-left: 12px;
+    text-transform: capitalize;
+    color: white;
+    padding: 9.5px 12px;
+    background-color: var(--dark-gold);
+    border-radius: 5px;
+    display: inline-block;
 }
 

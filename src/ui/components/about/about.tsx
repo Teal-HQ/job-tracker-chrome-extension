@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Col, Row } from 'antd';
 import { ICheckSession } from '../../popup';
+import { logout } from '../../services/login';
 
 interface IAbout {
     checkSession: ICheckSession;
@@ -16,8 +17,8 @@ const About = (props: IAbout) => {
         });
     }, []);
 
-    const logout = () => {
-        chrome.storage.local.remove(['jwt', 'email']);
+    const onLogout = () => {
+        logout();
         props.checkSession();
     };
 
@@ -33,7 +34,7 @@ const About = (props: IAbout) => {
                     <div>{email}</div>
                 </Col>
                 <Col span={8}>
-                    <a className="logout-link" onClick={logout}>
+                    <a className="logout-link" onClick={onLogout}>
                         Log Out
                     </a>
                 </Col>

@@ -22,7 +22,7 @@ const ExtHeader = (props: IExtHeader) => {
 
     let columns =
         pageName === PAGES.JOB_POST_FORM ? (
-            <Col className="nav-wrapper" span={20}>
+            <Col className="nav-wrapper" span={16}>
                 <span onClick={e => navigateTo(PAGES.ABOUT)} className="clickable">
                     About &amp; Account
                 </span>
@@ -31,7 +31,7 @@ const ExtHeader = (props: IExtHeader) => {
                 </button>
             </Col>
         ) : (
-            <Col className="nav-wrapper" span={20}>
+            <Col className="nav-wrapper" span={16}>
                 {pageName !== PAGES.SUCCESS && (
                     <span onClick={e => navigateTo(PAGES.JOB_POST_FORM)} className="clickable">
                         &#8592; Go Back
@@ -46,9 +46,10 @@ const ExtHeader = (props: IExtHeader) => {
     return (
         <Header>
             <Row>
-                <Col span={4}>
+                <Col span={8}>
                     <a href="https://app.tealhq.com/job-tracker" target="_blank">
                         <img src={chrome.runtime.getURL('images/teal_logo_32.svg')} />
+                        <span className="pro-label">PRO</span>
                     </a>
                 </Col>
                 {columns}

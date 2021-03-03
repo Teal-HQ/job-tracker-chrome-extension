@@ -1,6 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import { Row, Col, Form, Button, Input, Alert } from 'antd';
-import { login } from '../../services/login';
+import { decodeToken, login } from '../../services/login';
 import { ILoading, ICheckSession } from '../../popup';
 import { defaultJobPost, getRules } from '../../services/job-post';
 import { MEMBERS_APP_URL } from '../../../config/config';
@@ -20,11 +20,16 @@ const LoginForm = (props: ILoginForm) => {
 
         login(email, password)
             .then(response => {
-                chrome.storage.local.set({ jwt: response.data.data.attributes.jwt, email: email }, () => {
-                    props.checkSession();
-                    props.setLoading(false);
+                decodeToken(response?.data?.jwt).then(data => {
+                    chrome.storage.local.set(
+                        { jwt: response?.data?.jwt, email: email, plan_type: data.plan_type, plan_expires_at: data.plan_expires_at },
+                        () => {
+                            props.checkSession();
+                            props.setLoading(false);
+                        }
+                    );
+                    chrome.storage.local.set({ onboardingComplete: true });
                 });
-                chrome.storage.local.set({ onboardingComplete: true });
             })
             .catch(error => {
                 if (error?.response?.status === 401) {

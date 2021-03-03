@@ -27,6 +27,7 @@
     "antd": "^4.4.2",
     "axios": ">=0.21.1",
     "deserialize-json-api": "^1.4.0",
+    "jwt-js-decode": "^1.4.1",
     "prettier": "^2.1.2",
     "react": "^16.13.1",
     "react-dom": "16.12.0",

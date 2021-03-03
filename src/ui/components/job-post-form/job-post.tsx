@@ -5,16 +5,18 @@ import { defaultJobPost, getRules, saveJobPost } from '../../services/job-post';
 import { ISession } from '../authenticated/authenticated';
 import { PAGES } from '../../../config/config';
 import { INavigateTo } from '../../../common/types';
-import { ILoading } from '../../popup';
+import { ICheckSession, ILoading } from '../../popup';
+import { logout } from '../../services/login';
 
 export interface IJobPostForm {
     session: ISession;
     navigateTo: INavigateTo;
     setLoading: ILoading;
+    checkSession: ICheckSession;
 }
 
 const JobPostForm = (props: IJobPostForm) => {
-    const { session, navigateTo, setLoading } = props;
+    const { session, navigateTo, setLoading, checkSession } = props;
     const [jobPost, setJobPost] = useState(defaultJobPost);
     const [siteWarning, setSiteWarning] = useState(false);
     const [siteMatchWarning, setSiteMatchWarning] = useState(false);
@@ -111,6 +113,10 @@ const JobPostForm = (props: IJobPostForm) => {
                 navigateTo(PAGES.SUCCESS, { ...jobPost, id: response.data.data.id });
             })
             .catch(error => {
+                if (error.response.status === 401) {
+                    logout();
+                    checkSession();
+                }
                 setError(true);
                 setLoading(false);
             });
