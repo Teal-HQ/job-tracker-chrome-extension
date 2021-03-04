@@ -49,8 +49,8 @@ const ExtHeader = (props: IExtHeader) => {
                 <Col span={10}>
                     <a href="https://app.tealhq.com/job-tracker" target="_blank">
                         <img src={chrome.runtime.getURL('images/teal_logo_32.svg')} />
-                        <span className="pro-label">PRO</span>
                     </a>
+                    <span className="pro-label">PRO</span>
                 </Col>
                 {columns}
             </Row>

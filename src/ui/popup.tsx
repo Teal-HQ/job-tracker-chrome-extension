@@ -47,8 +47,8 @@ const JobTracker = () => {
                 setOnboardingSearchSite(result.onboardingSearchSite);
             }
             if (
-                (result?.plan_type.trim().toLowerCase() === TRIAL_PLAN && moment().isAfter(moment(result?.plan_expires_at))) ||
-                result?.plan_type.trim().toLowerCase() === FREE_PLAN
+                (result?.plan_type?.trim().toLowerCase() === TRIAL_PLAN && moment().isAfter(moment(result?.plan_expires_at))) ||
+                result?.plan_type?.trim().toLowerCase() === FREE_PLAN
             ) {
                 setTrialExpired(true);
             }
