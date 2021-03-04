@@ -8,7 +8,7 @@ import moment from 'moment';
 
 import '../styles/styles.css';
 import { logout } from './services/login';
-import { TRIAL_PLAN } from '../config/config';
+import { TRIAL_PLAN, FREE_PLAN } from '../config/config';
 
 export interface ILoading {
     (loading: boolean): void;
@@ -39,7 +39,17 @@ const JobTracker = () => {
 
     const checkSession = () => {
         chrome.storage.local.get(['jwt', 'onboardingComplete', 'onboardingSearchSite', 'plan_type', 'plan_expires_at'], result => {
-            if (result.plan_type.trim().toLowerCase() === TRIAL_PLAN.toLowerCase() && moment().isAfter(moment(result.plan_expires_at))) {
+            if (result.onboardingComplete) {
+                setOnboardingComplete(true);
+            }
+
+            if (result.onboardingSearchSite) {
+                setOnboardingSearchSite(result.onboardingSearchSite);
+            }
+            if (
+                (result?.plan_type.trim().toLowerCase() === TRIAL_PLAN && moment().isAfter(moment(result?.plan_expires_at))) ||
+                result?.plan_type.trim().toLowerCase() === FREE_PLAN
+            ) {
                 setTrialExpired(true);
             }
 
@@ -47,14 +57,6 @@ const JobTracker = () => {
                 setSession({ jwt: result.jwt, isAuthenticated: true });
             } else {
                 setSession({ jwt: null, isAuthenticated: false });
-            }
-
-            if (result.onboardingComplete) {
-                setOnboardingComplete(true);
-            }
-
-            if (result.onboardingSearchSite) {
-                setOnboardingSearchSite(result.onboardingSearchSite);
             }
         });
     };

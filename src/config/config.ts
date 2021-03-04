@@ -42,3 +42,4 @@ export enum SUPPORTED_SITES {
 }
 
 export const TRIAL_PLAN = 'trial';
+export const FREE_PLAN = 'free';

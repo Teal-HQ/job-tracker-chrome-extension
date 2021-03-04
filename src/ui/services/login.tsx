@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AUTH_API_URL } from '../../config/config';
+import { AUTH_API_URL, FREE_PLAN } from '../../config/config';
 import { deserialize } from 'deserialize-json-api';
 import { jwtVerify, jwtDecode } from 'jwt-js-decode';
 
@@ -30,8 +30,9 @@ export const decodeToken = async (jwt: string) => {
 
     if (isVerified) {
         const jwtData = jwtDecode(jwt);
-        // uncomment the line below to test the free plan type
-        // jwtData.payload['plan_type'] = USER_PLANS.FREE;
+        // uncomment the line below to test the free/trial expired plan type
+        // jwtData.payload['plan_type'] = FREE_PLAN;
+        // jwtData.payload['plan_expires_at'] = '02/28/21';
         return jwtData.payload;
     }
 
